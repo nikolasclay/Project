@@ -7,12 +7,19 @@ namespace Warmups.BLL
 
         public string StringTimes(string str, int n)
         {
-            throw new NotImplementedException();
+            string x = String.Empty;
+            for (int i = 0; i < n; i++)
+            {
+                x += str;
+            }
+            return x;
         }
 
         public string FrontTimes(string str, int n)
         {
+
             throw new NotImplementedException();
+
         }
 
         public int CountXX(string str)
