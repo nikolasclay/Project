@@ -227,16 +227,55 @@ namespace Warmups.BLL
 
         public string StartOz(string str)
         {
-            throw new NotImplementedException();
+            if(str.IndexOf("o") == 0)
+            {
+                return "o";
+            }
+            else if(str.IndexOf("z") == 1)
+            {
+                return "z";
+            }
+            else if(str.IndexOf("") == 0)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return str;
+            }
         }
 
         public int Max(int a, int b, int c)
         {
+            if((a > b && a > c && b > c) || (b < c && a > c && a > b))
+            {
+                return a;
+            }
+            else if((a > b && a < c && b < c) || (b < c && a < c && a < b))
+            {
+                return c;
+            }
+            else
+            {
+                return b;
+            }
             throw new NotImplementedException();
         }
 
         public int Closer(int a, int b)
         {
+            if(Math.Abs(10 - a) < Math.Abs(10 - b))
+            {
+                return a;
+            }
+            else if (Math.Abs(10 - a) == Math.Abs(10 - b))
+            {
+                return 0;
+            }
+            else
+            {
+                return b;
+            }
             throw new NotImplementedException();
         }
 

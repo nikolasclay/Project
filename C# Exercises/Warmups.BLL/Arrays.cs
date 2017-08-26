@@ -7,6 +7,7 @@ namespace Warmups.BLL
 
         public bool FirstLast6(int[] numbers)
         {
+
             throw new NotImplementedException();
         }
 

@@ -17,13 +17,13 @@ namespace Warmups.BLL
 
         public string FrontTimes(string str, int n)
         {
-
+            
             throw new NotImplementedException();
-
         }
 
         public int CountXX(string str)
         {
+
             throw new NotImplementedException();
         }
 
@@ -34,6 +34,7 @@ namespace Warmups.BLL
 
         public string EveryOther(string str)
         {
+
             throw new NotImplementedException();
         }
 
