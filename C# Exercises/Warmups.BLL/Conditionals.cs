@@ -116,7 +116,6 @@ namespace Warmups.BLL
             {
                 return false;
             }
-            throw new NotImplementedException();
         }
 
         public string NotString(string s)
@@ -127,7 +126,6 @@ namespace Warmups.BLL
             }
             return s;
 
-            throw new NotImplementedException();
         }
 
         public string MissingChar(string str, int n)
@@ -139,17 +137,36 @@ namespace Warmups.BLL
 
         public string FrontBack(string str)
         {
-            throw new NotImplementedException();
+            if(str.Length == 1)
+            {
+                return str;
+            }
+            else if(str.Length == 2)
+            {
+                return str.Substring(str.Length - 1) + str.Substring(0, 1);
+            }
+            else
+            {
+                return str.Substring(str.Length - 1) + str.Substring(1,2) + str.Substring(0,1);
+            }
         }
 
         public string Front3(string str)
         {
-            throw new NotImplementedException();
+            if(str.Length <= 3)
+            {
+                return str + str + str;
+            }
+            else
+            {
+                return str.Substring(0, 3) + str.Substring(0, 3) + str.Substring(0,3);
+            }
         }
 
         public string BackAround(string str)
         {
-            throw new NotImplementedException();
+            return str.Substring(str.Length - 1) + str + str.Substring(str.Length - 1);
+           
         }
 
         public bool Multiple3or5(int number)
@@ -160,29 +177,43 @@ namespace Warmups.BLL
 
         public bool StartHi(string str)
         {
-            if (str.IndexOf("hi") == 0)
+            if(str.Length < 2)
+            {
+                return false;
+            }
+            if (str.Length == 2 && str.Substring(0,2) == "hi")
             {
                 return true;
             }
-            else if (str.IndexOf("hi") != 0)
+            else if (str.Substring(0,2) == "hi" && str.Substring(2,1) == " ")
+            {
+                return true;
+            }
+            else if(str.Substring(0,2) == "hi" && str.Substring(2,1) != "")
             {
                 return false;
+            }
+            else if(str.Substring(0,2) == "hi")
+            {
+                return true;
             }
             else
             {
                 return false;
             }
-            throw new NotImplementedException();
         }
 
         public bool IcyHot(int temp1, int temp2)
-        {
-            if (temp1 < 0 && temp2 > 100 || (temp1 > 100 && temp2 < 0))
             {
-                return true;
+                if (temp1 < 0 && temp2 > 100 || (temp1 > 100 && temp2 < 0))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else return false;
-        }
 
         public bool Between10and20(int a, int b)
         {
@@ -215,8 +246,15 @@ namespace Warmups.BLL
 
         public string RemoveDel(string str)
         {
+            if(str.Substring(1, 3) == "del")
+            {
+                return str.Remove(str.IndexOf("del")) + str.Substring(4);
+            }
+            else
+            {
+                return str;
+            }
 
-            throw new NotImplementedException();
         }
 
         public bool IxStart(string str)
@@ -227,21 +265,21 @@ namespace Warmups.BLL
 
         public string StartOz(string str)
         {
-            if(str.IndexOf("o") == 0)
+            if (str.IndexOf("o") == 0 && str.IndexOf("z") == 1)
             {
-                return "o";
+                return "oz";
             }
-            else if(str.IndexOf("z") == 1)
+            else if (str.IndexOf("z") == 1)
             {
                 return "z";
             }
-            else if(str.IndexOf("") == 0)
+            else if (str.IndexOf("o") == 0)
             {
-                return String.Empty;
+                return "o";
             }
             else
             {
-                return str;
+                return string.Empty;
             }
         }
 
@@ -259,7 +297,6 @@ namespace Warmups.BLL
             {
                 return b;
             }
-            throw new NotImplementedException();
         }
 
         public int Closer(int a, int b)
@@ -276,7 +313,6 @@ namespace Warmups.BLL
             {
                 return b;
             }
-            throw new NotImplementedException();
         }
 
         public bool GotE(string str)
@@ -286,7 +322,17 @@ namespace Warmups.BLL
 
         public string EndUp(string str)
         {
-            throw new NotImplementedException();
+            string s = String.Empty;
+            if(str.Length <= 3)
+            {
+                str.ToUpper();
+            }
+            else
+            {
+                s += str.Length - 3;
+
+            }
+            return str + s.ToUpper();
         }
 
         public string EveryNth(string str, int n)

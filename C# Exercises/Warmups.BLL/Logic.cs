@@ -12,7 +12,7 @@ namespace Warmups.BLL
         public bool GreatParty(int cigars, bool isWeekend)
         {
             return (cigars >= 40) && (cigars <= 60 || isWeekend);
-            throw new NotImplementedException();
+
         }
 
         public int CanHazTable(int yourStyle, int dateStyle)
@@ -29,7 +29,6 @@ namespace Warmups.BLL
             {
                 return 1;
             }
-            throw new NotImplementedException();
         }
 
         public bool PlayOutside(int temp, bool isSummer)
@@ -42,7 +41,6 @@ namespace Warmups.BLL
             {
                 return true;
             }
-            throw new NotImplementedException();
         }
 
         public int CaughtSpeeding(int speed, bool isBirthday)
@@ -59,7 +57,6 @@ namespace Warmups.BLL
             {
                 return 2;
             }
-            throw new NotImplementedException();
         }
 
         public int SkipSum(int a, int b)
@@ -73,7 +70,6 @@ namespace Warmups.BLL
             {
                 return 20;
             }
-            throw new NotImplementedException();
         }
 
         public string AlarmClock(int day, bool vacation)
@@ -105,7 +101,18 @@ namespace Warmups.BLL
 
         public bool InRange(int n, bool outsideMode)
         {
-            if (outsideMode && n <= 1 || n >= 10 || n >= 1 || n <= 10)
+            if (outsideMode)
+            {
+                if (n >= 1 || n <= 10)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (n >= 1 && n <= 10)
             {
                 return true;
             }
@@ -118,7 +125,6 @@ namespace Warmups.BLL
         public bool SpecialEleven(int n)
         {
 
-            //if (n > 0)
             if (n % 11 == 0 || n % 11 == 1)
             {
                 return true;
@@ -127,8 +133,6 @@ namespace Warmups.BLL
             {
                 return false;
             }
-
-            throw new NotImplementedException();
         }
 
         public bool Mod20(int n)
