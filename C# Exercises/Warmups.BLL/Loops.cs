@@ -104,75 +104,141 @@ namespace Warmups.BLL
 
         public bool ArrayFront9(int[] numbers)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < numbers.Length; i++)
+            {
+                if(numbers[0] == 9 || numbers[1] == 9 || numbers[2] == 9 || numbers[3] == 9)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool Array123(int[] numbers)
         {
-            for (int i = 0; i < numbers.Length; i++)
-                if (numbers.Length >= 3 && numbers[i] == 1 && numbers[i] == 2 && numbers[i] == 3)
+            for (int i = 0; i < numbers.Length - 2; i++)
+            {
+                if (numbers[i] == 1 && numbers[i+1] == 2 && numbers[i + 2] == 3)
                 {
                     return true;
                 }
+            }
             return false;
         }
 
         public int SubStringMatch(string a, string b)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            for (int i = 0; i < a.Length-1; i++)
+            {
+                for (int j = 0; j < b.Length-1; j++)
+                {
+                    if (a.Substring(i, 2) == b.Substring(j, 2))
+                    {
+                        counter++;
+                    }
+                }
+            }
+            return counter;
         }
 
         public string StringX(string str)
         {
-            string s = String.Empty;
-            for(int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
-                if((str.Contains("x") && (str.Substring(0,1) != "x") && ((str.Substring(str.Length-1) == "x"))))
+                if(str.Substring(0,1) == "x" && str.Substring(str.Length - 1) == "x")
                 {
-                    s += str.Remove('x');
+                    str = str.Replace("x", "");
+                    str = "x" + str + "x";
                 }
-
+                if (str.Contains("x") == true && str.Substring(0, 1) != "x" && str.Substring(str.Length-1) != "x")
+                {
+                    str = str.Replace("x", "");
+                }
             }
-            return s;
-
+            return str;
         }
 
         public string AltPairs(string str)
         {
-            string s = string.Empty;
-            for (int i = 0; i < str.Length - 2; i += 4)
+            string stringA = "";
+            string stringB = "";
+            string stringC = "";
+            for (int i = 0; i < str.Length; i++)
             {
-                s += str[i];
-            }
-            return s;
-        }
+                if(str.Length == 9)
+                {
+                    stringA = str.Substring(0, 2);
+                    stringB = str.Substring(4, 2);
+                    stringC = str.Substring(8,1);
+                }
+                else if(str.Length > 9)
+                {
+                    stringA = str.Substring(0, 2);
+                    stringB = str.Substring(4, 2);
+                    stringC = str.Substring(8, 2);
+                }
+                else
+                {
+                    stringA = str.Substring(0, 2);
+                    stringB = str.Substring(4, 2);
+                }
 
+            }
+
+            return stringA + stringB + stringC;
+        }
         public string DoNotYak(string str)
         {
-            string s = string.Empty;
-            for(int i = 0; i < str.Length; i++)
+
+            for (int i = 0; i < str.Length; i++)
             {
-                if (str.Contains("yak"))
+                if(str.Contains("yak")==true)
                 {
-                    
+                    str = str.Remove(str.IndexOf("yak"), 3);
                 }
             }
-            throw new NotImplementedException();
+            return str;
         }
-
         public int Array667(int[] numbers)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            for(int i = 0; i < numbers.Length-1; i++)
+            {
+                if(numbers[i] == 6 && numbers[i + 1] == 6 || numbers[i + 1] == 7)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
 
         public bool NoTriples(int[] numbers)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < numbers.Length - 2; i++)
+            {
+                if ((numbers[i] == numbers[i + 1]) && ((numbers[i + 1] == numbers[i + 2])))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public bool Pattern51(int[] numbers)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < numbers.Length - 2; i++)
+            {
+                if(numbers[i] == 2 && numbers[i + 1] == 7 && numbers[i + 2] == 1)
+                {
+                    return true;
+                }
+                else if (numbers[i] == 6)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

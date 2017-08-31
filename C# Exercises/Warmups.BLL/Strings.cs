@@ -13,7 +13,6 @@ namespace Warmups.BLL
         public string Abba(string a, string b)
         {
             return (a + b) + (b + a);
-            throw new NotImplementedException();
         }
 
         public string MakeTags(string tag, string content)
@@ -116,9 +115,6 @@ namespace Warmups.BLL
                 return false;
             }
 
-
-
-            throw new NotImplementedException();
         }
 
         public string FrontAndBack(string str, int n)
@@ -155,7 +151,19 @@ namespace Warmups.BLL
 
         public string AtFirst(string str)
         {
-            throw new NotImplementedException();
+            if (str.Length == 0)
+            {
+                return "@@";
+            }
+            else if(str.Length == 1)
+            {
+                return str.Substring(0, 1) + "@";
+            }
+            else
+            {
+                return str.Substring(0,1) + str.Substring(1,1);
+            }
+
         }
 
         public string LastChars(string a, string b)

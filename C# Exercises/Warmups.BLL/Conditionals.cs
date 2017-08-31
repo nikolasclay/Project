@@ -181,22 +181,15 @@ namespace Warmups.BLL
             {
                 return false;
             }
-            if (str.Length == 2 && str.Substring(0,2) == "hi")
+            if (str.Length < 3 && str.Substring(0,2) == "hi")
             {
                 return true;
             }
-            else if (str.Substring(0,2) == "hi" && str.Substring(2,1) == " ")
+            else if (str.Substring(0,3) == "hi" || !char.IsLetter(str[2]))
             {
                 return true;
             }
-            else if(str.Substring(0,2) == "hi" && str.Substring(2,1) != "")
-            {
-                return false;
-            }
-            else if(str.Substring(0,2) == "hi")
-            {
-                return true;
-            }
+           
             else
             {
                 return false;
@@ -317,27 +310,45 @@ namespace Warmups.BLL
 
         public bool GotE(string str)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach(char ch in str)
+            {
+                if(ch == 'e')
+                    count++;
+            }
+            if (count > 0 && count <= 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public string EndUp(string str)
         {
-            string s = String.Empty;
-            if(str.Length <= 3)
+            if(str.Length < 3)
             {
-                str.ToUpper();
+                return str.ToUpper();
             }
             else
             {
-                s += str.Length - 3;
+               return str.Substring(0,str.Length-3) + str.ToUpper().Substring(str.Length - 3);
 
             }
-            return str + s.ToUpper();
         }
 
         public string EveryNth(string str, int n)
         {
-            throw new NotImplementedException();
+            string newString = "";
+            string str1 = String.Empty;
+
+            for (int i = 0; i < str.Length; i+=n)
+            {  
+             newString += str.Substring(i,1);             
+            }
+            return newString;
         }
     }
 }
