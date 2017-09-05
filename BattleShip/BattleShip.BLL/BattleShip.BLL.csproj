@@ -49,6 +49,7 @@
     <Compile Include="Responses\ShipPlacement.cs" />
     <Compile Include="Responses\ShotHistory.cs" />
     <Compile Include="Responses\ShotStatus.cs" />
+    <Compile Include="RNG.cs" />
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\ShipType.cs" />
   </ItemGroup>
