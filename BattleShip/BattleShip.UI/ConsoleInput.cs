@@ -58,8 +58,18 @@ namespace BattleShip.UI
             int yPart = 'a';
             bool isValid = false;
             while (!isValid)
+            
             {
-                var activePlayer = state.Player1.Name;
+                var activePlayer = "";
+                if (state.IsPlayerAsTurn)
+                {
+                    activePlayer = state.Player1.Name;
+                }
+                else
+                {
+                    activePlayer = state.Player2.Name;
+                }
+                
                 Console.Write($"{activePlayer} please enter your coordinates to fire your shot: ");
                 string userInput = Console.ReadLine();
                 Console.Clear();
