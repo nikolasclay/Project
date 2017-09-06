@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BattleShip.BLL.GameLogic;
 using BattleShip.BLL.Responses;
 using BattleShip.BLL.Requests;
+using BattleShip.BLL.Ships;
 
 namespace BattleShip.UI
 {
@@ -15,9 +16,9 @@ namespace BattleShip.UI
         {
             Console.WriteLine("*************************************");
             Console.WriteLine("*    Get ready to have some fun!    *");
-            Console.WriteLine("*    Welcome To BATTLESHIP          *");
+            Console.WriteLine("*       Welcome To BATTLESHIP!      *");
             Console.WriteLine("*                                   *");
-            Console.WriteLine("*************************************\n");
+            Console.WriteLine("*************************************");
             Console.WriteLine("Press any key to start the game...");
             Console.ReadKey();
             Console.Clear();
@@ -54,19 +55,31 @@ namespace BattleShip.UI
 
         internal static void InvalidShot(GameState state)
         {
-            var activePlayer = state.Player1.Name;
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
+            
             Console.WriteLine($"{activePlayer} what are you shooting at?! Please shoot again.");
         }
 
         internal static void ShotDuplicate(GameState state)
         {
-            var activePlayer = state.Player1.Name;
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
             Console.WriteLine($"{activePlayer} you already shot there. Get it together and try again!");
-        }
-
-        internal static void PlayAgain()
-        {
-            Console.WriteLine("Would you like to play the game again? Press Y for 'Yes' or 'Q' to quit.");
         }
 
         internal static void ShipOverlap(string playerName)
@@ -85,20 +98,45 @@ namespace BattleShip.UI
 
         internal static void ShipHit(GameState state)
         {
-            var activePlayer = state.Player1.Name;
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
             Console.WriteLine($"{activePlayer}, don't panic yet...but your ship has been hit!!");
         }
 
         internal static void HitandSunk(GameState state)
         {
-            var activePlayer = state.Player1.Name;
-            Console.WriteLine($"{ activePlayer}, I've got bad news...your ship has been sunk!");
+            
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
+            Console.WriteLine($"{activePlayer}, I've got bad news...your ship has been sunk!");
         }
 
         internal static void Victory(GameState state)
         {
-            var activePlayer = state.Player1.Name;
-            Console.WriteLine($"{ activePlayer}, take a bow...You are victorious!!!!");
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
+            Console.WriteLine($"{activePlayer}, take a bow...You are victorious!!!!");
         }
 
         internal static void ShipPlaceOk(string playerName)
@@ -110,7 +148,16 @@ namespace BattleShip.UI
 
         internal static void ShotMiss(GameState state)
         {
-            Console.WriteLine("Your shot missed! Better luck next time!");
+            var activePlayer = "";
+            if (state.IsPlayerAsTurn)
+            {
+                activePlayer = state.Player1.Name;
+            }
+            else
+            {
+                activePlayer = state.Player2.Name;
+            }
+            Console.WriteLine($"{activePlayer} shot missed! Better luck next time!");
         }
         
     }

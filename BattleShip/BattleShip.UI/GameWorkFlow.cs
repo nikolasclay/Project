@@ -73,17 +73,6 @@ namespace BattleShip.UI
                         state.IsPlayerAsTurn = !state.IsPlayerAsTurn;
                         break;
                 }
-                bool isPlayAgain = false;
-
-                if (isVictory == true)
-                {
-                    ConsoleOutput.PlayAgain();
-                }
-                if (!isPlayAgain)
-                {
-                    GoPlay(state);
-                }
-
             }
         }
     }
