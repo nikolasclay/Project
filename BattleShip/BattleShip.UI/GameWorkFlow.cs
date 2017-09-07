@@ -74,6 +74,7 @@ namespace BattleShip.UI
                         break;
                     case ShotStatus.Victory:
                         ConsoleOutput.Victory(state);
+                        isVictory = true;
                         break;
                 }
             }

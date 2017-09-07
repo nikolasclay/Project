@@ -10,8 +10,11 @@ namespace BattleShip.TestCase
     [TestFixture]
     public class BattleShipTests
     {
-        [Test]
+        [TestCase]
         
-        public void 
+        public void ValidCoordinates()
+        {
+
+        }
     }
 }
