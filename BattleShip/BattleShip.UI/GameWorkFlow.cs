@@ -72,6 +72,9 @@ namespace BattleShip.UI
                         ConsoleOutput.HitandSunk(state);
                         state.IsPlayerAsTurn = !state.IsPlayerAsTurn;
                         break;
+                    case ShotStatus.Victory:
+                        ConsoleOutput.Victory(state);
+                        break;
                 }
             }
         }

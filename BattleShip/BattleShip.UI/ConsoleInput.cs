@@ -54,9 +54,9 @@ namespace BattleShip.UI
 
         internal static Coordinate FireCoord(GameState state)
         {
-            int x = -1;
-            int yPart = 'a';
+        ;
             bool isValid = false;
+            Coordinate toReturn = null;
             while (!isValid)
             
             {
@@ -73,27 +73,38 @@ namespace BattleShip.UI
                 Console.Write($"{activePlayer} please enter your coordinates to fire your shot: ");
                 string userInput = Console.ReadLine();
                 Console.Clear();
-                string xPart = userInput.Substring(1);
-                yPart = userInput[0];
-
-                if (yPart >= 'a' && yPart <= 'j')
+                isValid = CoordinateTryParse(userInput, out toReturn);
+                if (!isValid)
                 {
-                    if (int.TryParse(xPart, out x))
+                    Console.WriteLine($"{activePlayer} the coordinates you just entered were not valid");
+                }
+
+            }
+
+            return toReturn;
+        }
+
+        private static bool CoordinateTryParse(string userInput, out Coordinate toReturn)
+        {
+            toReturn = null;
+            int x = -1;
+            int yPart = 'a';
+            string xPart = userInput.Substring(1);
+            yPart = userInput[0];
+
+            if (yPart >= 'a' && yPart <= 'j')
+            {
+                if (int.TryParse(xPart, out x))
+                {
+                    if (x >= 1 && x <= 10)
                     {
-                        if (x >= 1 && x <= 10)
-                        {
-                            isValid = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{activePlayer} the coordinates you just entered were not valid");
-                        }
+                        int y = (yPart - 'a' + 1);
+                        toReturn = new Coordinate(x, y);
+                        return true;
                     }
                 }
             }
-            int y = (yPart - 'a' + 1);
-            Coordinate FireCoord = new Coordinate(x, y);
-            return FireCoord;
+            return false;
         }
 
         internal static ShipDirection GetDir(string playerName, ShipType s)
