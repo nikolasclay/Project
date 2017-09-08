@@ -18,11 +18,15 @@ namespace BattleShip.UI
                 Setup_Workflow flow = new Setup_Workflow();
                 GameState state = flow.Start();
 
+
+                GameWorkFlow.GoPlay(state);
+
                 Console.WriteLine("Do you want to play again? Press 'y' for Yes or 'q' to Quit.");
                 string input = Console.ReadLine();
                 if (input == "y")
                 {
-                    GameWorkFlow.GoPlay(state);
+                    Console.Clear();
+                    flow.Start();
                 }
                 else if(input == "q")
                 {

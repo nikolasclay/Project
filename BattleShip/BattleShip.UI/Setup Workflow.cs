@@ -51,24 +51,30 @@ namespace BattleShip.UI
 
             for (ShipType s = ShipType.Destroyer; s <= ShipType.Carrier; s++)
             {
-                PlaceShipRequest request = new PlaceShipRequest();
-                request.Coordinate = ConsoleInput.GetCoord(playerName, s);
-                request.Direction = ConsoleInput.GetDir(playerName, s);
-                request.ShipType = s;
+                bool isValidPlacement = false;
+                do
+                {
+                    PlaceShipRequest request = new PlaceShipRequest();
+                    request.Coordinate = ConsoleInput.GetCoord(playerName, s);
+                    request.Direction = ConsoleInput.GetDir(playerName, s);
+                    request.ShipType = s;
 
-                var result = board.PlaceShip(request);
-                    if(result == ShipPlacement.Overlap)
+                    var result = board.PlaceShip(request);
+                    if (result == ShipPlacement.Overlap)
                     {
                         ConsoleOutput.ShipOverlap(playerName);
                     }
-                    if(result == ShipPlacement.NotEnoughSpace)
+                    else if (result == ShipPlacement.NotEnoughSpace)
                     {
-                        ConsoleOutput.NotEnoughSpace(playerName);    
+                        ConsoleOutput.NotEnoughSpace(playerName);
                     }
-                    if(result == ShipPlacement.Ok)
+                    else
                     {
                         ConsoleOutput.ShipPlaceOk(playerName);
+                        isValidPlacement = true;
                     }
+                } while (!isValidPlacement);
+
 
             }
             return board;

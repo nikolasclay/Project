@@ -30,7 +30,7 @@ namespace BattleShip.UI
             {
                 for (int x = 1; x <= 10; x++)
                 {
-                    ShotHistory currentState = playerBoard.CheckCoordinate(new Coordinate(x, y));
+                    ShotHistory currentState = playerBoard.CheckCoordinate(new Coordinate(y,x));
                     switch (currentState)
                     {
                         case ShotHistory.Hit:
@@ -43,11 +43,14 @@ namespace BattleShip.UI
                             Console.Write("M");
                             Console.ResetColor();
                             break;
+                        case ShotHistory.Unknown:
+                            Console.Write(" ");
+                            break;
                     }
                     Console.Write("   |");
                 }
-                Console.WriteLine("  ");
-                Console.WriteLine("---------------------------------------");
+                Console.WriteLine(" ");
+                Console.WriteLine("---------------------------------------------------");
                 
             }
 
@@ -101,11 +104,11 @@ namespace BattleShip.UI
             var activePlayer = "";
             if (state.IsPlayerAsTurn)
             {
-                activePlayer = state.Player1.Name;
+                activePlayer = state.Player2.Name;
             }
             else
             {
-                activePlayer = state.Player2.Name;
+                activePlayer = state.Player1.Name;
             }
             Console.WriteLine($"{activePlayer}, don't panic yet...but your ship has been hit!!");
         }
@@ -116,11 +119,11 @@ namespace BattleShip.UI
             var activePlayer = "";
             if (state.IsPlayerAsTurn)
             {
-                activePlayer = state.Player1.Name;
+                activePlayer = state.Player2.Name;
             }
             else
             {
-                activePlayer = state.Player2.Name;
+                activePlayer = state.Player1.Name;
             }
             Console.WriteLine($"{activePlayer}, I've got bad news...your ship has been sunk!");
         }
