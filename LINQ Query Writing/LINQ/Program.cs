@@ -11,7 +11,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise31();
+            Exercise30();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -559,15 +559,15 @@ namespace LINQ
         /// </summary>
         static void Exercise30()
         {
-          
+
             var groups = from g in DataLoader.LoadProducts()
                          group g by g.Category into newGroup
                          select new
                          {
-                            
+
                              Category = newGroup.Key,
                              MinUnit = newGroup.Min(g => g.UnitPrice),
-                             MinProduct = newGroup.Min(g => g.ProductName)
+                             MinProduct = newGroup.Where(p => p.UnitPrice == newGroup.Min(pc =>pc.UnitPrice)).First().ProductName
                          };
 
             foreach (var group in groups)
