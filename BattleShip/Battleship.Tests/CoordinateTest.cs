@@ -12,6 +12,7 @@ namespace BattleShip.TestCase
         [TestCase("b5", 2, 5, true)]
         [TestCase("y22", 25, 22, false)]
         [TestCase(" ", 0, 0, false)]
+        [TestCase("10", 0, 10, false)]
 
         public void ValidCoordinates(string userInput, int xCoord, int yCoord, bool expected)
         {
