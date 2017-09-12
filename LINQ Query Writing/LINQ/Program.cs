@@ -11,7 +11,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise30();
+            Exercise6();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -161,12 +161,12 @@ namespace LINQ
             var products = from p in DataLoader.LoadProducts()
                            select new
                            {
-                               ProductName = p.ProductName,
-                               Category = p.Category,
+                               ProductName = p.ProductName.ToUpper(),
+                               Category = p.Category.ToUpper(),
                            };
             foreach(var product in products)
             {
-                Console.WriteLine(lineFormat, product.ProductName.ToUpper(), product.Category.ToUpper());
+                Console.WriteLine(lineFormat, product.ProductName, product.Category);
 
             }
     
@@ -190,7 +190,7 @@ namespace LINQ
                                Category = p.Category,
                                UnitPrice = p.UnitPrice,
                                UnitsInStock = p.UnitsInStock,
-                               Reorder = (p.UnitsInStock < 3) ? true : false,
+                               Reorder = (p.UnitsInStock < 3),
                            };
             foreach (var product in products)
             {
@@ -243,7 +243,7 @@ namespace LINQ
         /// </summary>
         static void Exercise10()
         {
-            var orders = DataLoader.LoadCustomers().Where(o => o.Orders.Any(oo => oo.Total < 500));
+            var orders = DataLoader.LoadCustomers().Where(c => c.Orders.Any(oo => oo.Total < 500));
             PrintCustomerInformation(orders);
         }
 
@@ -293,7 +293,7 @@ namespace LINQ
         /// </summary>
         static void Exercise14()
         {
-            var numbers = (from n in DataLoader.NumbersC.SkipWhile(n => n <= 6)
+            var numbers = (from n in DataLoader.NumbersC.TakeWhile(n => n <= 6)
                         select n);
             foreach (var nums in numbers)
             {
@@ -417,7 +417,7 @@ namespace LINQ
         /// </summary>
         static void Exercise22()
         {
-            var groups = DataLoader.LoadProducts().GroupBy(g => g.Category).Distinct();
+            var groups = DataLoader.LoadProducts().GroupBy(g => g.Category);
 
             foreach (var group in groups)
             {
@@ -449,12 +449,6 @@ namespace LINQ
             {
                 Console.WriteLine("Category: {0}", group.Key);
 
-                foreach (var product in group)
-                {
-                    Console.WriteLine("Product Name: {0}", product.ProductName);
-                    Console.WriteLine("Units in Stock: {0}", product.UnitsInStock);
-                    Console.WriteLine();
-                }
             }
         }
 
@@ -494,12 +488,12 @@ namespace LINQ
                             select new
                             {
                                 CustomerID = c.CustomerID,
-                                Order = c.Orders
+                                Order = c.Orders.Count()
                             });
            foreach(var customer in customers)
             {
                 Console.WriteLine("Customer ID: {0}",customer.CustomerID);
-                Console.WriteLine("Order Count: {0}",customer.Order.Count());
+                Console.WriteLine("Order Count: {0}",customer.Order);
                 Console.WriteLine();
             }
             
@@ -517,13 +511,13 @@ namespace LINQ
                          select new
                          {
                              Category = newGroup.Key,
-                             ProductName = newGroup.Count()
+                             ProductCount = newGroup.Count()
                          };
 
                 foreach (var group in groups)
                 {
                     Console.WriteLine("Category: {0}", group.Category);
-                    Console.WriteLine("Product Count: {0}", group.ProductName);
+                    Console.WriteLine("Product Count: {0}", group.ProductCount);
                     Console.WriteLine();
                   
                 }
@@ -559,21 +553,25 @@ namespace LINQ
         /// </summary>
         static void Exercise30()
         {
+            String line = "{0, -35}{1, -30}";
+            Console.WriteLine(line, "Category", "Lowest Unit Price");
 
-            var groups = from g in DataLoader.LoadProducts()
-                         group g by g.Category into newGroup
+
+
+
+
+            var groups = from n in DataLoader.LoadProducts().OrderBy(u => u.UnitPrice).GroupBy(c => c.Category)
                          select new
                          {
-
-                             Category = newGroup.Key,
-                             MinUnit = newGroup.Min(g => g.UnitPrice),
-                             MinProduct = newGroup.Where(p => p.UnitPrice == newGroup.Min(pc =>pc.UnitPrice)).First().ProductName
-                         };
+                             Category = n.Key,
+                             MinUnit = n.First().UnitPrice,
+                             ProductName = n.First().ProductName,
+                          };
 
             foreach (var group in groups)
             {
                 Console.WriteLine("Category: {0}", group.Category);
-                Console.WriteLine("Product: {0}", group.MinProduct);
+                Console.WriteLine("Product: {0}", group.ProductName);
                 Console.WriteLine("Total Units: {0}", group.MinUnit);
                 Console.WriteLine();
 
