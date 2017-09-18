@@ -11,7 +11,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise6();
+            Exercise30();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -346,8 +346,7 @@ namespace LINQ
         /// </summary>
         static void Exercise18()
         {
-            var filtered = from p in DataLoader.LoadProducts().OrderBy(p => p.Category).ThenByDescending(p=> p.UnitPrice)
-                           select p;
+            var filtered = DataLoader.LoadProducts().OrderBy(p => p.Category).ThenByDescending(p=> p.UnitPrice);
             PrintProductInformation(filtered);
 
         }
@@ -553,12 +552,6 @@ namespace LINQ
         /// </summary>
         static void Exercise30()
         {
-            String line = "{0, -35}{1, -30}";
-            Console.WriteLine(line, "Category", "Lowest Unit Price");
-
-
-
-
 
             var groups = from n in DataLoader.LoadProducts().OrderBy(u => u.UnitPrice).GroupBy(c => c.Category)
                          select new
