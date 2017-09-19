@@ -12,34 +12,34 @@ namespace SGBank.UI.Workflows
     {
         public void Execute()
         {
-            Console.Clear();
             AccountManager accountManager = AccountManagerFactory.Create();
 
-            Console.Write("Enter an account number: ");
+            //ask the user to give us an account number
+            Console.WriteLine("Please enter an account number: ");
             string accountNumber = Console.ReadLine();
 
-            Console.Write("Enter a deposit amount: ");
+            Console.Write("Please enter a deposit amount: ");
             decimal amount = decimal.Parse(Console.ReadLine());
 
             AccountDepositResponse response = accountManager.Deposit(accountNumber, amount);
 
             if (response.Success)
             {
-                Console.WriteLine("Deposit completed!");
-                Console.WriteLine($"Account Number: {response.Account.AccountNumber}");
-                Console.WriteLine($"Old balance: {response.OldBalance:c}");
-                Console.WriteLine($"Amount Deposited: {response.Amount:c}");
+                Console.WriteLine("Your deposit was completed!");
+                Console.WriteLine($"Account number: {response.Account.AccountNumber}");
+                Console.WriteLine($"Old balance: {response.OldBalance}");
+                Console.WriteLine($"Amount deposited: {response.Amount:c}");
                 Console.WriteLine($"New balance: {response.Account.Balance:c}");
+
             }
             else
             {
                 Console.WriteLine("An error occurred: ");
                 Console.WriteLine(response.Message);
             }
-
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key to continue...:");
             Console.ReadKey();
-
         }
+        
     }
 }

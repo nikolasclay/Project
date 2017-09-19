@@ -1,33 +1,34 @@
-﻿using SGBank.Models;
-using SGBank.Models.Interfaces;
+﻿using SGBank.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SGBank.Models;
 
 namespace SGBank.Data
 {
     public class BasicAccountTestRepository : IAccountRepository
     {
-        public Account _account { private get; set; }
-
+        private static Account _account = new Account()
+        {
+            Name = "Basic Account",
+            Balance = 100M,
+            AccountNumber = "33333",
+            Type = AccountType.Basic
+        };
         public Account LoadAccount(string AccountNumber)
         {
-            if (_account.AccountNumber != AccountNumber)
+            if (_account.AccountNumber == AccountNumber)
+            {
+                return _account;
+            }
+            else
             {
                 return null;
             }
-            return _account;
-
         }
-
         public void SaveAccount(Account account)
-        {
-            _account = account;
-        }
-
-        public BasicAccountTestRepository(Account account)
         {
             _account = account;
         }

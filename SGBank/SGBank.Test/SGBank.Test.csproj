@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0D44694-3C98-4175-9AFF-C382FCCEE975}</ProjectGuid>
+    <ProjectGuid>{20C97EA5-070F-414D-8050-2987C0620248}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SGBank.Tests</RootNamespace>
-    <AssemblyName>SGBank.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>SGBank.Test</RootNamespace>
+    <AssemblyName>SGBank.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,40 +43,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicAccountTests.cs" />
-    <Compile Include="FreeAccountTests.cs" />
-    <Compile Include="PremiumAccountTests.cs" />
+    <Compile Include="BasicAccountTest.cs" />
+    <Compile Include="FileAccountTest.cs" />
+    <Compile Include="FreeAccountTest.cs" />
+    <Compile Include="PremiumAccountTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGBank.BLL\SGBank.BLL.csproj">
-      <Project>{49c11f6a-f6cf-4023-b6f2-9461665accc2}</Project>
+      <Project>{01bb4103-2670-40c5-aacc-27cee20599da}</Project>
       <Name>SGBank.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SGBank.Data\SGBank.Data.csproj">
-      <Project>{49146bed-ea62-48b9-b001-d7b7f1048249}</Project>
+      <Project>{db3f5c05-afeb-417a-85a5-4c7a92a6bbdf}</Project>
       <Name>SGBank.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\SGBank.Models\SGBank.Models.csproj">
-      <Project>{60c5b274-a890-4957-8b41-9dee7f3a89b2}</Project>
+      <Project>{08560ef7-2c4e-4ebb-9b57-36e68ed2e9c0}</Project>
       <Name>SGBank.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

@@ -1,11 +1,11 @@
-﻿using SGBank.Models;
-using SGBank.Models.Interfaces;
+﻿using SGBank.Models.Interfaces;
 using SGBank.Models.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SGBank.Models;
 
 namespace SGBank.BLL.WithdrawRules
 {
@@ -21,19 +21,19 @@ namespace SGBank.BLL.WithdrawRules
                 response.Message = "Error: a non-free account hit the Free Withdraw Rule. Contact IT.";
                 return response;
             }
-            if(amount >= 0)
+            if (amount >= 0)
             {
                 response.Success = false;
                 response.Message = "Withdrawal amounts must be negative!";
                 return response;
             }
-            if(amount < -100)
+            if (amount < -100)
             {
                 response.Success = false;
                 response.Message = "Free accounts cannot withdraw more than $100!";
                 return response;
             }
-            if(account.Balance + amount < 0)
+            if (account.Balance + amount < 0)
             {
                 response.Success = false;
                 response.Message = "Free accounts cannot overdraft!";
@@ -49,5 +49,7 @@ namespace SGBank.BLL.WithdrawRules
             }
             return response;
         }
-    }
+
+       }
 }
+

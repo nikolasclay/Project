@@ -1,11 +1,11 @@
-﻿using SGBank.Models.Interfaces;
+﻿using SGBank.Models;
+using SGBank.Models.Interfaces;
+using SGBank.Models.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGBank.Models;
-using SGBank.Models.Responses;
 
 namespace SGBank.BLL.DepositRules
 {
@@ -16,13 +16,13 @@ namespace SGBank.BLL.DepositRules
         {
             AccountDepositResponse response = new AccountDepositResponse();
 
-            if(account.Type != AccountType.Basic && account.Type != AccountType.Premium)
+            if (account.Type != AccountType.Basic && account.Type != AccountType.Premium)
             {
                 response.Success = false;
                 response.Message = "Error: Only basic and premium accounts can deposit with no limit. Contact IT";
                 return response;
             }
-            if(amount <= 0)
+            if (amount <= 0)
             {
                 response.Success = false;
                 response.Message = "Deposit amounts must be positive!";
@@ -40,3 +40,4 @@ namespace SGBank.BLL.DepositRules
         }
     }
 }
+

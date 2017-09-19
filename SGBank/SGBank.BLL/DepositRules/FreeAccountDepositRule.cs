@@ -18,24 +18,21 @@ namespace SGBank.BLL.DepositRules
             if(account.Type != AccountType.Free)
             {
                 response.Success = false;
-                response.Message = "Error: a non free account hit the Free Deposit Rule.  Contact IT";
+                response.Message = "Error: a non free account hit the Free Deposit Rule.";
                 return response;
             }
-
             if(amount > 100)
             {
                 response.Success = false;
-                response.Message = "Free accounts cannot deposit more than $100 at a time";
+                response.Message = "Free accounts cannot deposit more than $100 at a time.";
                 return response;
             }
-
-            if (amount <= 0)
+            if(amount <= 0)
             {
                 response.Success = false;
                 response.Message = "Deposit amounts must be greater than zero.";
                 return response;
             }
-
             response.OldBalance = account.Balance;
             account.Balance += amount;
             response.Account = account;

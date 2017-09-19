@@ -38,7 +38,8 @@ namespace SGBank.UI.Workflows
             }
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-        
+
         }
     }
 }
+

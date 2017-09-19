@@ -13,43 +13,42 @@ namespace SGBank.BLL.WithdrawRules
     {
         public AccountWithdrawResponse Withdraw(Account account, decimal amount)
         {
-            AccountWithdrawResponse response = new AccountWithdrawResponse();
+                AccountWithdrawResponse response = new AccountWithdrawResponse();
 
-            if (account.Type != AccountType.Premium)
-            {
-                response.Success = false;
-                response.Message = "Error: a non-premium account hit the Premium Withdraw Rule. Contact IT";
-                return response;
-            }
-            if (amount >= 0)
-            {
-                response.Success = false;
-                response.Message = "Withdrawal amounts must be negative!";
-                return response;
-            }
-            /*if (amount < -500)
-            {
-                response.Success = false;
-                response.Message = "Premium accounts cannot withdraw more than $500!";
-                return response;
-            }*/
-            if (account.Balance + amount < -500)
-            {
-                response.Success = false;
-                response.Message = "This amount will overdraft more than your $500 limit!";
-                return response;
-            }
-            else
-            {
-                response.Success = true;
-                response.Account = account;
-                response.Amount = amount;
-                response.OldBalance = account.Balance;
-                account.Balance += amount;
+                if (account.Type != AccountType.Premium)
+                {
+                    response.Success = false;
+                    response.Message = "Error: a non-premium account hit the Premium Withdraw Rule. Contact IT";
+                    return response;
+                }
+                if (amount >= 0)
+                {
+                    response.Success = false;
+                    response.Message = "Withdrawal amounts must be negative!";
+                    return response;
+                }
+                /*if (amount < -500)
+                {
+                    response.Success = false;
+                    response.Message = "Premium accounts cannot withdraw more than $500!";
+                    return response;
+                }*/
+                if (account.Balance + amount < -500)
+                {
+                    response.Success = false;
+                    response.Message = "This amount will overdraft more than your $500 limit!";
+                    return response;
+                }
+                else
+                {
+                    response.Success = true;
+                    response.Account = account;
+                    response.Amount = amount;
+                    response.OldBalance = account.Balance;
+                    account.Balance += amount;
 
+                }
+                return response;
             }
-            return response;
         }
     }
-}
-

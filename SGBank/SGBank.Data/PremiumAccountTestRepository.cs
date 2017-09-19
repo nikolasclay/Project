@@ -10,24 +10,25 @@ namespace SGBank.Data
 {
     public class PremiumAccountTestRepository : IAccountRepository
     {
-        public Account _account { get; private set; }
-
+        private static Account _account = new Account
+        {
+            Name = "Premium Account",
+            Balance = 500M,
+            AccountNumber = "96789",
+            Type = AccountType.Premium
+        };
         public Account LoadAccount(string AccountNumber)
         {
-            if (_account.AccountNumber != AccountNumber)
+            if (_account.AccountNumber == AccountNumber)
+            {
+                return _account;
+            }
+            else
             {
                 return null;
             }
-            return _account;
-
         }
-
         public void SaveAccount(Account account)
-        {
-            _account = account;
-        }
-
-        public PremiumAccountTestRepository(Account account)
         {
             _account = account;
         }

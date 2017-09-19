@@ -10,6 +10,7 @@ namespace SGBank.BLL.WithdrawRules
 {
     class WithdrawRulesFactory
     {
+           
         public static IWithdraw Create(AccountType type)
         {
             switch (type)
@@ -25,3 +26,4 @@ namespace SGBank.BLL.WithdrawRules
         }
     }
 }
+

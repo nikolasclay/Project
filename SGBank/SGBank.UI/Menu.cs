@@ -7,25 +7,24 @@ using System.Threading.Tasks;
 
 namespace SGBank.UI
 {
-    public static class Menu
+    public class Menu
     {
         public static void Start()
         {
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("SG Bank Application");
-                Console.WriteLine("------------------------");
+                Console.WriteLine("--------------------------------");
                 Console.WriteLine("1. Lookup an Account");
                 Console.WriteLine("2. Deposit");
                 Console.WriteLine("3. Withdraw");
-
                 Console.WriteLine("\nQ to quit");
-                Console.Write("\nEnter selection: ");
+                Console.WriteLine("\nEnter selection: ");
 
                 string userinput = Console.ReadLine();
 
-                switch(userinput)
+                switch (userinput)
                 {
                     case "1":
                         AccountLookupWorkflow lookupWorkflow = new AccountLookupWorkflow();
@@ -44,7 +43,7 @@ namespace SGBank.UI
                 }
 
             }
-
         }
     }
 }
+

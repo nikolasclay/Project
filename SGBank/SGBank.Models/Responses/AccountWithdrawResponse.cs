@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGBank.Models.Responses
 {
-    public class AccountWithdrawResponse  : Response
+    public class AccountWithdrawResponse : Response
     {
         public Account Account { get; set; }
         public decimal OldBalance { get; set; }
