@@ -22,7 +22,7 @@ namespace SGBank.Test
         {
             AccountManager manager = AccountManagerFactory.Create();
 
-            AccountLookupResponse response = manager.LookupAccount("");
+            AccountLookupResponse response = manager.LookupAccount("12345");
 
             Assert.IsNotNull(response.Account);
             Assert.IsTrue(response.Success);
@@ -42,15 +42,18 @@ namespace SGBank.Test
                 account.Balance = balance;
                 account.Type = accountType;
             }
-
-            AccountDepositResponse response = deposit.Deposit(account, amount);
-            Assert.AreEqual(expected, response.Success);
-            if (response.Success)
             {
-                Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
+                AccountDepositResponse response = deposit.Deposit(account, amount);
+                Assert.AreEqual(expected, response.Success);
+                if (response.Success)
+                {
+                    Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
+                }
+                else
+                {
+                    Assert.AreEqual(balance, account.Balance);
+                }
             }
-
-
         }
         [TestCase("12345", "Free Account", 100.00, AccountType.Free, 50.00, false)]
         [TestCase("12345", "Free Account", 100.00, AccountType.Free, -150.00, false)]
@@ -67,12 +70,16 @@ namespace SGBank.Test
                 account.Balance = balance;
                 account.Type = accountType;
 
-            }
-            AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
-            Assert.AreEqual(expected, response.Success);
-            if (response.Success)
-            {
-                Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
+                AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
+                Assert.AreEqual(expected, response.Success);
+                if (response.Success)
+                {
+                    Assert.AreEqual(response.Account.Balance, response.OldBalance += amount);
+                }
+                else
+                {
+                    Assert.AreEqual(balance, account.Balance);
+                }
             }
         }
     }

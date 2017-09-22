@@ -14,8 +14,14 @@ namespace SGBank.Data
         };
         public Account LoadAccount(string AccountNumber)
         {
-            
-            return _account;
+            if(_account.AccountNumber == AccountNumber)
+            {
+                return _account;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void SaveAccount(Account account)

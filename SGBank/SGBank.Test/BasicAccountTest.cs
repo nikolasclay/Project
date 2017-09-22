@@ -20,20 +20,21 @@ namespace SGBank.Test
         [TestCase("33333", "Basic Account", 100, AccountType.Basic, 250, true)]
         public void BasicAccountDepositRuleTest(string accountNumber, string name, decimal balance, AccountType accountType, decimal amount, bool expectedResult)
         {
+
             IDeposit deposit = new NoLimitDepositRule();
             Account account = new Account();
-            {
-                account.AccountNumber = accountNumber;
-                account.Name = name;
-                account.Balance = balance;
-                account.Type = accountType;
 
-            }
-            AccountDepositResponse response = deposit.Deposit(account, amount);
-            Assert.AreEqual(expectedResult, response.Success);
-            if (response.Success)
             {
-                Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
+                AccountDepositResponse response = deposit.Deposit(account, amount);
+                Assert.AreEqual(expectedResult, response.Success);
+                if (response.Success)
+                {
+                    Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
+                }
+                else
+                {
+                    Assert.AreEqual(balance, account.Balance);
+                }
             }
         }
         [TestCase("33333", "Basic Account", 1500, AccountType.Basic, -1000, 1500, false)]
@@ -46,17 +47,21 @@ namespace SGBank.Test
             IWithdraw withdraw = new BasicAccountWithdrawRule();
             Account account = new Account();
             {
+                AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
                 account.AccountNumber = accountNumber;
                 account.Name = name;
                 account.Balance = balance;
                 account.Type = accountType;
-
-            }
-            AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
-            Assert.AreEqual(expectedResult, response.Success);
-            if (response.Success)
-            {
-                Assert.AreEqual(newBalance, response.Account.Balance);
+                
+                Assert.AreEqual(expectedResult, response.Success);
+                if (response.Success)
+                {
+                    Assert.AreEqual(newBalance, response.Account.Balance);
+                }
+                else
+                {
+                    Assert.AreEqual(balance, account.Balance);
+                }
             }
         }
     }
