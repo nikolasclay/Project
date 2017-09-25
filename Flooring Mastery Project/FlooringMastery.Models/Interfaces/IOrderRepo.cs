@@ -11,7 +11,6 @@ namespace FlooringMastery.Models.Interfaces
         List<Order> LoadOrders();
         List<Order> LoadOrders(string fileDateTime, string customerName);
         Order LoadOrderById(string orderID, string OrderDate = null);
-        List<Order> AddOrder(string fileDateTime);
 
         Order AddOrder(Order order, string fileName);
 

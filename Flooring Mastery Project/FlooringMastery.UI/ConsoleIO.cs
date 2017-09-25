@@ -52,6 +52,21 @@ namespace FlooringMastery.UI
             }
             return orderDate;
         }
+
+        internal static void DisplayAddOrderDetails(Order order)
+        {
+            Console.WriteLine("*************************************");
+            Console.WriteLine(order.OrderNumber + "|" + order.OrderDate);
+            Console.WriteLine(order.CustomerName);
+            Console.WriteLine(order.State);
+            Console.WriteLine($"Product: {order.ProductType}");
+            Console.WriteLine($"Materials: {order.MaterialCost:c}");
+            Console.WriteLine($"Labor: {order.LaborCost:c}");
+            Console.WriteLine($"Tax: {order.Tax}");
+            Console.WriteLine($"Total: {order.Total:c}");
+            Console.WriteLine("*************************************");
+        }
+
         public static string GetUserName()
         {
             Console.WriteLine("Please enter customer name: ");

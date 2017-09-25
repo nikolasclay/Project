@@ -42,7 +42,7 @@ namespace FlooringMastery.BLL
             if(response.Order == null)
             {
                 response.Success = false;
-                response.Message = ($"{request.Order} cannot be saved!");
+                response.Message = ($"{request.Order} does not exist!");
             }
             else
             {

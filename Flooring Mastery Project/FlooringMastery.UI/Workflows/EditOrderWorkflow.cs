@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlooringMastery.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,11 @@ namespace FlooringMastery.UI.Workflows
     {
         internal void Execute()
         {
-            throw new NotImplementedException();
+            OrderManager manager = OrderManagerFactory.Create();
+
+            Console.Clear();
+            Console.WriteLine("Edit an order");
+            Console.WriteLine("----------------------------");
         }
     }
 }
