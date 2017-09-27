@@ -23,19 +23,23 @@ namespace SGBank.Test
 
             IDeposit deposit = new NoLimitDepositRule();
             Account account = new Account();
+            account.AccountNumber = accountNumber;
+            account.Name = name;
+            account.Balance = balance;
+            account.Type = accountType;
 
+
+            AccountDepositResponse response = deposit.Deposit(account, amount);
+            Assert.AreEqual(expectedResult, response.Success);
+            if (response.Success)
             {
-                AccountDepositResponse response = deposit.Deposit(account, amount);
-                Assert.AreEqual(expectedResult, response.Success);
-                if (response.Success)
-                {
-                    Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
-                }
-                else
-                {
-                    Assert.AreEqual(balance, account.Balance);
-                }
+                Assert.AreEqual(response.OldBalance += amount, response.Account.Balance);
             }
+            else
+            {
+                Assert.AreEqual(balance, account.Balance);
+            }
+
         }
         [TestCase("33333", "Basic Account", 1500, AccountType.Basic, -1000, 1500, false)]
         [TestCase("33333", "Basic Account", 100, AccountType.Free, -100, 100, false)]
@@ -52,7 +56,7 @@ namespace SGBank.Test
                 account.Name = name;
                 account.Balance = balance;
                 account.Type = accountType;
-                
+
                 Assert.AreEqual(expectedResult, response.Success);
                 if (response.Success)
                 {
@@ -66,4 +70,3 @@ namespace SGBank.Test
         }
     }
 }
-    

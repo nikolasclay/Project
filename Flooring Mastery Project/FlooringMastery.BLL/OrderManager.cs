@@ -38,7 +38,7 @@ namespace FlooringMastery.BLL
         public AddEditOrderResponse AddOrder(AddEditOrderRequest request)
         {
             AddEditOrderResponse response = new AddEditOrderResponse();
-            response.Order = _orderRepository.AddOrder(request.Order, request.FileDateTime);
+            response.Order = _orderRepository.AddOrder(request.Order);
             if(response.Order == null)
             {
                 response.Success = false;

@@ -12,7 +12,7 @@ namespace FlooringMastery.Models.Interfaces
         List<Order> LoadOrders(string fileDateTime, string customerName);
         Order LoadOrderById(string orderID, string OrderDate = null);
 
-        Order AddOrder(Order order, string fileName);
+        Order AddOrder(Order order);
 
         Order OverwriteOrder(Order order);
 

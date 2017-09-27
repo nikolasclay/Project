@@ -9,5 +9,6 @@ namespace FlooringMastery.Models.Responses
     public class AddEditOrderResponse : Response
     {
         public Order Order { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

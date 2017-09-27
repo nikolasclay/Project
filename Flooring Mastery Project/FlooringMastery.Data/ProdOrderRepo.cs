@@ -12,27 +12,34 @@ namespace FlooringMastery.Data
 {
     public class ProdOrderRepo : IOrderRepo
     {
-        public Order AddOrder(Order order, string fileDateTime)
+        public Order AddOrder(Order order)
         {
-            string fileName = "Orders_" + fileDateTime + ".txt";
+            string fileName = "Orders_" + order.OrderDate.ToString("MMddyyyy") + ".txt";
             string fileFullName = ConfigurationManager.AppSettings["FileLocation"] + "\\" + fileName;
             List<Order> orders = new List<Order>();
             if (File.Exists(fileFullName))
             //if file exists. Append
             {
                 orders = LoadOrdersFromFile(fileFullName);
-                var maxID = orders.Max(o => o.OrderNumber);
-                order.OrderNumber = (int.Parse(maxID) + 1).ToString();
+                if(orders.Count() == 0)
+                {
+                    order.OrderNumber = "1";
+                }
+                else
+                {
+                    var maxID = orders.Max(o => o.OrderNumber);
+                    order.OrderNumber = (int.Parse(maxID) + 1).ToString();
+                    
+                }
                 orders.Add(order);
-
             }
             //file doesn't exist. Create file.
-            else
-            {
-                order.OrderNumber = "1";
-                orders.Add(order);
+            ////else
+            //{
+            //    order.OrderNumber = "1";
+            //    orders.Add(order);
 
-            }
+            //}
             var saveOrderResult = SaveOrders(orders, fileFullName);
             if (saveOrderResult)
             {
@@ -46,13 +53,27 @@ namespace FlooringMastery.Data
 
         private bool SaveOrders(List<Order> orders, string fileFullName)
         {
+
             try
             {
-                using (StreamWriter sw = new StreamWriter(fileFullName, true))
+                using (StreamWriter sw = new StreamWriter(fileFullName))
                 {
                     foreach (var order in orders)
                     {
-                        string line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", order.OrderNumber, order.CustomerName, order.State, order.TaxRate, order.ProductType, order.Area, order.CostPerSquareFoot, order.LaborCostPerSquareFoot, order.MaterialCost, order.LaborCost, order.Tax, order.Total);
+                        string line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}",
+                            order.OrderNumber,
+                            order.CustomerName,
+                            order.State,
+                            order.TaxRate,
+                            order.ProductType, 
+                            order.Area, 
+                            order.CostPerSquareFoot, 
+                            order.LaborCostPerSquareFoot, 
+                            order.MaterialCost, 
+                            order.LaborCost, 
+                            order.Tax, 
+                            order.Total);
+
                         sw.WriteLine(line);
                     }
                     sw.Flush();
@@ -75,7 +96,7 @@ namespace FlooringMastery.Data
                 using (StreamReader reader = new StreamReader(fileName))
                 {
                     string line = String.Empty;
-                    bool firstLine = true;
+                    bool firstLine = false;
                     while (line != null)
                     {
                         line = reader.ReadLine();
@@ -149,26 +170,6 @@ namespace FlooringMastery.Data
             }
 
         }
-
-        //private void CreateOrderFile(List<Order> orders, string filedatetime)
-        //{
-        //    string filename = "orders_" + filedatetime + ".txt";
-        //    string filefullname = ConfigurationManager.AppSettings["filelocation"] + "\\" + filename;
-
-        //    if (File.Exists(filefullname))
-        //    {
-        //        File.Delete(filefullname);
-        //    }
-
-        //    using (StreamWriter sw = new StreamWriter(filefullname))
-        //    {
-        //        sw.WriteLine("order number", "customer name", "state", "tax rate", "producttype", "area", "costpersqaurefoot", "laborcostpersquarefoot", "materialcost", "laborcost", "tax", "total");
-        //        foreach (var order in orders)
-        //        {
-        //            sw.WriteLine(CreateOrderFile(order, filedatetime));
-        //        }
-        //    }
-        //}
 
         //public Order EditOrder(Order order, string fileDateTime, int orderNumber)
         //{

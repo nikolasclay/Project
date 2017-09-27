@@ -35,6 +35,11 @@ namespace FlooringMastery.Data
             throw new NotImplementedException();
         }
 
+        public Order AddOrder(Order order, string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
         public Order LoadOrderById(string orderID, string OrderDate = null)
         {
             Order mockOrder = new Order()

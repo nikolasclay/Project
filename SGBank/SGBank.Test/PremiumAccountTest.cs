@@ -24,24 +24,24 @@ namespace SGBank.Test
         {
             IDeposit deposit = new NoLimitDepositRule();
             Account account = new Account();
+
+            account.AccountNumber = accountNumber;
+            account.Name = name;
+            account.Balance = balance;
+            account.Type = accountType;
+
+
+            AccountDepositResponse response = deposit.Deposit(account, amount);
+            Assert.AreEqual(expectedResult, response.Success);
+            if (response.Success)
             {
-                account.AccountNumber = accountNumber;
-                account.Name = name;
-                account.Balance = balance;
-                account.Type = accountType;
+                Assert.AreEqual(newBalance, response.Account.Balance);
             }
+            else
             {
-                AccountDepositResponse response = deposit.Deposit(account, amount);
-                Assert.AreEqual(expectedResult, response.Success);
-                if (response.Success)
-                {
-                    Assert.AreEqual(newBalance, response.Account.Balance);
-                }
-                else
-                {
-                    Assert.AreEqual(balance, account.Balance);
-                }
+                Assert.AreEqual(balance, account.Balance);
             }
+
         }
         [TestCase("96789", "Premium Account", 500, AccountType.Premium, -1000, -500, true)]
         [TestCase("96789", "Premium Account", 500, AccountType.Free, -500, 0, false)]
@@ -52,24 +52,24 @@ namespace SGBank.Test
         {
             IWithdraw withdraw = new PremiumAccountWithdrawRule();
             Account account = new Account();
+
+            account.AccountNumber = accountNumber;
+            account.Name = name;
+            account.Balance = balance;
+            account.Type = accountType;
+
+
+            AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
+            Assert.AreEqual(expectedResult, response.Success);
+            if (response.Success)
             {
-                account.AccountNumber = accountNumber;
-                account.Name = name;
-                account.Balance = balance;
-                account.Type = accountType;
+                Assert.AreEqual(newBalance, response.Account.Balance);
             }
+            else
             {
-                AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
-                Assert.AreEqual(expectedResult, response.Success);
-                if (response.Success)
-                {
-                    Assert.AreEqual(newBalance, response.Account.Balance);
-                }
-                else
-                {
-                    Assert.AreEqual(balance, account.Balance);
-                }
+                Assert.AreEqual(balance, account.Balance);
             }
+
         }
     }
 }

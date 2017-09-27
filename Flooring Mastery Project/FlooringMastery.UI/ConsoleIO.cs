@@ -38,7 +38,7 @@ namespace FlooringMastery.UI
                 Console.WriteLine("Please enter an order date. Format must be MMddyyyy: ");
                 string input = Console.ReadLine();
 
-                if(DateTime.TryParseExact(input, format, null, DateTimeStyles.None, out orderDate))
+                if (DateTime.TryParseExact(input, format, null, DateTimeStyles.None, out orderDate))
                 {
                     isValid = true;
                 }

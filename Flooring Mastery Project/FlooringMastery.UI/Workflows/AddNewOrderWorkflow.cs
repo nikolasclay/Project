@@ -1,4 +1,5 @@
 ﻿using FlooringMastery.BLL;
+using FlooringMastery.Models;
 using FlooringMastery.Models.Requests;
 using FlooringMastery.Models.Responses;
 using System;
@@ -21,14 +22,14 @@ namespace FlooringMastery.UI.Workflows
             Console.WriteLine("--------------------------");
             
             AddEditOrderRequest request = new AddEditOrderRequest();
-            request.Order = new Models.Order();
+            request.Order = new Order();
 
+            DateTime orderDate = ConsoleIO.ValidateDate();
+            request.Order.OrderDate  = orderDate.Date;
+           
             //Cannot be blank. Allowed to contain [a-z][0-9]
             string userInput = ConsoleIO.GetUserName();
             request.Order.CustomerName = userInput;
-
-            DateTime orderDate = ConsoleIO.ValidateDate();
-            request.Order.OrderDate = orderDate;
 
             //State must be checked against the tax file.
             Console.WriteLine("Please enter a state: ");

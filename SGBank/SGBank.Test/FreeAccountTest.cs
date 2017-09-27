@@ -64,7 +64,7 @@ namespace SGBank.Test
         {
             IWithdraw withdraw = new FreeAccountWithdrawRule();
             Account account = new Account();
-            {
+            
                 account.AccountNumber = accountNumber;
                 account.Name = name;
                 account.Balance = balance;
@@ -80,7 +80,7 @@ namespace SGBank.Test
                 {
                     Assert.AreEqual(balance, account.Balance);
                 }
-            }
+            
         }
     }
 }
