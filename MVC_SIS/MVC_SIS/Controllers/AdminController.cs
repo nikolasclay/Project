@@ -67,7 +67,6 @@ namespace Exercises.Controllers
         [HttpGet]
         public ActionResult AddState()
         {
-
             return View(new State());
         }
         [HttpPost]
@@ -87,6 +86,35 @@ namespace Exercises.Controllers
         {
             StateRepository.Delete(state.StateAbbreviation);
             return RedirectToAction("States");
+        }
+        [HttpGet]
+        public ActionResult Course()
+        {
+            var model = CourseRepository.GetAll();
+            return View(model.ToList());
+        }
+        [HttpGet]
+        public ActionResult AddCourse()
+        {
+            return View(new Course());
+        }
+        [HttpPost]
+        public ActionResult AddCourse(Course course)
+        {
+            CourseRepository.Add(course.CourseName);
+            return RedirectToAction("Courses");
+        }
+        [HttpGet]
+        public ActionResult DeleteCourse(int id)
+        {
+            var course = CourseRepository.Get(id);
+            return View(course);
+        }
+        [HttpPost]
+        public ActionResult DeleteCourse(Course course)
+        {
+            CourseRepository.Delete(course.CourseId);
+            return RedirectToAction("Courses");
         }
 
     }

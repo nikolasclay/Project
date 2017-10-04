@@ -23,11 +23,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var student in Model)
-                        {
+                        @foreach (var student in Model)
+						{
                             <tr>
                                 <td>@student.FirstName</td>
-                                <td>@student.LastName</td>
+								<td>@student.LastName</td>
                                 <td>@student.Major.MajorName</td>
                                 <td>@student.GPA</td>
                             </tr>

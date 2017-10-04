@@ -1,2 +1,0 @@
-OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
-1, ClAY, OH, 6.25, Wood, 100, 5.15, 4.75, 515.00, 475.00, 61.875000, 1051.875000
