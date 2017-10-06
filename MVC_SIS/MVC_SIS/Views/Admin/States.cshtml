@@ -26,8 +26,8 @@
 						<td>@state.StateAbbreviation</td>
 						<td>@state.StateName</td>
 						<td>
-							@Html.ActionLink("Edit", "EditState", "Admin", null, new { @class = "btn btn-primary" })
-							@Html.ActionLink("Delete", "DeleteState", "Admin", null, new { @class = "btn btn-primary" })
+							@Html.ActionLink("Edit", "EditState", "Admin", new { id = state.StateAbbreviation }, new { @class = "btn btn-primary" })
+							@Html.ActionLink("Delete", "DeleteState", "Admin", new { id = state.StateAbbreviation }, new { @class = "btn btn-primary" })
 						</td>
 					</tr>
 					}

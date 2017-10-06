@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Exercises.Models.Data.Course>
 
 @{
-    ViewBag.Title = "Course";
+    ViewBag.Title = "Courses";
 }
 
 <div class="row">
@@ -26,8 +26,8 @@
 						<td>@course.CourseId</td>
 						<td>@course.CourseName</td>
 						<td>
-							@Html.ActionLink("Edit", "EditCourse", "Admin", null, new { @class = "btn btn-primary" })
-							@Html.ActionLink("Delete", "DeleteCourse", "Admin", null, new { @class = "btn btn-primary" })
+							@Html.ActionLink("Edit", "EditCourse", "Admin", new { id = course.CourseId }, new { @class = "btn btn-primary" })
+							@Html.ActionLink("Delete", "DeleteCourse", "Admin", new { id = course.CourseId }, new { @class = "btn btn-primary" })
 						</td>
 					</tr>
 				}

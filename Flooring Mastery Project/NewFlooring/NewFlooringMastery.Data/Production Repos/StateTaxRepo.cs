@@ -11,7 +11,7 @@ namespace NewFlooringMastery.Data
 {
     public class StateTaxRepo : ITaxRepo
     {
-        private const string _filePath = @"C:\SoftwareGuild\dotnet-nikolas-clay\Flooring Mastery Project\Taxes.txt";
+        private const string _filePath = @"C:\SoftwareGuild\dotnet-nikolas-clay\Flooring Mastery Project\NewFlooring\Taxes.txt";
         Dictionary<string, StateTaxInfo> taxCollection;
 
         public StateTaxRepo()
@@ -19,7 +19,7 @@ namespace NewFlooringMastery.Data
             taxCollection = LoadTaxData().ToDictionary(t => t.StateAbbreviation);
         }
 
-        private List<StateTaxInfo> LoadTaxData()
+        public List<StateTaxInfo> LoadTaxData()
         {
             List<StateTaxInfo> dataLoad = new List<StateTaxInfo>();
             try

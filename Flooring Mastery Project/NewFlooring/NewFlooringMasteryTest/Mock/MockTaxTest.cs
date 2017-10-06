@@ -18,7 +18,7 @@ namespace NewFlooringMasteryTest.Mock
             MockTaxRepo taxRepo = new MockTaxRepo();
             GetStateResponse response = new GetStateResponse();
 
-            var result = taxRepo.LoadTaxForState(stateAbbreviation);
+            var result = taxRepo.GetStateName(stateAbbreviation);
 
             Assert.AreEqual(stateAbbreviation, result.StateAbbreviation);
         }

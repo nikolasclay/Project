@@ -12,7 +12,7 @@ namespace NewFlooringMastery.Data
     public class ProductRepo : IProductRepo
     {
         Dictionary<string, ProductDetail> productCollection;
-        public const string filePath = @"C:\SoftwareGuild\dotnet-nikolas-clay\Flooring Mastery Project\Products.txt";
+        public const string filePath = @"C:\SoftwareGuild\dotnet-nikolas-clay\Flooring Mastery Project\NewFlooring\Products.txt";
 
 
 
@@ -21,7 +21,7 @@ namespace NewFlooringMastery.Data
             productCollection = LoadProducts().ToDictionary(p => p.ProductType);
         }
 
-        private List<ProductDetail> LoadProducts()
+        public List<ProductDetail> LoadProducts()
         {
             List<ProductDetail> dataLoad = new List<ProductDetail>();
             try

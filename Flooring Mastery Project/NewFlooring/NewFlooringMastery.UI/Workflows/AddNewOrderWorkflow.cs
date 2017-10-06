@@ -76,8 +76,6 @@ namespace NewFlooringMastery.UI.Workflows
                 Console.WriteLine("An error occurred: ");
                 Console.WriteLine(productResponse.Message);
             }
-            
-
 
             string areaInput = ConsoleIO.GetArea();
             saveRequest.Order.Area = decimal.Parse(areaInput);

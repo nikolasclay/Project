@@ -76,9 +76,9 @@ namespace Exercises.Controllers
             return RedirectToAction("States");
         }
         [HttpGet]
-        public ActionResult DeleteState(string stateAbbreviation)
+        public ActionResult DeleteState(string id)
         {
-            var state = StateRepository.Get(stateAbbreviation);
+            var state = StateRepository.Get(id);
             return View(state);
         }
         [HttpPost]
@@ -88,7 +88,20 @@ namespace Exercises.Controllers
             return RedirectToAction("States");
         }
         [HttpGet]
-        public ActionResult Course()
+        public ActionResult EditState(string id)
+        {
+            var state = StateRepository.Get(id);
+            return View(state);
+        }
+        [HttpPost]
+        public ActionResult EditState(State state)
+        {
+            StateRepository.Edit(state);
+            return RedirectToAction("States");
+
+        }
+        [HttpGet]
+        public ActionResult Courses()
         {
             var model = CourseRepository.GetAll();
             return View(model.ToList());
@@ -96,12 +109,24 @@ namespace Exercises.Controllers
         [HttpGet]
         public ActionResult AddCourse()
         {
-            return View(new Course());
+            return View(new Models.Data.SelectListItem());
         }
         [HttpPost]
-        public ActionResult AddCourse(Course course)
+        public ActionResult AddCourse(Models.Data.SelectListItem course)
         {
             CourseRepository.Add(course.CourseName);
+            return RedirectToAction("Courses");
+        }
+        [HttpGet]
+        public ActionResult EditCourse(int id)
+        {
+            var course = CourseRepository.Get(id);
+            return View(course);
+        }
+        [HttpPost]
+        public ActionResult EditCourse(Models.Data.SelectListItem course)
+        {
+            CourseRepository.Edit(course);
             return RedirectToAction("Courses");
         }
         [HttpGet]
@@ -111,7 +136,7 @@ namespace Exercises.Controllers
             return View(course);
         }
         [HttpPost]
-        public ActionResult DeleteCourse(Course course)
+        public ActionResult DeleteCourse(Models.Data.SelectListItem course)
         {
             CourseRepository.Delete(course.CourseId);
             return RedirectToAction("Courses");

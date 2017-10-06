@@ -15,7 +15,7 @@ namespace NewFlooringMastery.Data
         StateTaxRepo stateTaxRepo = new StateTaxRepo();
         ProductRepo productRepo = new ProductRepo();
 
-         public List<Order> LoadOrders(string fileDateTime)
+        public List<Order> LoadOrders(string fileDateTime)
         {
             throw new NotImplementedException();
         }
@@ -43,12 +43,12 @@ namespace NewFlooringMastery.Data
                         {
                             sw.WriteLine($"{singleOrder.OrderNumber}," +
                             $"{singleOrder.CustomerName}," +
-                            $"{singleOrder.State}," +
+                            $"{singleOrder.StateTaxData.StateAbbreviation}," +
                             $"{singleOrder.StateTaxData.TaxRate}," +
                             $"{singleOrder.ProductDetail.ProductType}," +
                             $"{singleOrder.Area}," +
-                            $"{singleOrder.CostPerSquareFoot}," +
-                            $"{singleOrder.LaborCostPerSquareFoot}," +
+                            $"{singleOrder.ProductDetail.CostPerSquareFoot}," +
+                            $"{singleOrder.ProductDetail.LaborCostPerSquareFoot}," +
                             $"{singleOrder.MaterialCost}," +
                             $"{singleOrder.LaborCost}," +
                             $"{singleOrder.Tax}," +
@@ -84,12 +84,12 @@ namespace NewFlooringMastery.Data
                         }
                         sw.WriteLine($"{saveOrder.OrderNumber}," +
                             $"{saveOrder.CustomerName}," +
-                            $"{saveOrder.State}," +
+                            $"{saveOrder.StateTaxData.StateAbbreviation}," +
                             $"{saveOrder.StateTaxData.TaxRate}," +
                             $"{saveOrder.ProductDetail.ProductType}," +
                             $"{saveOrder.Area}," +
-                            $"{saveOrder.CostPerSquareFoot}," +
-                            $"{saveOrder.LaborCostPerSquareFoot}," +
+                            $"{saveOrder.ProductDetail.CostPerSquareFoot}," +
+                            $"{saveOrder.ProductDetail.LaborCostPerSquareFoot}," +
                             $"{saveOrder.MaterialCost}," +
                             $"{saveOrder.LaborCost}," +
                             $"{saveOrder.Tax}," +
@@ -131,8 +131,7 @@ namespace NewFlooringMastery.Data
                         Order newSaveOrder = newOrder;
                         sw.WriteLine($"{newSaveOrder.OrderNumber}," +
                             $"{newSaveOrder.CustomerName}," +
-                            //$"{newOrder.State}, " +
-                            $"{newSaveOrder.State}," +
+                            $"{newSaveOrder.StateTaxData.StateAbbreviation}," +
                             $"{newSaveOrder.StateTaxData.TaxRate}," + 
                             $"{newSaveOrder.ProductDetail.ProductType}," +
                             $"{newSaveOrder.Area}," +
@@ -158,6 +157,7 @@ namespace NewFlooringMastery.Data
 
         public List<Order> LoadAllOrders(DateTime orderDate)
         {
+
             string fileName = "Orders_" + orderDate.ToString("MMddyyyy") + ".txt";
             string fileFullName = ConfigurationManager.AppSettings["FileLocation"] + "\\" + fileName;
             List<Order> returnValue = new List<Order>();
@@ -176,10 +176,11 @@ namespace NewFlooringMastery.Data
                         order.OrderDate = orderDate;
                         {
 
+
                             order.OrderNumber = columns[0];
                             order.CustomerName = columns[1];
                             //order.State = columns[2];
-                            order.StateTaxData = stateTaxRepo.LoadTaxForState(columns[4]);
+                            order.StateTaxData = stateTaxRepo.LoadTaxForState(columns[2]);
                             order.ProductDetail = productRepo.FindProductByType(columns[4]);
                             order.Area = decimal.Parse(columns[5]);
                         }

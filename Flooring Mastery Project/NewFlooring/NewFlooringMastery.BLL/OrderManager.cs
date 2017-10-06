@@ -70,17 +70,51 @@ namespace NewFlooringMastery.BLL
             }
             return response;
         }
+
         public SaveNewOrderResponse SaveNewOrder(Order order)
         {
-            SaveNewOrderResponse response = new SaveNewOrderResponse();
-            response.Success = _orderRepository.SaveNewOrder(order);
-            if(response.Order == null)
+            SaveNewOrderResponse response = Validate(order);
+            //SaveNewOrderResponse response = new SaveNewOrderResponse();
+            //response.Success = _orderRepository.SaveNewOrder(order);
+            //if (response.Order == null)
+            //{
+            //    response.Success = false;
+            //    response.Message = ($"{order} does not exist!");
+            //}
+            if (response.Success)
             {
-                response.Success = false;
-                response.Message = ($"{order} does not exist!");
+                _orderRepository.SaveNewOrder(order);
             }
             return response;
         }
+
+        private SaveNewOrderResponse Validate(Order o)
+        {
+            SaveNewOrderResponse result = new SaveNewOrderResponse();
+            result.Success = true;
+            if(o.ProductDetail == null)
+            {
+                result.Success = false;
+                result.Message = "Product Details is required.";
+            }
+            else if (o.StateTaxData == null)
+            {
+                result.Success = false;
+                result.Message = "State tax info is required.";
+            }
+            else if(string.IsNullOrEmpty(o.CustomerName))
+            {
+                result.Success = false;
+                result.Message = "Customer name is required.";
+            }
+            else if(o.Area <= 0)
+            {
+                result.Success = false;
+                result.Message = "Area must be positive.";
+            }
+            return result;
+        }
+        
         public RemoveOrderResponse RemoveOrder(Order order)
         {
             RemoveOrderResponse response = new RemoveOrderResponse();

@@ -16,15 +16,17 @@ namespace NewFlooringMastery.Data
             new ProductName("Stone", 3.50M, 5.00M)
         };
 
+        public ProductName FindProductType(string productType)
+        {
+            //ProductDetail productDetail = new ProductDetail();
+            return productNameList.FirstOrDefault(p => p.ProductType == productType);
+            
+        }
+
         public ProductDetail FindProductByType(string productType)
         {
             throw new NotImplementedException();
         }
-
-        //public ProductDetail FindProductByType(string productType)
-        //{
-        //    //return productNameList.FirstOrDefault(p => p.ProductType == productType);
-        //}
 
         public ProductDetail GetProduct(string productType)
         {

@@ -42,27 +42,27 @@ namespace NewFlooringMastery.Data
 
         public bool RemoveOrder(Order order)
         {
-            _orders.Remove(order);
+            //_orders.Remove(order);
             return true;
         }
 
         public bool SaveCurrentOrder(Order order)
         {
-            if (order.OrderNumber == "0")
-            {
-                SaveNewOrder(order);
-            }
-            else
-            {
-                _orders.Add(order);
+            //if (order.OrderNumber == "0")
+            //{
+            //    SaveNewOrder(order);
+            //}
+            //else
+            //{
+            //    _orders.Add(order);
 
-            }
+            //}
             return true;
         }
 
         public bool SaveNewOrder(Order order)
         {
-            _orders.Add(order);
+            //_orders.Add(order);
             return true;
         }
 

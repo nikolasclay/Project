@@ -11,25 +11,25 @@ namespace Exercises.Models.ViewModels
     public class StudentVM
     {
         public Student Student { get; set; }
-        public List<SelectListItem> CourseItems { get; set; }
-        public List<SelectListItem> MajorItems { get; set; }
-        public List<SelectListItem> StateItems { get; set; }
+        public List<System.Web.Mvc.SelectListItem> CourseItems { get; set; }
+        public List<System.Web.Mvc.SelectListItem> MajorItems { get; set; }
+        public List<System.Web.Mvc.SelectListItem> StateItems { get; set; }
         public List<int> SelectedCourseIds { get; set; }
 
         public StudentVM()
         {
-            CourseItems = new List<SelectListItem>();
-            MajorItems = new List<SelectListItem>();
-            StateItems = new List<SelectListItem>();
+            CourseItems = new List<System.Web.Mvc.SelectListItem>();
+            MajorItems = new List<System.Web.Mvc.SelectListItem>();
+            StateItems = new List<System.Web.Mvc.SelectListItem>();
             SelectedCourseIds = new List<int>();
             Student = new Student();
         }
 
-        public void SetCourseItems(IEnumerable<Course> courses)
+        public void SetCourseItems(IEnumerable<Data.SelectListItem> courses)
         {
             foreach (var course in courses)
             {
-                CourseItems.Add(new SelectListItem()
+                CourseItems.Add(new System.Web.Mvc.SelectListItem()
                 {
                     Value = course.CourseId.ToString(),
                     Text = course.CourseName
@@ -41,7 +41,7 @@ namespace Exercises.Models.ViewModels
         {
             foreach (var major in majors)
             {
-                MajorItems.Add(new SelectListItem()
+                MajorItems.Add(new System.Web.Mvc.SelectListItem()
                 {
                     Value = major.MajorId.ToString(),
                     Text = major.MajorName
@@ -53,7 +53,7 @@ namespace Exercises.Models.ViewModels
         {
             foreach (var state in states)
             {
-                StateItems.Add(new SelectListItem()
+                StateItems.Add(new System.Web.Mvc.SelectListItem()
                 {
                     Value = state.StateAbbreviation,
                     Text = state.StateName

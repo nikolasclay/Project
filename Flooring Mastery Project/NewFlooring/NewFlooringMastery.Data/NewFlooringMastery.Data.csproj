@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MockOrderRepo.cs" />
-    <Compile Include="MockProductRepo.cs" />
-    <Compile Include="MockTaxRepo.cs" />
-    <Compile Include="OrderRepo.cs" />
-    <Compile Include="ProductRepo.cs" />
-    <Compile Include="StateTaxRepo.cs" />
+    <Compile Include="Mock Repos\MockOrderRepo.cs" />
+    <Compile Include="Mock Repos\MockProductRepo.cs" />
+    <Compile Include="Mock Repos\MockTaxRepo.cs" />
+    <Compile Include="Production Repos\OrderRepo.cs" />
+    <Compile Include="Production Repos\ProductRepo.cs" />
+    <Compile Include="Production Repos\StateTaxRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

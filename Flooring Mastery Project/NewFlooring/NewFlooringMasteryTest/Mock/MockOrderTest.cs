@@ -16,19 +16,125 @@ namespace NewFlooringMasteryTest.Mock
     [TestFixture]
     public class MockOrderTest
     {
-        [Test]
-        public void CanLoadAllOrders()
+
+        [TestCase("1", "01/10/1984", "Wise", "MI", "Michigan", 6.75, "Carpet", 2.50, 5.00, false)]
+        [TestCase("1", "01/10/1984", "Clay", "OH", "Ohio", 7.00, "Wood", 2.50, 5.00, false)]
+        [TestCase("1", "01/10/1984", "Wise", "MI", "Michigan", 1.00, "", 5.00, 6.00, false)]
+        public void CanAddOrder(string orderNumber, string orderDate, string CustomerName,
+            string stateAbbreviation, string stateName, decimal taxRate,
+            string productType, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expected)
         {
+            StateTaxInfo stateTaxInfo = new StateTaxInfo
+            {
+                StateAbbreviation = stateAbbreviation,
+                StateName = stateName,
+                TaxRate = taxRate
+            };
+            ProductDetail productDetail = new ProductDetail
+            {
+                ProductType = productType,
+                CostPerSquareFoot = costPerSquareFoot,
+                LaborCostPerSquareFoot = laborCostPerSquareFoot
+            };
+
             OrderManager manager = OrderManagerFactory.Create();
+            DateTime.Parse(orderDate);
 
-            LookupOrderResponse response = new LookupOrderResponse();
-            DateTime date = new DateTime(1984, 1, 10);
-            response = manager.LookupOrder(date);
+            OrderRepo repo = new OrderRepo();
+            Order order = new Order();
+            order.OrderNumber = "1";
+            order.OrderDate = new DateTime(1984, 01, 10);
+            order.CustomerName = "Wise";
+            order.StateTaxData = stateTaxInfo;
+            order.ProductDetail = productDetail;
+            order.Area = 100.00M;
 
-            Assert.IsNotNull(response.Orders);
-            Assert.IsTrue(response.Success);
-            Assert.AreEqual(1, response.Orders.Count());
+            var response = repo.SaveNewOrder(order);
+            Assert.IsTrue(response);
         }
 
+
+
+        [TestCase("1", "01/10/1986", "Wise", "MI", "Michigan", 6.75, "Carpet", 2.50, 5.00, false)]
+        [TestCase("1", "01/10/1987", "Clay", "OH", "Ohio", 8.00, "Wood", 2.50, 5.00, false)]
+        [TestCase("1", "01/10/1988", "Wise", "MI", "Michigan", 5.00, "Tile", 5.00, 6.00, false)]
+        public void CanEditOrder(string orderNumber, string orderDate, string CustomerName,
+    string stateAbbreviation, string stateName, decimal taxRate,
+    string productType, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expected)
+        {
+            StateTaxInfo stateTaxInfo = new StateTaxInfo
+            {
+                StateAbbreviation = stateAbbreviation,
+                StateName = stateName,
+                TaxRate = taxRate
+            };
+            ProductDetail productDetail = new ProductDetail
+            {
+                ProductType = productType,
+                CostPerSquareFoot = costPerSquareFoot,
+                LaborCostPerSquareFoot = laborCostPerSquareFoot
+            };
+
+            OrderManager manager = OrderManagerFactory.Create();
+            DateTime.Parse(orderDate);
+
+            OrderRepo repo = new OrderRepo();
+            Order order = new Order();
+            order.OrderNumber = "1";
+            order.OrderDate = new DateTime(1984, 01, 10);
+            order.CustomerName = "Wise";
+            order.StateTaxData = stateTaxInfo;
+            order.ProductDetail = productDetail;
+            order.Area = 100.00M;
+
+            var response = repo.SaveCurrentOrder(order);
+            Assert.IsTrue(response);
+        }
+
+        [TestCase("1", "01/10/1988", "Wise", "MI", "Michigan", 1.00, "Tile", 5.00, 6.00, false)]
+        public void CanDeleteOrder(string orderNumber, string orderDate, string CustomerName,
+    string stateAbbreviation, string stateName, decimal taxRate,
+    string productType, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expected)
+        {
+            StateTaxInfo stateTaxInfo = new StateTaxInfo
+            {
+                StateAbbreviation = stateAbbreviation,
+                StateName = stateName,
+                TaxRate = taxRate
+            };
+            ProductDetail productDetail = new ProductDetail
+            {
+                ProductType = productType,
+                CostPerSquareFoot = costPerSquareFoot,
+                LaborCostPerSquareFoot = laborCostPerSquareFoot
+            };
+
+            OrderManager manager = OrderManagerFactory.Create();
+            DateTime.Parse(orderDate);
+
+            OrderRepo repo = new OrderRepo();
+            Order order = new Order();
+            order.OrderNumber = "1";
+            order.OrderDate = new DateTime(1984, 01, 10);
+            order.CustomerName = "Wise";
+            order.StateTaxData = stateTaxInfo;
+            order.ProductDetail = productDetail;
+            order.Area = 100.00M;
+
+            var response = repo.RemoveOrder(order);
+            Assert.IsTrue(response);
+        }
+
+        //SaveNewOrderResponse response = new SaveNewOrderResponse();
+
+        ////DateTime date = new DateTime(1984, 1, 10);
+        //response = manager.SaveNewOrder(response.Order);
+
+        //Assert.AreEqual(expected, response.Success);
+        //Assert.IsNotNull(response.Orders);
+        //Assert.IsTrue(response.Success);
+        //Assert.AreEqual(1, response.Orders.Count());
     }
+
 }
+
