@@ -30,10 +30,10 @@ namespace Exercises.Models.Repositories
                             StateName="Ohio"},
                         PostalCode="44311"
                     },
-                    Courses=new List<SelectListItem>
+                    Courses=new List<Course>
                     {
-                        new SelectListItem { CourseId=1, CourseName="Art History" },
-                        new SelectListItem { CourseId=8, CourseName="Photography" }
+                        new Course { CourseId=1, CourseName="Art History" },
+                        new Course { CourseId=8, CourseName="Photography" }
                     }
                 },
                 new Student {
@@ -52,11 +52,11 @@ namespace Exercises.Models.Repositories
                             StateName="Minnesota"},
                         PostalCode="55401"
                     },
-                    Courses=new List<SelectListItem>
+                    Courses=new List<Course>
                     {
-                        new SelectListItem { CourseId=2, CourseName="Accounting 101" },
-                        new SelectListItem { CourseId=4, CourseName="Business Law" },
-                        new SelectListItem { CourseId=6, CourseName="Economics 101" },
+                        new Course { CourseId=2, CourseName="Accounting 101" },
+                        new Course { CourseId=4, CourseName="Business Law" },
+                        new Course { CourseId=6, CourseName="Economics 101" },
                     }
                 },
                 new Student {

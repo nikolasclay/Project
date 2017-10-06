@@ -25,7 +25,7 @@ namespace Exercises.Models.ViewModels
             Student = new Student();
         }
 
-        public void SetCourseItems(IEnumerable<Data.SelectListItem> courses)
+        public void SetCourseItems(IEnumerable<Course> courses)
         {
             foreach (var course in courses)
             {

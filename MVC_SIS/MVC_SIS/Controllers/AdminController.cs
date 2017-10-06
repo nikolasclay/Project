@@ -109,10 +109,10 @@ namespace Exercises.Controllers
         [HttpGet]
         public ActionResult AddCourse()
         {
-            return View(new Models.Data.SelectListItem());
+            return View(new Models.Data.Course());
         }
         [HttpPost]
-        public ActionResult AddCourse(Models.Data.SelectListItem course)
+        public ActionResult AddCourse(Models.Data.Course course)
         {
             CourseRepository.Add(course.CourseName);
             return RedirectToAction("Courses");
@@ -124,7 +124,7 @@ namespace Exercises.Controllers
             return View(course);
         }
         [HttpPost]
-        public ActionResult EditCourse(Models.Data.SelectListItem course)
+        public ActionResult EditCourse(Course course)
         {
             CourseRepository.Edit(course);
             return RedirectToAction("Courses");
@@ -136,7 +136,7 @@ namespace Exercises.Controllers
             return View(course);
         }
         [HttpPost]
-        public ActionResult DeleteCourse(Models.Data.SelectListItem course)
+        public ActionResult DeleteCourse(Course course)
         {
             CourseRepository.Delete(course.CourseId);
             return RedirectToAction("Courses");

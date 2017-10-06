@@ -13,6 +13,6 @@ namespace Exercises.Models.Data
         public decimal GPA { get; set; }
         public Address Address { get; set; }
         public Major Major { get; set; }
-        public List<SelectListItem> Courses { get; set; }
+        public List<Course> Courses { get; set; }
     }
 }

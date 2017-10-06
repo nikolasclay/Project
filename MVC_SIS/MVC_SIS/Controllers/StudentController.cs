@@ -37,7 +37,7 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult Add(StudentVM studentVM)
         {
-            studentVM.Student.Courses = new List<Models.Data.SelectListItem>();
+            studentVM.Student.Courses = new List<Models.Data.Course>();
 
             foreach (var id in studentVM.SelectedCourseIds)
                 studentVM.Student.Courses.Add(CourseRepository.Get(id));
@@ -60,8 +60,16 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult EditStudent(StudentVM studentVM)
         {
-            StudentRepository.Edit(studentVM.Student);
-            return RedirectToAction("Student");
+            studentVM.Student.Courses = new List<Models.Data.Course>();
+
+            foreach (var id in studentVM.SelectedCourseIds)
+                studentVM.Student.Courses.Add(CourseRepository.Get(id));
+
+            studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+
+            StudentRepository.Add(studentVM.Student);
+
+            return RedirectToAction("List");
         }
     }
 }

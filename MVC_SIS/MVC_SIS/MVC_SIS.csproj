@@ -160,8 +160,8 @@
     <Content Include="Views\Admin\AddCourse.cshtml" />
     <Content Include="Views\Admin\DeleteCourse.cshtml" />
     <Content Include="Views\Admin\EditState.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Admin\EditCourse.cshtml" />
+    <Content Include="Views\Student\EditStudent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
