@@ -85,5 +85,17 @@ namespace Exercises.Controllers
 
             return RedirectToAction("List");
         }
+        [HttpGet]
+        public ActionResult DeleteStudent(int id)
+        {
+            var student = StudentRepository.Get(id);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DeleteStudent(StudentVM studentVM)
+        {
+            StudentRepository.Delete(studentVM.Student.StudentId);
+            return RedirectToAction("List");
+        }
     }
 }
