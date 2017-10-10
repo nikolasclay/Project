@@ -1,0 +1,51 @@
+h1{
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h3{
+    color: whitesmoke
+}
+
+/* #row1,#row2,#row3{
+    padding-bottom: 35px;
+} */
+#vendItems{
+    border-spacing: 25px;
+    color: whitesmoke;
+}
+.box{
+    background-color: whitesmoke;
+}
+body{
+    background-image: url("../img/background.jpg");
+    background-repeat: none;
+}
+.img-rounded{
+    background-color: whitesmoke;
+    border:solid 3px black;
+}
+#itemButton{
+    background-color: whitesmoke;
+    width: 125px;
+    color: black;
+    border:solid 5px silver;
+    margin-bottom: 25px;
+    
+}
+label{
+  color: whitesmoke;
+  padding-right: 25px;  
+}
+
+#addDollar, #addQuarter, #addDime, #addNickel{
+    margin: 15px;
+    width: 100px;
+}
+#item-Status1{
+    margin-right: 35px;
+    width: 200px;
+}
+#totalButton{
+    margin-left: 55px;
+}

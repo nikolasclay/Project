@@ -35,18 +35,32 @@ namespace Exercises.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(StudentVM studentVM)
+        public ActionResult Add(StudentVM model)
         {
-            studentVM.Student.Courses = new List<Models.Data.Course>();
+            if (ModelState.IsValid)
+            {
+                model.Student.Courses = new List<Course>();
 
-            foreach (var id in studentVM.SelectedCourseIds)
-                studentVM.Student.Courses.Add(CourseRepository.Get(id));
+                foreach (var id in model.SelectedCourseIds)
+                    model.Student.Courses.Add(CourseRepository.Get(id));
 
-            studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+                model.Student.Major = MajorRepository.Get(model.Student.Major.MajorId);
 
-            StudentRepository.Add(studentVM.Student);
+                StudentRepository.Add(model.Student);
 
-            return RedirectToAction("List");
+                return RedirectToAction("List");
+
+            }
+            else
+            {
+                model.SetCourseItems(CourseRepository.GetAll());
+                model.SetMajorItems(MajorRepository.GetAll());
+                return View(model);
+            }
+
+
+
+
         }
         [HttpGet]
         public ActionResult EditStudent(int id)
