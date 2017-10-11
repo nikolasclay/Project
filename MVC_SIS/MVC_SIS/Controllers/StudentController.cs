@@ -89,12 +89,12 @@ namespace Exercises.Controllers
         public ActionResult DeleteStudent(int id)
         {
             var student = StudentRepository.Get(id);
-            return View();
+            return View(student);
         }
         [HttpPost]
-        public ActionResult DeleteStudent(StudentVM studentVM)
+        public ActionResult DeleteStudent(Student student)
         {
-            StudentRepository.Delete(studentVM.Student.StudentId);
+            StudentRepository.Delete(student.StudentId);
             return RedirectToAction("List");
         }
     }

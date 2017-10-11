@@ -11,7 +11,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise30();
+            Exercise7();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
