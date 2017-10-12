@@ -13,9 +13,11 @@ namespace Exercises.Models.Data
         public string FirstName { get; set; }
         [Required(ErrorMessage = "You must enter a last name.")]
         public string LastName { get; set; }
-        [Range(0,4,ErrorMessage ="You must enter a GPA between 0 and 4.")]
+        [Range(0,4)]
+        [Required(ErrorMessage ="You must enter a GPA between 0 and 4.")]
         public decimal GPA { get; set; }
         public Address Address { get; set; }
+        [Required(ErrorMessage = "You must select a major.")]
         public Major Major { get; set; }
         public List<Course> Courses { get; set; }
     }

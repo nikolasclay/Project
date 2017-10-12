@@ -89,7 +89,7 @@ function purchase(){
         //check if value in item field is blank. If blank, send a message to the user
         if($('#item-Status1').val() == ""){
 
-            $('#message').val().text("You must select an item.");
+            $('#message').val("You must select an item.");
         }
         //call Ajax to vend an item. Assignment instructions provides the format for the URL
         else{
