@@ -61,17 +61,15 @@ function getItems(){
                 var quantity = product.quantity;
 
                 
-                var divRow = '<div class="col-md-4 items" id="menuItem" data-id=" ' + product.id + '">';
+                var divRow = '<div class="col-md-4 items" id="menuItem" data-id= '+ product.id +'>';
                 divRow += '<button type = "button" class="btn btn-default style="padding-bottom:35px" id="itemButton">';
-                divRow += '<p id="itemID">' + itemID + '</p>';
+                divRow += '<p>' + itemID + '</p>';
                 divRow += '<p>' + name + '</p>';
                 divRow += '<p>' + '$' + price + '</p>';
                 divRow += '<p data-quantity="'+ product.quantity +'">' + 'Quantity Left: ' + quantity + '</p>' + '</div>';
                 divRow +='</button>';
                 item.append(divRow);
             });
-
-            
         }
     });
 }
@@ -87,6 +85,9 @@ function purchase(){
 
     $('#totalButton').click(function(){
         //check if value in item field is blank. If blank, send a message to the user
+        if($('#total').val() == ""){
+            $('#message').val("You must insert money before making a purchase.");
+        }
         if($('#item-Status1').val() == ""){
 
             $('#message').val("You must select an item.");
@@ -105,9 +106,9 @@ function purchase(){
                     $('#change-due').val(moneyDiff);
                 },
 
-                error: function(jqxhr){
+                error: function(xhr){
 
-                    $('#message').val(jqxhr.responseJSON.message);
+                    $('#message').val(xhr.responseJSON.message);
                 }
 
             })
@@ -120,7 +121,8 @@ function clearForms(){
 
     $('#getChange').click(function(){
 
-        $('#form').trigger("reset");
+        //$('#form').trigger("reset");
+        window.location.reload(true);
     })
 }
 

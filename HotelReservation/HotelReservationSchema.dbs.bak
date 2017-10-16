@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="HotelReservation" id="Project_708c9f" template="Default" database="SqlServer" >
+	<schema name="HotelReservation" schemaname="HotelReservation" >
+		<table name="AddOn" >
+			<column name="AddOnName" type="varchar" length="30" jt="12" />
+			<column name="AddOnID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="AddOnDescription" type="varchar(max)" jt="12" />
+			<index name="Pk_AddOns" unique="PRIMARY_KEY" >
+				<column name="AddOnID" />
+			</index>
+		</table>
+		<table name="AddOnRate" >
+			<column name="AddOnRateID" type="decimal" length="8" decimal="2" jt="3" mandatory="y" autoincrement="y" />
+			<column name="StartDate" type="date" jt="91" />
+			<column name="EndDate" type="date" jt="91" />
+			<column name="AddOnRate" type="decimal" length="8" decimal="2" jt="3" />
+			<column name="AddOnID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_AddOnRate" unique="PRIMARY_KEY" >
+				<column name="AddOnRateID" />
+			</index>
+			<index name="idx_AddOnRate" unique="NORMAL" >
+				<column name="AddOnID" />
+			</index>
+			<fk name="fk_addonrate_addon" to_schema="HotelReservation" to_table="AddOn" >
+				<fk_column name="AddOnID" pk="AddOnID" />
+			</fk>
+		</table>
+		<table name="AddOnRoom" >
+			<column name="RoomAddOnID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="RoomID" type="int" jt="4" mandatory="y" />
+			<column name="AddOnID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_RoomAddOn" unique="PRIMARY_KEY" >
+				<column name="RoomAddOnID" />
+			</index>
+			<index name="idx_RoomAddOn" unique="NORMAL" >
+				<column name="RoomID" />
+			</index>
+			<index name="idx_AddOnRoom" unique="NORMAL" >
+				<column name="AddOnID" />
+			</index>
+			<fk name="fk_addonroom_room" to_schema="HotelReservation" to_table="Room" >
+				<fk_column name="RoomID" pk="RoomID" />
+			</fk>
+			<fk name="fk_addonroom_addon" to_schema="HotelReservation" to_table="AddOn" >
+				<fk_column name="AddOnID" pk="AddOnID" />
+			</fk>
+		</table>
+		<table name="Amenities" >
+			<column name="AmenityID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="AmenityName" type="varchar" length="30" jt="12" />
+			<column name="AmenityDesc" type="varchar(max)" jt="12" />
+			<index name="Pk_Amenities" unique="PRIMARY_KEY" >
+				<column name="AmenityID" />
+			</index>
+		</table>
+		<table name="Billing" >
+			<column name="BillingID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="Taxes" type="decimal" length="2" jt="3" mandatory="y" />
+			<column name="Fees" type="decimal" length="2" jt="3" />
+			<column name="ReservationID" type="int" jt="4" />
+			<column name="Total" type="decimal" length="8" decimal="2" jt="3" mandatory="y" />
+			<column name="CustomerID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Billing" unique="PRIMARY_KEY" >
+				<column name="BillingID" />
+			</index>
+			<index name="Pk_Billing_0" unique="UNIQUE" >
+				<column name="ReservationID" />
+			</index>
+			<index name="idx_Billing" unique="NORMAL" >
+				<column name="CustomerID" />
+			</index>
+			<fk name="fk_billing_customer" to_schema="HotelReservation" to_table="Customer" >
+				<fk_column name="CustomerID" pk="CustomerID" />
+			</fk>
+		</table>
+		<table name="Customer" >
+			<column name="CustomerID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="FirstName" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="LastName" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="Phone" type="numeric" jt="2" mandatory="y" />
+			<column name="Email" type="varchar" length="30" jt="12" />
+			<column name="CreditCard" type="varchar" length="16" jt="12" mandatory="y" />
+			<index name="Pk_Customer" unique="PRIMARY_KEY" >
+				<column name="CustomerID" />
+			</index>
+		</table>
+		<table name="Guest" >
+			<column name="GuestID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="FirstName" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="LastName" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="GuestAge" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Guest" unique="PRIMARY_KEY" >
+				<column name="GuestID" />
+			</index>
+		</table>
+		<table name="GuestReservation" >
+			<column name="GuestReservationID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="GuestID" type="int" jt="4" mandatory="y" />
+			<column name="ReservationID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_GuestReservation" unique="PRIMARY_KEY" >
+				<column name="GuestReservationID" />
+			</index>
+			<index name="idx_GuestReservation" unique="NORMAL" >
+				<column name="GuestID" />
+			</index>
+			<fk name="fk_guestreservation_guest" to_schema="HotelReservation" to_table="Guest" >
+				<fk_column name="GuestID" pk="GuestID" />
+			</fk>
+			<fk name="fk_guestreservation" to_schema="HotelReservation" to_table="Reservation" >
+				<fk_column name="ReservationID" pk="ReservationID" />
+			</fk>
+		</table>
+		<table name="Promotions" >
+			<column name="PromotionID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="StartDate" type="date" jt="91" mandatory="y" />
+			<column name="EndDate" type="date" jt="91" mandatory="y" />
+			<column name="PromoRate" type="decimal" length="8" decimal="2" jt="3" />
+			<column name="PromoCode" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="PromoDesc" type="varchar(max)" jt="12" />
+			<index name="Pk_Promotions" unique="PRIMARY_KEY" >
+				<column name="PromotionID" />
+			</index>
+		</table>
+		<table name="Reservation" >
+			<column name="ReservationID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="StartDate" type="date" jt="91" />
+			<column name="EndDate" type="date" jt="91" />
+			<column name="PromotionID" type="int" jt="4" />
+			<column name="CustomerID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Booking" unique="PRIMARY_KEY" >
+				<column name="ReservationID" />
+			</index>
+			<index name="idx_Reservation" unique="NORMAL" >
+				<column name="PromotionID" />
+			</index>
+			<index name="idx_Reservation_0" unique="NORMAL" >
+				<column name="CustomerID" />
+			</index>
+			<fk name="fk_reservation_promotions" to_schema="HotelReservation" to_table="Promotions" >
+				<fk_column name="PromotionID" pk="PromotionID" />
+			</fk>
+			<fk name="fk_reservation_customer" to_schema="HotelReservation" to_table="Customer" >
+				<fk_column name="CustomerID" pk="CustomerID" />
+			</fk>
+			<fk name="fk_reservation_billing" to_schema="HotelReservation" to_table="Billing" >
+				<fk_column name="ReservationID" pk="ReservationID" />
+			</fk>
+		</table>
+		<table name="ReservationAddOn" >
+			<column name="ReservationAddOnID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="ReservationID" type="int" jt="4" mandatory="y" />
+			<column name="RoomID" type="int" jt="4" mandatory="y" />
+			<column name="StartDate" type="date" jt="91" mandatory="y" />
+			<column name="EndDate" type="date" jt="91" mandatory="y" />
+			<column name="AddOnID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_ReservationAddOn" unique="PRIMARY_KEY" >
+				<column name="ReservationAddOnID" />
+			</index>
+			<index name="idx_ReservationAddOn" unique="NORMAL" >
+				<column name="RoomID" />
+			</index>
+			<index name="idx_ReservationAddOn_0" unique="NORMAL" >
+				<column name="AddOnID" />
+			</index>
+			<index name="idx_ReservationAddOn_1" unique="NORMAL" >
+				<column name="ReservationID" />
+			</index>
+			<fk name="fk_reservationaddon_room" to_schema="HotelReservation" to_table="Room" >
+				<fk_column name="RoomID" pk="RoomID" />
+			</fk>
+			<fk name="fk_reservationaddon_addon" to_schema="HotelReservation" to_table="AddOn" >
+				<fk_column name="AddOnID" pk="AddOnID" />
+			</fk>
+			<fk name="fk_reservationaddon" to_schema="HotelReservation" to_table="Reservation" >
+				<fk_column name="ReservationID" pk="ReservationID" />
+			</fk>
+		</table>
+		<table name="Room" >
+			<column name="Room#" type="varchar" length="6" jt="12" />
+			<column name="FloorNumber" type="int" jt="4" mandatory="y" />
+			<column name="RoomID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="RoomTypeID" type="int" jt="4" mandatory="y" />
+			<index name="idx_Room" unique="NORMAL" >
+				<column name="Room#" />
+			</index>
+			<index name="Pk_Room" unique="PRIMARY_KEY" >
+				<column name="RoomID" />
+			</index>
+			<index name="idx_Room_0" unique="NORMAL" >
+				<column name="RoomTypeID" />
+			</index>
+			<fk name="fk_room_roomtype" to_schema="HotelReservation" to_table="RoomType" >
+				<fk_column name="RoomTypeID" pk="RoomTypeID" />
+			</fk>
+		</table>
+		<table name="RoomAmenities" >
+			<column name="AmenityID" type="int" jt="4" mandatory="y" />
+			<column name="RoomAmenitiesID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="RoomID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_RoomAmenities" unique="PRIMARY_KEY" >
+				<column name="RoomAmenitiesID" />
+			</index>
+			<index name="Pk_RoomAmenities_1" unique="UNIQUE" >
+				<column name="RoomAmenitiesID" />
+			</index>
+			<index name="idx_RoomAmenities" unique="NORMAL" >
+				<column name="AmenityID" />
+			</index>
+			<fk name="fk_roomamenities_room" to_schema="HotelReservation" to_table="Room" />
+			<fk name="fk_roomamenities_amenities" to_schema="HotelReservation" to_table="Amenities" >
+				<fk_column name="AmenityID" pk="AmenityID" />
+			</fk>
+		</table>
+		<table name="RoomRate" >
+			<column name="RateID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="StartDate" type="date" jt="91" mandatory="y" />
+			<column name="EndDate" type="date" jt="91" mandatory="y" />
+			<column name="RoomTypeID" type="int" jt="4" mandatory="y" />
+			<column name="RoomRate" type="decimal" length="2" jt="3" mandatory="y" />
+			<index name="Pk_Rates" unique="PRIMARY_KEY" >
+				<column name="RateID" />
+			</index>
+			<index name="idx_Rates" unique="NORMAL" >
+				<column name="RoomTypeID" />
+			</index>
+			<fk name="fk_roomrate_roomtype" to_schema="HotelReservation" to_table="RoomType" >
+				<fk_column name="RoomTypeID" pk="RoomTypeID" />
+			</fk>
+		</table>
+		<table name="RoomReservation" >
+			<column name="RoomID" type="int" jt="4" mandatory="y" />
+			<column name="RoomReservationID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="ReservationID" type="int" jt="4" mandatory="y" />
+			<index name="idx_RoomReservation" unique="NORMAL" >
+				<column name="RoomID" />
+			</index>
+			<index name="Pk_RoomReservation" unique="PRIMARY_KEY" >
+				<column name="RoomReservationID" />
+			</index>
+			<index name="idx_RoomReservation_0" unique="NORMAL" >
+				<column name="ReservationID" />
+			</index>
+			<fk name="fk_roomreservation_room" to_schema="HotelReservation" to_table="Room" >
+				<fk_column name="RoomID" pk="RoomID" />
+			</fk>
+			<fk name="fk_roomreservation_reservation" to_schema="HotelReservation" to_table="Reservation" >
+				<fk_column name="ReservationID" pk="ReservationID" />
+			</fk>
+		</table>
+		<table name="RoomType" >
+			<column name="RoomTypeID" type="int" jt="4" mandatory="y" />
+			<column name="RoomTypeDesc" type="varchar(max)" jt="12" />
+			<column name="RoomCapacity" type="int" jt="4" mandatory="y" />
+			<index name="Pk_RoomTypes" unique="PRIMARY_KEY" >
+				<column name="RoomTypeID" />
+			</index>
+		</table>
+		<table name="Table_" />
+		<table name="Table__001" />
+	</schema>
+	<connector name="" database="MySql" host="localhost" port="3306" user="root" />
+	<layout name="Default Layout" id="Layout_5c3bf2a" show_column_type="y" show_relation="columns" >
+		<entity schema="HotelReservation" name="Billing" color="1f5182" x="90" y="675" />
+		<entity schema="HotelReservation" name="Customer" color="1f5182" x="45" y="195" />
+		<entity schema="HotelReservation" name="RoomRate" color="1f5182" x="75" y="975" />
+		<entity schema="HotelReservation" name="AddOnRoom" color="1f5182" x="75" y="840" />
+		<entity schema="HotelReservation" name="Guest" color="1f5182" x="45" y="45" />
+		<entity schema="HotelReservation" name="Reservation" color="1f5182" x="360" y="240" />
+		<entity schema="HotelReservation" name="Promotions" color="1f5182" x="285" y="480" />
+		<entity schema="HotelReservation" name="ReservationAddOn" color="1f5182" x="660" y="210" />
+		<entity schema="HotelReservation" name="RoomReservation" color="1f5182" x="480" y="390" />
+		<entity schema="HotelReservation" name="RoomAmenities" color="1f5182" x="825" y="825" />
+		<entity schema="HotelReservation" name="AddOnRate" color="1f5182" x="690" y="660" />
+		<entity schema="HotelReservation" name="Amenities" color="1f5182" x="810" y="1005" />
+		<entity schema="HotelReservation" name="RoomType" color="1f5182" x="405" y="1005" />
+		<entity schema="HotelReservation" name="Room" color="1f5182" x="285" y="660" />
+		<entity schema="HotelReservation" name="GuestReservation" color="1f5182" x="330" y="45" />
+		<entity schema="HotelReservation" name="AddOn" color="1f5182" x="660" y="435" />
+		<browser id="Browse_5d2610" name="Room_" confirm_updates="y" >
+			<browse_table schema="HotelReservation" entity="Room" x="20" y="20" width="429" height="330" />
+		</browser>
+		<browser id="Browse_5b351ef" name="Room__001" confirm_updates="y" >
+			<browse_table schema="HotelReservation" entity="Room" x="20" y="20" width="429" height="330" />
+		</browser>
+		<query id="Query_43584ad" name="Builder" >
+			<query_table schema="HotelReservation" name="Billing" alias="b" x="45" y="45" >
+				<column name="BillingID" />
+			</query_table>
+		</query>
+	</layout>
+</project>
