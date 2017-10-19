@@ -55,7 +55,6 @@ $('#getChange').click(function(){
             clearChange();
             clearVendItems();
             getItems();
-            // window.location.reload(true);
         })
 });
 
