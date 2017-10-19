@@ -26,11 +26,11 @@
 			</fk>
 		</table>
 		<table name="AddOnRoom" >
-			<column name="RoomAddOnID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="AddOnRoomID" type="int" jt="4" mandatory="y" autoincrement="y" />
 			<column name="RoomID" type="int" jt="4" mandatory="y" />
 			<column name="AddOnID" type="int" jt="4" mandatory="y" />
 			<index name="Pk_RoomAddOn" unique="PRIMARY_KEY" >
-				<column name="RoomAddOnID" />
+				<column name="AddOnRoomID" />
 			</index>
 			<index name="idx_RoomAddOn" unique="NORMAL" >
 				<column name="RoomID" />
@@ -71,6 +71,34 @@
 			</index>
 			<fk name="fk_billing_customer" to_schema="HotelReservation" to_table="Customer" >
 				<fk_column name="CustomerID" pk="CustomerID" />
+			</fk>
+		</table>
+		<table name="BillingDetail" >
+			<column name="BillingDetailID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="BillingID" type="int" jt="4" mandatory="y" />
+			<column name="RateID" type="int" jt="4" mandatory="y" />
+			<column name="SubTotal" type="decimal" length="8" decimal="2" jt="3" mandatory="y" />
+			<column name="AddOnRateID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_BillingDetail" unique="PRIMARY_KEY" >
+				<column name="BillingDetailID" />
+			</index>
+			<index name="idx_BillingDetail" unique="NORMAL" >
+				<column name="BillingID" />
+			</index>
+			<index name="idx_BillingDetail_0" unique="NORMAL" >
+				<column name="RateID" />
+			</index>
+			<index name="idx_BillingDetail_1" unique="NORMAL" >
+				<column name="AddOnRateID" />
+			</index>
+			<fk name="fk_billingdetail_billing" to_schema="HotelReservation" to_table="Billing" >
+				<fk_column name="BillingID" pk="BillingID" />
+			</fk>
+			<fk name="fk_billingdetail_roomrate" to_schema="HotelReservation" to_table="RoomRate" >
+				<fk_column name="RateID" pk="RateID" />
+			</fk>
+			<fk name="fk_billingdetail_addon" to_schema="HotelReservation" to_table="AddOnRate" >
+				<fk_column name="AddOnRateID" pk="AddOnRateID" />
 			</fk>
 		</table>
 		<table name="Customer" >
@@ -176,12 +204,12 @@
 			</fk>
 		</table>
 		<table name="Room" >
-			<column name="Room#" type="varchar" length="6" jt="12" />
+			<column name="RoomNumber" type="varchar" length="6" jt="12" />
 			<column name="FloorNumber" type="int" jt="4" mandatory="y" />
 			<column name="RoomID" type="int" jt="4" mandatory="y" autoincrement="y" />
 			<column name="RoomTypeID" type="int" jt="4" mandatory="y" />
 			<index name="idx_Room" unique="NORMAL" >
-				<column name="Room#" />
+				<column name="RoomNumber" />
 			</index>
 			<index name="Pk_Room" unique="PRIMARY_KEY" >
 				<column name="RoomID" />
@@ -260,22 +288,23 @@
 	</schema>
 	<connector name="" database="MySql" host="localhost" port="3306" user="root" />
 	<layout name="Default Layout" id="Layout_5c3bf2a" show_column_type="y" show_relation="columns" >
-		<entity schema="HotelReservation" name="Billing" color="1f5182" x="90" y="675" />
-		<entity schema="HotelReservation" name="Customer" color="1f5182" x="45" y="195" />
-		<entity schema="HotelReservation" name="RoomRate" color="1f5182" x="75" y="975" />
-		<entity schema="HotelReservation" name="AddOnRoom" color="1f5182" x="75" y="840" />
-		<entity schema="HotelReservation" name="Guest" color="1f5182" x="45" y="45" />
-		<entity schema="HotelReservation" name="Reservation" color="1f5182" x="360" y="240" />
-		<entity schema="HotelReservation" name="Promotions" color="1f5182" x="285" y="480" />
-		<entity schema="HotelReservation" name="ReservationAddOn" color="1f5182" x="660" y="210" />
-		<entity schema="HotelReservation" name="RoomReservation" color="1f5182" x="480" y="390" />
-		<entity schema="HotelReservation" name="RoomAmenities" color="1f5182" x="825" y="825" />
-		<entity schema="HotelReservation" name="AddOnRate" color="1f5182" x="690" y="660" />
-		<entity schema="HotelReservation" name="Amenities" color="1f5182" x="810" y="1005" />
-		<entity schema="HotelReservation" name="RoomType" color="1f5182" x="405" y="1005" />
-		<entity schema="HotelReservation" name="Room" color="1f5182" x="285" y="660" />
-		<entity schema="HotelReservation" name="GuestReservation" color="1f5182" x="330" y="45" />
-		<entity schema="HotelReservation" name="AddOn" color="1f5182" x="660" y="435" />
+		<entity schema="HotelReservation" name="Billing" color="1f5182" x="180" y="675" />
+		<entity schema="HotelReservation" name="Customer" color="1f5182" x="135" y="195" />
+		<entity schema="HotelReservation" name="RoomRate" color="1f5182" x="165" y="975" />
+		<entity schema="HotelReservation" name="Guest" color="1f5182" x="135" y="45" />
+		<entity schema="HotelReservation" name="Reservation" color="1f5182" x="450" y="240" />
+		<entity schema="HotelReservation" name="Promotions" color="1f5182" x="375" y="480" />
+		<entity schema="HotelReservation" name="ReservationAddOn" color="1f5182" x="750" y="210" />
+		<entity schema="HotelReservation" name="RoomReservation" color="1f5182" x="570" y="390" />
+		<entity schema="HotelReservation" name="RoomAmenities" color="1f5182" x="915" y="825" />
+		<entity schema="HotelReservation" name="AddOnRate" color="1f5182" x="780" y="660" />
+		<entity schema="HotelReservation" name="Amenities" color="1f5182" x="900" y="1005" />
+		<entity schema="HotelReservation" name="RoomType" color="1f5182" x="495" y="1005" />
+		<entity schema="HotelReservation" name="GuestReservation" color="1f5182" x="420" y="45" />
+		<entity schema="HotelReservation" name="AddOn" color="1f5182" x="750" y="435" />
+		<entity schema="HotelReservation" name="AddOnRoom" color="1f5182" x="165" y="840" />
+		<entity schema="HotelReservation" name="Room" color="1f5182" x="375" y="660" />
+		<entity schema="HotelReservation" name="BillingDetail" color="1f5182" x="45" y="465" />
 		<browser id="Browse_5d2610" name="Room_" confirm_updates="y" >
 			<browse_table schema="HotelReservation" entity="Room" x="20" y="20" width="429" height="330" />
 		</browser>

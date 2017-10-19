@@ -1,9 +1,11 @@
 $(document).ready(function(){
     getItems();
-    findID();
     purchase();
-    clearForms();
 
+$('#vendItems').on('click', ".items", function () {
+    var id = $(this).data("id");
+    $('#item-Status1').val(id);
+});
     
 $('#addDollar').click(function(){
     var currentVal = $('#total').val();
@@ -14,6 +16,7 @@ $('#addDollar').click(function(){
         $('#total').val((parseFloat(currentVal) + 1.00).toFixed(2));
     }
 });
+
 $('#addQuarter').click(function(){
     var currentVal = $('#total').val();
     if (currentVal == "") {
@@ -23,6 +26,7 @@ $('#addQuarter').click(function(){
         $('#total').val((parseFloat(currentVal) + 0.25).toFixed(2));
     }
 });
+
 $('#addDime').click(function(){
     var currentVal = $('#total').val();
     if (currentVal == "") {
@@ -32,6 +36,7 @@ $('#addDime').click(function(){
         $('#total').val((parseFloat(currentVal) + 0.10).toFixed(2));
     }
 });
+
 $('#addNickel').click(function(){
     var currentVal = $('#total').val();
     if (currentVal == "") {
@@ -42,7 +47,18 @@ $('#addNickel').click(function(){
     }
 });
 
+$('#getChange').click(function(){
+    
+            clearTotal();
+            clearMessage();
+            clearItem();
+            clearChange();
+            clearVendItems();
+            getItems();
+            // window.location.reload(true);
+        })
 });
+
 
 var item = $('#vendItems');
 
@@ -74,25 +90,19 @@ function getItems(){
     });
 }
 
-function findID() {
-    $('#vendItems').on('click', ".items", function () {
-        var id = $(this).data("id");
-        $('#item-Status1').val(id);
-   });
-}
-
 function purchase(){
 
     $('#totalButton').click(function(){
         //check if value in item field is blank. If blank, send a message to the user
-        if($('#total').val() == ""){
-            $('#message').val("You must insert money before making a purchase.");
-        }
+
         if($('#item-Status1').val() == ""){
 
             $('#message').val("You must select an item.");
         }
         //call Ajax to vend an item. Assignment instructions provides the format for the URL
+        else if($('#total').val() == ""){
+            $('#message').val("You must insert money.");
+        }
         else{
             $.ajax({
 
@@ -117,12 +127,22 @@ function purchase(){
     })
 }
 
-function clearForms(){
-
-    $('#getChange').click(function(){
-
-        //$('#form').trigger("reset");
-        window.location.reload(true);
-    })
+function clearTotal(){
+    $('#total').val('');
 }
 
+function clearItem(){
+    $('#item-Status1').val('');
+}
+
+function clearMessage(){
+    $('#message').val('');
+}
+
+function clearChange(){
+    $('#change-due').val('');
+}
+
+function clearVendItems(){
+    $('#vendItems').html('');
+}

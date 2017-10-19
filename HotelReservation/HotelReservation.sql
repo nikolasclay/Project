@@ -1,7 +1,7 @@
 USE master
 GO
 
-if exists (select * from sysdatabases where name = 'HotelReservtion')
+if exists (select * from sysdatabases where name = 'HotelReservation')
 	drop database HotelReservation
 go
 
@@ -33,6 +33,27 @@ RoomTypeDesc VARCHAR(MAX) NOT NULL,
 RoomCapacity INT NOT NULL
 )
 
+CREATE TABLE Promotions(
+PromotionID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+PromoRate DECIMAL NOT NULL,
+PromoCode VARCHAR(30) NOT NULL,
+PromoDesc VARCHAR(MAX) NOT NULL
+)
+
+CREATE TABLE AddOn(
+AddOnID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+AddOnName VARCHAR(30) NOT NULL,
+AddOnDescription VARCHAR(MAX) NOT NULL
+)
+
+CREATE TABLE Amenities(
+AmenityID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+AmenityName VARCHAR(30) NOT NULL,
+AmenityDesc VARCHAR(MAX) NOT NULL
+)
+
 CREATE TABLE Room(
 RoomID INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
 RoomTypeID INT NOT NULL,
@@ -52,15 +73,6 @@ RoomRate DECIMAL NOT NULL,
 CONSTRAINT FK_RoomRate_RoomType
 	FOREIGN KEY(RoomTypeID)
 	REFERENCES RoomType(RoomTypeID)
-)
-
-CREATE TABLE Promotions(
-PromotionID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-StartDate DATE NOT NULL,
-EndDate DATE NOT NULL,
-PromoRate DECIMAL NOT NULL,
-PromoCode VARCHAR(30) NOT NULL,
-PromoDesc VARCHAR(MAX) NOT NULL
 )
 
 CREATE TABLE Reservation(
@@ -101,12 +113,6 @@ CONSTRAINT FK_GuestReservation_Reservation
 	REFERENCES Reservation(ReservationID)
 )
 
-CREATE TABLE AddOn(
-AddOnID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-AddOnName VARCHAR(30) NOT NULL,
-AddOnDescription VARCHAR(MAX) NOT NULL
-)
-
 CREATE TABLE AddOnRate(
 AddOnRateID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 StartDate DATE NOT NULL,
@@ -114,18 +120,6 @@ EndDate DATE NOT NULL,
 AddOnRate DECIMAL NOT NULL,
 AddOnID INT NOT NULL,
 CONSTRAINT FK_AddOnRate_AddOn
-	FOREIGN KEY(AddOnID)
-	REFERENCES AddOn(AddOnID)
-)
-
-CREATE TABLE AddOnRoom(
-AddOnRoomID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-RoomID INT NOT NULL,
-AddOnID INT NOT NULL,
-CONSTRAINT FK_AddOnRoom_Room
-	FOREIGN KEY(RoomID)
-	REFERENCES Room(RoomID),
-CONSTRAINT FK_AddOnRoom_AddOn
 	FOREIGN KEY(AddOnID)
 	REFERENCES AddOn(AddOnID)
 )
@@ -146,14 +140,6 @@ CONSTRAINT FK_ReservationAddOn_Room
 CONSTRAINT FK_ReservationAddOn_AddOn
 	FOREIGN KEY(AddOnID)
 	REFERENCES AddOn(AddOnID)
-)
-
-
-
-CREATE TABLE Amenities(
-AmenityID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-AmenityName VARCHAR(30) NOT NULL,
-AmenityDesc VARCHAR(MAX) NOT NULL
 )
 
 CREATE TABLE RoomAmenities(
@@ -181,4 +167,21 @@ CONSTRAINT FK_Billing_Reservation
 CONSTRAINT FK_Billing_Customer
 	FOREIGN KEY(CustomerID)
 	REFERENCES Customer(CustomerID)
+)
+
+CREATE TABLE BillingDetail(
+BillingDetailID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+SubTotal DECIMAL NOT NULL,
+BillingID INT NOT NULL,
+RateID INT NOT NULL,
+AddOnRateID INT NOT NULL,
+CONSTRAINT FK_BillingDetail_Billing
+	FOREIGN KEY(BillingID)
+	REFERENCES Billing(BillingID),
+CONSTRAINT FK_BillingDetail_RoomRate
+	FOREIGN KEY(RateID)
+	REFERENCES RoomRate(RateID),
+CONSTRAINT FK_BillingDetail_AddOnRate
+	FOREIGN KEY(AddOnRateID)
+	REFERENCES AddOnRate(AddOnRateID)
 )
