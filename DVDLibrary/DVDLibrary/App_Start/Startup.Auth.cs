@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using DVDLibrary.Providers;
-using DVDLibrary.Models;
+using DvdLibrary.Providers;
+using DvdLibrary.Models;
 
-namespace DVDLibrary
+namespace DvdLibrary
 {
     public partial class Startup
     {

@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using DVDLibrary.Areas.HelpPage.ModelDescriptions;
-using DVDLibrary.Areas.HelpPage.Models;
+using DvdLibrary.Areas.HelpPage.ModelDescriptions;
+using DvdLibrary.Areas.HelpPage.Models;
 
-namespace DVDLibrary.Areas.HelpPage
+namespace DvdLibrary.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

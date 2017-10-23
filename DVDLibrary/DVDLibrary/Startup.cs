@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(DVDLibrary.Startup))]
+[assembly: OwinStartup(typeof(DvdLibrary.Startup))]
 
-namespace DVDLibrary
+namespace DvdLibrary
 {
     public partial class Startup
     {

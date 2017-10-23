@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace DVDLibrary.Results
+namespace DvdLibrary.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace DVDLibrary
+namespace DvdLibrary
 {
     public class FilterConfig
     {

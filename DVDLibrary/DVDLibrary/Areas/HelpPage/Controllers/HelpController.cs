@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using DVDLibrary.Areas.HelpPage.ModelDescriptions;
-using DVDLibrary.Areas.HelpPage.Models;
+using DvdLibrary.Areas.HelpPage.ModelDescriptions;
+using DvdLibrary.Areas.HelpPage.Models;
 
-namespace DVDLibrary.Areas.HelpPage.Controllers
+namespace DvdLibrary.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace DVDLibrary.Areas.HelpPage.ModelDescriptions
+namespace DvdLibrary.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

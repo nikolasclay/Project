@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DVDLibrary
+namespace DvdLibrary
 {
     public class BundleConfig
     {

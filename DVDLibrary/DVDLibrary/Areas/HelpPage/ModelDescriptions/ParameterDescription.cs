@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DVDLibrary.Areas.HelpPage.ModelDescriptions
+namespace DvdLibrary.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

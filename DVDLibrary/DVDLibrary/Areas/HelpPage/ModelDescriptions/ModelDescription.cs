@@ -1,6 +1,6 @@
 using System;
 
-namespace DVDLibrary.Areas.HelpPage.ModelDescriptions
+namespace DvdLibrary.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

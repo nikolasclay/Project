@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace DVDLibrary.Areas.HelpPage
+namespace DvdLibrary.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

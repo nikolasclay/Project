@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DVDLibrary.Models
+namespace DvdLibrary.Models
 {
     // Models returned by AccountController actions.
 

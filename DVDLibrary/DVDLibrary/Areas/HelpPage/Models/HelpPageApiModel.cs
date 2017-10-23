@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using DVDLibrary.Areas.HelpPage.ModelDescriptions;
+using DvdLibrary.Areas.HelpPage.ModelDescriptions;
 
-namespace DVDLibrary.Areas.HelpPage.Models
+namespace DvdLibrary.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

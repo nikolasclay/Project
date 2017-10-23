@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using DVDLibrary.Models;
-using DVDLibrary.Providers;
-using DVDLibrary.Results;
+using DvdLibrary.Models;
+using DvdLibrary.Providers;
+using DvdLibrary.Results;
 
-namespace DVDLibrary.Controllers
+namespace DvdLibrary.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
