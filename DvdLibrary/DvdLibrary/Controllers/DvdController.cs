@@ -15,21 +15,20 @@ namespace DvdLibrary.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DvdController : ApiController
     {
-        MockDvdRepository repo = new MockDvdRepository();
+        IDvdRepository _repo = DvdFactory.Create();
 
         [Route("dvds")]
         [AcceptVerbs("GET")]
         public IHttpActionResult GetAll()
         {
-
-            return Ok(repo.GetAll());
+            return Ok(_repo.GetAll());
         }
 
         [Route("dvd/{id}")]
         [AcceptVerbs("GET")]
         public IHttpActionResult GetDvdId(int id)
         {
-            Dvd returned = repo.GetDvdById(id);
+            Dvd returned = _repo.GetDvdById(id);
 
             if (returned == null)
             {
@@ -45,7 +44,7 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetDvdTitle(string title)
         {
-           List <Dvd> returned = repo.GetDvdsByTitle(title);
+            List<Dvd> returned = _repo.GetDvdsByTitle(title);
 
             if (returned == null)
             {
@@ -61,7 +60,7 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetDvdYear(int releaseYear)
         {
-            List<Dvd> returned = repo.GetDvdsByReleaseYear(releaseYear);
+            List<Dvd> returned = _repo.GetDvdsByReleaseYear(releaseYear);
 
             if (returned == null)
             {
@@ -77,7 +76,7 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetDvdRating(string ratingType)
         {
-            List<Dvd> returned = repo.GetDvdsbyRating(ratingType);
+            List<Dvd> returned = _repo.GetDvdsbyRating(ratingType);
 
             if (returned == null)
             {
@@ -93,7 +92,7 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetDvdEDirectorName(string directorName)
         {
-            List<Dvd> returned = repo.GetDvdsbyDirector(directorName);
+            List<Dvd> returned = _repo.GetDvdsbyDirector(directorName);
 
             if (returned == null)
             {
@@ -109,7 +108,7 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("POST")]
         public IHttpActionResult Add(Dvd dvd)
         {
-            repo.AddDvd(dvd);
+            _repo.AddDvd(dvd);
             return Created($"dvd/{dvd.DvdId}", dvd);
         }
 
@@ -117,14 +116,14 @@ namespace DvdLibrary.Controllers
         [AcceptVerbs("PUT")]
         public void Update(int id, Dvd dvd)
         {
-            repo.EditDvd(dvd);
+            _repo.EditDvd(dvd);
         }
 
         [Route("dvd/{id}")]
         [AcceptVerbs("DELETE")]
         public void Delete(int id)
         {
-            repo.DeleteDvd(id);
+            _repo.DeleteDvd(id);
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DvdLibrary.BLL
 {
-    public class DvdRepoFactory
+    public class DvdFactory
     {
         public static IDvdRepository Create()
         {
