@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="CarDealership" id="Project_5d02788" template="Default" database="SqlServer" >
+	<schema name="CarDealership" schemaname="CarDealership" >
+		<table name="BodyStyle" >
+			<column name="BodyStyleID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_BodyStyle" unique="PRIMARY_KEY" >
+				<column name="BodyStyleID" />
+			</index>
+		</table>
+		<table name="Color" >
+			<column name="ColorID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_Color" unique="PRIMARY_KEY" >
+				<column name="ColorID" />
+			</index>
+		</table>
+		<table name="Customer" >
+			<column name="CustomerID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="FirstName" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="LastName" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="Phone" type="varchar" length="15" jt="12" mandatory="y" />
+			<column name="Email" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="Street1" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="Street2" type="varchar" length="50" jt="12" />
+			<column name="City" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="State" type="varchar" length="20" jt="12" mandatory="y" />
+			<column name="ZipCode" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Customer" unique="PRIMARY_KEY" >
+				<column name="CustomerID" />
+			</index>
+		</table>
+		<table name="Interior" >
+			<column name="InteriorID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_Interior" unique="PRIMARY_KEY" >
+				<column name="InteriorID" />
+			</index>
+		</table>
+		<table name="Inventory" >
+			<column name="InventoryID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="VehicleID" type="int" jt="4" mandatory="y" />
+			<column name="Available" type="binary" length="1" jt="-2" mandatory="y" />
+			<column name="DateAdded" type="datetime2" jt="93" mandatory="y" />
+			<index name="Pk_Inventory" unique="PRIMARY_KEY" >
+				<column name="InventoryID" />
+			</index>
+			<index name="idx_Inventory" unique="NORMAL" >
+				<column name="VehicleID" />
+			</index>
+			<fk name="fk_inventory_vehicle" to_schema="CarDealership" to_table="Vehicle" >
+				<fk_column name="VehicleID" pk="VehicleID" />
+			</fk>
+		</table>
+		<table name="Make" >
+			<column name="MakeID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Name]" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_Make" unique="PRIMARY_KEY" >
+				<column name="MakeID" />
+			</index>
+		</table>
+		<table name="Model" >
+			<column name="ModelID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="MakeID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Model" unique="PRIMARY_KEY" >
+				<column name="ModelID" />
+			</index>
+			<index name="idx_Model" unique="NORMAL" >
+				<column name="MakeID" />
+			</index>
+			<fk name="fk_model_make" to_schema="CarDealership" to_table="Make" >
+				<fk_column name="MakeID" pk="MakeID" />
+			</fk>
+		</table>
+		<table name="PurchaseID" >
+			<column name="PurchaseID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="CustomerID" type="int" jt="4" mandatory="y" />
+			<column name="VehicleID" type="int" jt="4" mandatory="y" />
+			<column name="PurchaseDate" type="datetime2" jt="93" mandatory="y" />
+			<column name="PurchasePrice" type="money" jt="3" mandatory="y" />
+			<column name="PurchaseTypeID" type="int" jt="4" mandatory="y" />
+			<column name="SalesPersonID" type="int" jt="4" mandatory="y" />
+			<index name="Pk_Sale" unique="PRIMARY_KEY" >
+				<column name="PurchaseID" />
+			</index>
+			<index name="idx_PurchaseID" unique="NORMAL" >
+				<column name="CustomerID" />
+			</index>
+			<index name="idx_PurchaseID_0" unique="NORMAL" >
+				<column name="VehicleID" />
+			</index>
+			<index name="idx_PurchaseID_1" unique="NORMAL" >
+				<column name="PurchaseTypeID" />
+			</index>
+			<index name="idx_PurchaseID_2" unique="NORMAL" >
+				<column name="SalesPersonID" />
+			</index>
+			<fk name="fk_purchaseid_customer" to_schema="CarDealership" to_table="Customer" >
+				<fk_column name="CustomerID" pk="CustomerID" />
+			</fk>
+			<fk name="fk_purchaseid_vehicle" to_schema="CarDealership" to_table="Vehicle" >
+				<fk_column name="VehicleID" pk="VehicleID" />
+			</fk>
+			<fk name="fk_purchaseid_purchasetype" to_schema="CarDealership" to_table="PurchaseType" >
+				<fk_column name="PurchaseTypeID" pk="PurchaseTypeID" />
+			</fk>
+			<fk name="fk_purchaseid_salesperson" to_schema="CarDealership" to_table="SalesPerson" >
+				<fk_column name="SalesPersonID" pk="SalesPersonID" />
+			</fk>
+		</table>
+		<table name="PurchaseType" >
+			<column name="PurchaseTypeID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="Pk_PurchaseType" unique="PRIMARY_KEY" >
+				<column name="PurchaseTypeID" />
+			</index>
+		</table>
+		<table name="SalesPerson" >
+			<column name="SalesPersonID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="FirstName" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="LastName" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_SalesPerson" unique="PRIMARY_KEY" >
+				<column name="SalesPersonID" />
+			</index>
+		</table>
+		<table name="Special" >
+			<column name="SpecialID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Name]" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="[Description]" type="varchar(max)" jt="12" mandatory="y" />
+			<index name="Pk_Specials" unique="PRIMARY_KEY" >
+				<column name="SpecialID" />
+			</index>
+		</table>
+		<table name="Transmission" >
+			<column name="TransmissionID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="[Description]" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_Transmission" unique="PRIMARY_KEY" >
+				<column name="TransmissionID" />
+			</index>
+		</table>
+		<table name="Vehicle" >
+			<column name="VehicleID" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="VIN" type="int" jt="4" mandatory="y" />
+			<column name="New" type="binary" length="1" jt="-2" mandatory="y" />
+			<column name="MakeID" type="int" jt="4" mandatory="y" />
+			<column name="ModelID" type="int" jt="4" mandatory="y" />
+			<column name="BodyStyleID" type="int" length="30" jt="4" mandatory="y" />
+			<column name="TransmissionID" type="int" jt="4" mandatory="y" />
+			<column name="Year" type="smallint" jt="5" mandatory="y" />
+			<column name="ColorID" type="int" jt="4" mandatory="y" />
+			<column name="InteriorID" type="int" length="30" jt="4" mandatory="y" />
+			<column name="SalePrice" type="decimal" length="7" decimal="2" jt="3" mandatory="y" />
+			<column name="Mileage" type="int" jt="4" mandatory="y" />
+			<column name="MSRP" type="money" length="7" decimal="2" jt="3" mandatory="y" />
+			<column name="Feature" type="int" jt="4" />
+			<column name="Description" type="varchar(max)" jt="12" mandatory="y" />
+			<column name="Picture" type="varchar" length="30" jt="12" />
+			<index name="Pk_Vehicle" unique="PRIMARY_KEY" >
+				<column name="VehicleID" />
+			</index>
+			<index name="idx_Vehicle" unique="NORMAL" >
+				<column name="ModelID" />
+			</index>
+			<index name="idx_Vehicle_0" unique="NORMAL" >
+				<column name="MakeID" />
+			</index>
+			<index name="idx_Vehicle_1" unique="NORMAL" >
+				<column name="BodyStyleID" />
+			</index>
+			<index name="idx_Vehicle_2" unique="NORMAL" >
+				<column name="TransmissionID" />
+			</index>
+			<index name="idx_Vehicle_3" unique="NORMAL" >
+				<column name="ColorID" />
+			</index>
+			<index name="idx_Vehicle_4" unique="NORMAL" >
+				<column name="InteriorID" />
+			</index>
+			<fk name="fk_vehicle_model" to_schema="CarDealership" to_table="Model" >
+				<fk_column name="ModelID" pk="ModelID" />
+			</fk>
+			<fk name="fk_vehicle_make" to_schema="CarDealership" to_table="Make" >
+				<fk_column name="MakeID" pk="MakeID" />
+			</fk>
+			<fk name="fk_vehicle_bodystyle" to_schema="CarDealership" to_table="BodyStyle" >
+				<fk_column name="BodyStyleID" pk="BodyStyleID" />
+			</fk>
+			<fk name="fk_vehicle_transmission" to_schema="CarDealership" to_table="Transmission" >
+				<fk_column name="TransmissionID" pk="TransmissionID" />
+			</fk>
+			<fk name="fk_vehicle_color" to_schema="CarDealership" to_table="Color" >
+				<fk_column name="ColorID" pk="ColorID" />
+			</fk>
+			<fk name="fk_vehicle_interior" to_schema="CarDealership" to_table="Interior" >
+				<fk_column name="InteriorID" pk="InteriorID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_28a72e7" show_relation="columns" >
+		<entity schema="CarDealership" name="Make" color="1f5182" x="420" y="180" />
+		<entity schema="CarDealership" name="Special" color="1f5182" x="675" y="195" />
+		<entity schema="CarDealership" name="Transmission" color="1f5182" x="585" y="345" />
+		<entity schema="CarDealership" name="Customer" color="1f5182" x="45" y="390" />
+		<entity schema="CarDealership" name="Vehicle" color="1f5182" x="45" y="75" />
+		<entity schema="CarDealership" name="BodyStyle" color="1f5182" x="150" y="465" />
+		<entity schema="CarDealership" name="PurchaseID" color="1f5182" x="480" y="585" />
+		<entity schema="CarDealership" name="Color" color="1f5182" x="435" y="45" />
+		<entity schema="CarDealership" name="Interior" color="1f5182" x="645" y="75" />
+		<entity schema="CarDealership" name="PurchaseType" color="1f5182" x="720" y="585" />
+		<entity schema="CarDealership" name="SalesPerson" color="1f5182" x="480" y="435" />
+		<entity schema="CarDealership" name="Model" color="1f5182" x="420" y="315" />
+		<entity schema="CarDealership" name="Inventory" color="1f5182" x="255" y="270" />
+	</layout>
+</project>

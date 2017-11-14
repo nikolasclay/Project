@@ -1,0 +1,39 @@
+﻿.jumbotron {
+	background-image: url(../Content/img/background3.jpg);
+	background-size:cover;
+	height:250px;
+	background-repeat:no-repeat;
+	color:whitesmoke;
+}
+#featured {
+	display:block;
+	border-color:black;
+}
+#image {
+	height:50%;
+	width:50%;
+}
+#searchImage {
+	height: auto;
+	width: auto;
+}
+#border {
+	border-color:black;
+	border-style:solid;
+}
+#searchBox {
+	border-color: black;
+	border-style: solid;
+}
+table, th, td{
+	border:solid 1px black;
+}
+td {
+	width:250px;
+}
+th {
+	width:250px;
+}
+ul, li{
+	list-style:none;
+}

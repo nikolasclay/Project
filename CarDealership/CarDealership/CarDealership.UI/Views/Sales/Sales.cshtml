@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Sales";
+}
+
+<h2>Sales</h2>
+
+<br />
+<div class="container-fluid">
+	<div class="row" id="searchBox">
+		<div class="table-responsive">
+			<table cellspacing="10">
+				<tbody>
+					<tr>
+						<td align="left" style="padding-left:15px;">Quick Search: </td>
+					</tr>
+					<tr>
+						<td align="left" style="padding-left:15px;"><input type="text" id="quickSearch" placeholder="Enter make, model, or year" /></td>
+						<td align="right" style="padding-left:175px">Price: </td>
+						<td align="left" style="padding:15px;">
+							<select name="minPrice" id="minPrice">
+								<option value="0">No Min</option>
+								<option value="20000.00">$20,000</option>
+								<option value="50000.00">$50,000</option>
+								<option value="75000.00">$75,000</option>
+								<option value="100000.00">$100,000</option>
+							</select>
+						</td>
+						<td align="left" style="padding:15px;">
+							<select name="maxPrice" id="maxPrice">
+								<option value="2000000.00">No Max</option>
+								<option value="20000.00">$20,000</option>
+								<option value="50000.00">$50,000</option>
+								<option value="75000.00">$75,000</option>
+								<option value="100000.00">$100,000</option>
+								<option value="150000.00">$150,000</option>
+							</select>
+						</td>
+						<td align="right" style="padding-left:175px">Year: </td>
+						<td align="left" style="padding:15px;">
+							<select name="min year" id="minYear">
+								<option value="0000">No Min</option>
+								<option value="2000">2000</option>
+								<option value="2005">2005</option>
+								<option value="2010">2010</option>
+								<option value="2017">2017</option>
+							</select>
+						</td>
+						<td align="left" style="padding:15px;">
+							<select name="max year" id="maxYear">
+								<option value="2018">No Max</option>
+								<option value="2000">2000</option>
+								<option value="2005">2005</option>
+								<option value="2010">2010</option>
+								<option value="2018">2018</option>
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br />
+		<center><button type="submit" class="btn btn-primary" id="submitButton" onclick="ShowCars()">Search</button></center>
+	</div>
+</div>
+<br />
+<div id="salesResults">
+
+</div>

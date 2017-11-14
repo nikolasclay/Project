@@ -1,0 +1,25 @@
+﻿@model CarDealership.Model.VehicleMake
+@{
+    ViewBag.Title = "AddMake";
+}
+
+<h2>AddMake</h2>
+@using (Html.BeginForm())
+{
+	<div class="form-group">
+		<div class="row">
+			<div class="col-4-md">
+				<label>Add New</label>
+				<br />
+				@Html.TextBoxFor(m => m.Make, new { @class = "form-control" })
+			</div>
+			<br />
+			<div class="col-4-md">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
+	<div id="makeResults">
+
+	</div>
+}

@@ -1,0 +1,144 @@
+USE master
+GO
+
+if exists (select * from sysdatabases where name = 'CarDealership')
+	DROP DATABASE CarDealership
+go
+
+CREATE DATABASE CarDealership
+go
+
+Use CarDealership
+
+CREATE TABLE Customer(
+CustomerID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+FirstName VARCHAR(30) NOT NULL,
+LastName VARCHAR(30) NOT NULL,
+Phone VARCHAR(30) NOT NULL,
+Email VARCHAR(30) NOT NULL,
+Street1 VARCHAR(30) NOT NULL,
+Street2 VARCHAR(30) NULL,
+City VARCHAR(30) NOT NULL,
+State VARCHAR (20) NOT NULL,
+ZipCode INT NOT NULL,
+)
+
+CREATE TABLE BodyStyle(
+BodyStyleID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR(15) NOT NULL
+)
+
+CREATE TABLE Make(
+MakeID INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
+[Name] VARCHAR(30) NOT NULL
+)
+
+CREATE TABLE Transmission(
+TransmissionID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR (9) NOT NULL
+)
+
+CREATE TABLE Special(
+SpecialID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Name] VARCHAR(30) NOT NULL,
+[Description] VARCHAR(MAX) NOT NULL
+)
+
+CREATE TABLE Interior(
+InteriorID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR(10) NOT NULL
+)
+
+CREATE TABLE Color(
+ColorID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE SalesPerson(
+SalesPersonID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE PurchaseType(
+PurchaseTypeID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR (20) NOT NULL
+)
+
+CREATE TABLE Model(
+ModelID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[Description] VARCHAR(30) NOT NULL,
+MakeID INT NOT NULL,
+CONSTRAINT FK_Model_Make
+	FOREIGN KEY (MakeID)
+	REFERENCES Make(MakeID)
+)
+
+CREATE TABLE Vehicle(
+VehicleID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+VIN INT UNIQUE NOT NULL,
+New BINARY NOT NULL,
+MakeID INT NOT NULL,
+ModelID INT NOT NULL,
+BodyStyleID INT NOT NULL,
+TransmissionID INT NOT NULL,
+ColorID INT NOT NULL,
+InteriorID INT NOT NULL,
+Year Datetime2 NOT NULL,
+SalePrice MONEY NOT NULL,
+Mileage INT NOT NULL,
+MSRP MONEY NOT NULL,
+Feature Binary NOT NULL,
+[Description] VARCHAR(500) NOT NULL,
+Picture VARCHAR(MAX) NOT NULL
+CONSTRAINT FK_Vehicle_Make
+	FOREIGN KEY(MakeID)
+	REFERENCES Make(MakeID),
+CONSTRAINT FK_Vehicle_Model
+	FOREIGN KEY(ModelID)
+	REFERENCES Model(ModelID),
+CONSTRAINT FK_Vehicle_BodyStyle
+	FOREIGN KEY(BodyStyleID)
+	REFERENCES BodyStyle(BodyStyleID),
+CONSTRAINT FK_Vehicle_Transmission
+	FOREIGN KEY(TransmissionID)
+	REFERENCES Transmission(TransmissionID),
+CONSTRAINT FK_Vehicle_Color
+	FOREIGN KEY(ColorID)
+	REFERENCES Color(ColorID),
+CONSTRAINT FK_Vehicle_Interior
+	FOREIGN KEY(InteriorID)
+	REFERENCES Interior(InteriorID)
+)
+
+CREATE TABLE Purchase(
+PurchaseID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CustomerID INT NOT NULL,
+VehicleID INT NOT NULL,
+PurchaseTypeID INT NOT NULL,
+SalesPersonID INT NOT NULL,
+PurchaseDate DATETIME2 NOT NULL,
+PurchasePrice MONEY NOT NULL,
+CONSTRAINT FK_Purchase_Customer
+	FOREIGN KEY(CustomerID)
+	REFERENCES Customer(CustomerID),
+CONSTRAINT FK_Purchase_Vehicle
+	FOREIGN KEY(VehicleID)
+	REFERENCES Vehicle(VehicleID),
+CONSTRAINT FK_Purchase_PurchaseType
+	FOREIGN KEY(PurchaseTypeID)
+	REFERENCES PurchaseType(PurchaseTypeID),
+CONSTRAINT FK_Purchase_SalesPerson
+	FOREIGN KEY(SalesPersonID)
+	REFERENCES SalesPerson(SalesPersonID)
+)
+
+CREATE TABLE Inventory(
+InventoryID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+VehicleID INT NOT NULL,
+Available Binary NOT NULL,
+DateAdded DATETIME2 NOT NULL
+CONSTRAINT FK_Inventory_Vehicle
+	FOREIGN KEY(VehicleID)
+	REFERENCES Vehicle(VehicleID)
+)

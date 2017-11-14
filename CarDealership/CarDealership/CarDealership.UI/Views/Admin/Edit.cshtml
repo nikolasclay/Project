@@ -1,0 +1,67 @@
+﻿@model CarDealership.UI.Models.AddVM
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+	<div class="form-group">
+		<div class="row">
+			<div class="col-md-4">
+				<label>Make</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.VehicleMake.Make, Model.Makes, "-Choose One-", new { @class = "form-control" })
+				<label>Type</label>
+				<br />
+				@Html.DropDownListFor(m => m.PurchaseType.Description, Model.PurchaseTypes, "-Choose One-", new { @class = "form-control" })
+				<label>Year</label>
+				<br />
+				@Html.TextBoxFor(m => m.Vehicle.Year, new { @class = "form-control" })
+				<label>Color</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.ExteriorColor.Description, Model.ExteriorColors, "-Choose One-", new { @class = "form-control" })
+				<label>Mileage</label>
+				<br />
+				@Html.TextBoxFor(m => m.Vehicle.Mileage, new { @class = "form-control" })
+				<label>MSRP</label>
+				<br />
+				@Html.TextBoxFor(m => m.Vehicle.MSRP, new { @class = "form-control" })
+			</div>
+			<div class="col-md-4">
+				<label>Model</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.ModelType, Model.Models, "-Choose One-", new { @class = "form-control" })
+				<label>Body Style</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.BodyStyle.Description, Model.BodyStyles, "-Choose One-", new { @class = "form-control" })
+				<label>Transmission</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.Transmission, Model.Transmission, "-Choose One-", new { @class = "form-control" })
+				<label>Interior</label>
+				<br />
+				@Html.DropDownListFor(m => m.Vehicle.InteriorColor.Description, Model.InteriorColors, "-Choose One-", new { @class = "form-control" })
+				<label>VIN #</label>
+				<br />
+				@Html.TextBoxFor(m => m.Vehicle.VIN, new { @class = "form-control" })
+				<label>Sale Price</label>
+				<br />
+				@Html.TextBoxFor(m => m.Vehicle.SalePrice, new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<label>Description</label>
+				@Html.TextAreaFor(m => m.Vehicle.Description, new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4-md">
+				<label>Picture</label>
+				Placeholder
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+}
+

@@ -46,6 +46,10 @@ $('#addNickel').click(function(){
         $('#total').val((parseFloat(currentVal) + 0.05).toFixed(2));
     }
 });
+$('#totalButton').click(function(){
+    clearVendItems();
+    getItems();
+});
 
 $('#getChange').click(function(){
     
@@ -53,8 +57,8 @@ $('#getChange').click(function(){
             clearMessage();
             clearItem();
             clearChange();
-            clearVendItems();
-            getItems();
+            // clearVendItems();
+            // getItems();
         })
 });
 
@@ -122,7 +126,6 @@ function purchase(){
 
             })
         }
-
     })
 }
 
