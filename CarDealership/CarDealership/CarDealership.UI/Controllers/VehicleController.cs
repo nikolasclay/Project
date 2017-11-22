@@ -39,6 +39,50 @@ namespace CarDealership.UI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Route("api/vehicle/searchNew")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult SearchNew(string quicksearch, decimal? minprice, decimal? maxprice, int? minyear, int? maxyear)
+        {
+            try
+            {
+                var parameters = new VehicleSearchParameters()
+                {
+                    QuickSearch = quicksearch,
+                    MinPrice = minprice,
+                    MaxPrice = maxprice,
+                    MinYear = minyear,
+                    MaxYear = maxyear
+                };
+
+                return Ok(_repo.QuickSearchNew(parameters));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("api/vehicle/searchUsed")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult SearchUsed(string quicksearch, decimal? minprice, decimal? maxprice, int? minyear, int? maxyear)
+        {
+            try
+            {
+                var parameters = new VehicleSearchParameters()
+                {
+                    QuickSearch = quicksearch,
+                    MinPrice = minprice,
+                    MaxPrice = maxprice,
+                    MinYear = minyear,
+                    MaxYear = maxyear
+                };
+
+                return Ok(_repo.QuickSearchUsed(parameters));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [Route("api/vehicle/{id}")]
         [AcceptVerbs("GET")]
         public IHttpActionResult SearchById(int id)
@@ -81,7 +125,7 @@ namespace CarDealership.UI.Controllers
                 return Ok(toReturn);
             }
         }
-        [Route("api/vehicle/specials")]
+        [Route("api/vehicle/special")]
         [AcceptVerbs("GET")]
         public IHttpActionResult SearchSpecials()
         {
@@ -95,7 +139,20 @@ namespace CarDealership.UI.Controllers
                 return Ok(toReturn);
             }
         }
-
+        [Route("api/vehicle/featured")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult Featured()
+        {
+            List<Vehicle> toReturn = _repo.GetAllFeatured();
+            if (toReturn == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(toReturn);
+            }
+        }
     }
 }
 

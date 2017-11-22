@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports</h2>
+@using (Html.BeginForm())
+{
+	<p>
+		@Html.ActionLink("Inventory Report", "InventoryReport", "Admin")
+	</p>
+	<p>
+		@Html.ActionLink("Sales Report", "SalesReport", "Admin")
+	</p>
+
+
+}

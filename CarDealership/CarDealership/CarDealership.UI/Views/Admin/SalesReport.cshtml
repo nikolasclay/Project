@@ -1,0 +1,31 @@
+﻿@model CarDealership.UI.Models.SalesVM
+@{
+	ViewBag.Title = "SalesReport";
+}
+
+<h2>Sales Report</h2>
+<div class="form-inline">
+	<div class="form-group">
+			<h4>Filters</h4>
+			<label>User</label>
+		<select id="searchBox" class="form-control">
+			@for (int i = 0; i < Model.Seller.Count; i++)
+			{
+				<option>@User.Identity.Name</option>
+			}
+		</select>
+		<label>From Date </label>
+			<input type="text" id="fromDate" class="form-control" />
+		<label>To Date </label>
+			<input type="text" id="toDate" class="form-control" />
+		<button type="submit" class="btn btn-primary" onclick="search()">Search</button>
+	</div>
+</div>
+<div id="searchResults">
+
+
+</div>
+@section scripts{
+	
+	<script src="~/Scripts/SalesReport.js"></script>
+	}

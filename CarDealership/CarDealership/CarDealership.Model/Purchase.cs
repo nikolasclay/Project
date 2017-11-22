@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarDealership.Model.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace CarDealership.Model
         public int PurchaseId { get; set; }
         public int PurchaseTypeId { get; set; }
         public int VehicleId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int CustomerId { get; set; }
         public DateTime PurchaseDate { get; set; }
         public decimal PurchasePrice { get; set; }
@@ -19,7 +20,10 @@ namespace CarDealership.Model
 
         public virtual Vehicle Vehicle { get; set; }
         public virtual PurchaseType PurchaseType { get; set; }
-        public virtual User User{ get; set; }
+        public virtual AppUser User{ get; set; }
         public virtual Customer Customer { get; set; }
+
+
+
     }
 }

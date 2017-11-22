@@ -1,5 +1,6 @@
 ﻿using CarDealership.Data;
 using CarDealership.Data.Interface;
+using CarDealership.Model;
 using CarDealership.UI.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace CarDealership.UI.Controllers
         }
         public ActionResult Add()
         {
-            var model = new AddVM();
+            var model = new VehicleVM();
             model.SetMakes(_repo.GetAllMakes());
             model.SetModels(_repo.GetAllModels());
             model.SetStyles(_repo.GetAllStyles());
@@ -31,23 +32,78 @@ namespace CarDealership.UI.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Add(AddVM model)
+        public ActionResult Add(VehicleVM model)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                Vehicle newVehicle = new Vehicle();
+                {
+                    newVehicle.BodyStyleId = model.BodyStyleId;
+                    newVehicle.VehicleModelId = model.VehicleModelId;
+                    newVehicle.VehicleMakeId = model.VehicleMakeId;
+                    newVehicle.ExteriorColorId = model.ExteriorColorId;
+                    newVehicle.InteriorColorId = model.InteriorColorId;
+                    newVehicle.Transmission = model.Transmission;
+                    newVehicle.Feature = model.Feature;
+                    newVehicle.Image = model.Image;
+                    newVehicle.Mileage = model.Mileage;
+                    newVehicle.MSRP = model.MSRP;
+                    newVehicle.New = model.New;
+                    newVehicle.SalePrice = model.SalePrice;
+                    newVehicle.VIN = model.VIN;
+                    newVehicle.Year = model.Year;
+                }
+                _repo.AddVehicle(newVehicle);
+            }
+            return RedirectToAction("Admin");
+
         }
+        [HttpGet]       
         public ActionResult Edit(int id)
         {
-            var v = _repo.GetVehicleById(id);
+            //var vehicle = _repo.GetVehicleById(id);
+            var model = new VehicleVM();
 
-            var model = new AddVM();
+            model.SetMakes(_repo.GetAllMakes());
+            model.SetModels(_repo.GetAllModels());
+            model.SetStyles(_repo.GetAllStyles());
+            model.SetInterior(_repo.GetAllInterior());
+            model.SetExterior(_repo.GetAllExterior());
+            model.SetTypes(_repo.GetAllTypes());
+            model.Vehicle = _repo.GetVehicleById(id);
 
             return View(model);
         }
         public ActionResult AddMake()
         {
-            return View();
+            return View(new VehicleMake());
         }
         public ActionResult AddModel()
+        {
+            var model = new VehicleVM();
+            return View(model);
+        }
+        public ActionResult Users()
+        {
+            var model = _repo.GetAllUsers();
+            return View(model);
+        }
+        public ActionResult AddUser()
+        {
+            var model = new UserVM();
+            model.SetRoles(_repo.GetAllUsers());
+            return View(model);
+        }
+        public ActionResult EditUser()
+        {
+            return View();
+        }
+        public ActionResult Reports()
+        {
+            return View();
+        }
+        public ActionResult AddSpecial()
         {
             return View();
         }

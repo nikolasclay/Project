@@ -4,26 +4,21 @@
 	ViewBag.Title = "Guild Cars";
 }
 <p>
-
+	
 </p>
-<div class="container-fluid">
-	<div class="jumbotron">
-		<h1>BIG HUGE SALE!!!</h1>
+	<div class="jumbotron" id="jumbotron">
+		<center><h1>BIG HUGE SALE!!!</h1></center>
 		<hr />
 	</div>
-	<div class="row">
+
+<br />
+<div class="row">
+	<div class="col-md-12">
 		<center><h2>Featured Vehicles</h2></center>
-		<br />
-		<div class="col-md-12" id="border">
-			@foreach (var make in Model.Vehicles.Where(v => v.Feature == true))
-			{
-				<div class="col-md-3" id="featured">
-					<p><span>@make.Year</span> <span>@make.VehicleModel.VehicleMake.Make</span> <span>@make.VehicleModel.ModelType</span></p>
-					<span>@make.SalePrice</span>
-					<br />
-					<img src="@make.Image" id="image" />
-				</div>
-			}
-		</div>
+	</div>
+</div>
+<div>
+	<div id="featured">
+
 	</div>
 </div>

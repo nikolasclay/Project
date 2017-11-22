@@ -8,12 +8,14 @@ using System.Data.Entity;
 using CarDealership.Data.Interface;
 using CarDealership.Model.Queries;
 using System.Data.SqlClient;
+using CarDealership.Model.Users;
+using CarDealership.Data.DBContext;
 
 namespace CarDealership.Data
 {
     public class EFRepository : ICarRepository
     {
-        GuildCarEntities _ctx = new GuildCarEntities();
+        VehicleDbContext _ctx = new VehicleDbContext();
         public void AddContact(Contact contact)
         {
             if (_ctx.Contacts.Count() == 0)
@@ -90,16 +92,16 @@ namespace CarDealership.Data
             _ctx.SaveChanges();
         }
 
-        public void AddUser(User user)
+        public void AddUser(AppUser user)
         {
             if (_ctx.Users.Count() == 0)
             {
-                user.UserId = 1;
+                user.Id = "1";
             }
             else
             {
-                var maxID = _ctx.Users.Max(c => c.UserId);
-                user.UserId = maxID + 1;
+                var maxID = _ctx.Users.Max(c => c.Id);
+                user.Id = maxID + "1";
             }
             _ctx.Users.Add(user);
             _ctx.SaveChanges();
@@ -177,7 +179,7 @@ namespace CarDealership.Data
 
         public void DeleteUser(int id)
         {
-            User u = _ctx.Users.Find(id);
+            AppUser u = _ctx.Users.Find(id);
             _ctx.Users.Remove(u);
             _ctx.SaveChanges();
         }
@@ -209,7 +211,7 @@ namespace CarDealership.Data
             _ctx.Entry(purchase).State = EntityState.Modified;
         }
 
-        public void EditUser(User user)
+        public void EditUser(AppUser user)
         {
             _ctx.Entry(user).State = EntityState.Modified;
         }
@@ -222,6 +224,11 @@ namespace CarDealership.Data
         public List<Vehicle> GetAll()
         {
             return _ctx.Vehicles.ToList();
+        }
+
+        public List<Contact> GetAllContacts()
+        {
+            return _ctx.Contacts.ToList();
         }
 
         public List<ExteriorColor> GetAllExterior()
@@ -272,6 +279,11 @@ namespace CarDealership.Data
         public List<Vehicle> GetAllUsed()
         {
             return _ctx.Vehicles.Where(v => v.New == false).ToList();
+        }
+
+        public List<AppUser> GetAllUsers()
+        {
+            return _ctx.Users.ToList();
         }
 
         public List<Vehicle> GetByYear(int year)

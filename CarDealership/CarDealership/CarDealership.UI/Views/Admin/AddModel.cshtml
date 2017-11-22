@@ -1,7 +1,20 @@
-﻿
+﻿@model CarDealership.UI.Models.VehicleVM
 @{
-    ViewBag.Title = "AddModel";
+	ViewBag.Title = "AddModel";
 }
 
 <h2>AddModel</h2>
+@using (Html.BeginForm())
+{
+	<div class="form-group">
+		<div class="row">
+			<label>New Model</label>
+			@Html.TextBoxFor(m => m.Vehicle.VehicleModel.ModelType, new { @class = "form-control" }) 
+			<label>Make</label>@Html.DropDownListFor(m => m.Vehicle.VehicleModel.VehicleMake.Make, Model.Makes, "-Choose One-", new { @class = "form-control" }) 
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</div>
+		<div id="makeResults">
 
+		</div>
+}

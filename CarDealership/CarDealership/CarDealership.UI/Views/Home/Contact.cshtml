@@ -6,18 +6,23 @@
 <h2>Contact Us</h2>
 @using (Html.BeginForm())
 {
+	@Html.ValidationSummary(true)
 	<div class="form-group">
 		<label>Name</label>
 		@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
+		@Html.ValidationMessageFor(m => m.Name)
 		<br />
 		<label>Email</label>
 		@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+		@Html.ValidationMessageFor(m => m.Email)
 		<br />
 		<label>Phone</label>
 		@Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone" })
+		@Html.ValidationMessageFor(m => m.Phone)
 		<br />
 		<label>Message</label>
 		@Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Message" })
+		@Html.ValidationMessageFor(m => m.Message)
 	</div>
 	<button type="submit" class="btn btn-sm btn-primary">Submit</button>
 	

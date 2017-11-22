@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarDealership.Model.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,10 @@ namespace CarDealership.Model
         public int VehicleModelId { get; set; }
         public int VehicleMakeId { get; set; }
         public string ModelType { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public DateTime Added { get; set; }
 
         public virtual VehicleMake VehicleMake { get; set; }
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

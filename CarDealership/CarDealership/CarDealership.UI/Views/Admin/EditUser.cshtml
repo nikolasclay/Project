@@ -1,0 +1,35 @@
+﻿@model CarDealership.UI.Models.UserVM
+@{
+    ViewBag.Title = "EditUser";
+}
+
+<h2>Edit User</h2>
+<div class="form-group">
+	<div class="row">
+		<div class="col-md-6">
+			<label>First Name</label>
+			@Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+			<br />
+			<label>Email</label>
+			@Html.TextBoxFor(m => m.User.Email, new { @class = "form-control" })
+			<br />
+			<label>Password</label>
+			@Html.TextBoxFor(m => m.User.Password, new { @class = "form-control" })
+		</div>
+		<div class="col-md-6">
+			<label>Last Name</label>
+			<br />
+			@Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+			<br />
+			<label>Role</label>
+			<br />
+			@Html.DropDownListFor(m => m.User.Role, Model.Roles, "-Choose One-", new { @class = "form-control" })
+			<br />
+			<label>Confirm Password</label>
+			<br />
+			@Html.TextBoxFor(m => m.User.Password, new { @class = "form-control" })
+		</div>
+	</div>
+	<br />
+	<button type="submit" class="btn btn-primary">Save</button>
+</div>

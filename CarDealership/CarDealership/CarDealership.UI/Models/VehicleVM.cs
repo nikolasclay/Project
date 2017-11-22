@@ -7,27 +7,64 @@ using System.Web.Mvc;
 
 namespace CarDealership.UI.Models
 {
-    public class AddVM
+    public class VehicleVM
     {
         public Vehicle Vehicle { get; set; }
+
+        public int VehicleId { get; set; }
+        public int VehicleMakeId { get; set; }
+        public int VehicleModelId { get; set; }
+        public int BodyStyleId { get; set; }
+        public int ExteriorColorId { get; set; }
+        public int InteriorColorId { get; set; }
+        public bool New { get; set; }
+        public int Year { get; set; }
+        public decimal MSRP { get; set; }
+        public decimal SalePrice { get; set; }
+        public int Mileage { get; set; }
+        public bool Feature { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public string Transmission { get; set; }
+        public string VIN { get; set; }
+        public VehicleMake VehicleMake { get; set; }
+        public VehicleModel VehicleModel { get; set; }
+        public BodyStyle BodyStyle { get; set; }
+        public InteriorColor InteriorColor { get; set; }
+        public ExteriorColor ExteriorColor { get; set; }
+
+
+
         public List<SelectListItem> Makes { get; set; }
         public List<SelectListItem> Models { get; set; }
         public List<SelectListItem> BodyStyles { get; set; }
-        public List<SelectListItem> Transmission { get; set; }
         public List<SelectListItem> InteriorColors { get; set; }
         public List<SelectListItem> ExteriorColors { get; set; }
         public List<SelectListItem> PurchaseTypes { get; set; }
         public PurchaseType PurchaseType { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
 
-        public AddVM()
+        public List<int> SelectedMakeId { get; set; }
+        public List<int> SelectModelId { get; set; }
+        public List<int> SelectInteriorId { get; set; }
+        public List<int> SelectExteriorId { get; set; }
+        public List<int> SelectBodyStyleId { get; set; }
+
+
+        public VehicleVM()
         {
             Makes = new List<SelectListItem>();
             Models = new List<SelectListItem>();
             BodyStyles = new List<SelectListItem>();
-            Transmission = new List<SelectListItem>();
             InteriorColors = new List<SelectListItem>();
             ExteriorColors = new List<SelectListItem>();
             PurchaseTypes = new List<SelectListItem>();
+
+            SelectedMakeId = new List<int>();
+            SelectModelId = new List<int>();
+            SelectInteriorId = new List<int>();
+            SelectExteriorId = new List<int>();
+            SelectBodyStyleId = new List<int>();
         }
         public void SetMakes(IEnumerable<VehicleMake> vehicleMake)
         {

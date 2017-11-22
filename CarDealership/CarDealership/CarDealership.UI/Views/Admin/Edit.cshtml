@@ -1,26 +1,26 @@
-﻿@model CarDealership.UI.Models.AddVM
+﻿@model CarDealership.UI.Models.VehicleVM
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 @using (Html.BeginForm())
-{
+{@Html.HiddenFor(m => m.VehicleId)
 	<div class="form-group">
 		<div class="row">
 			<div class="col-md-4">
 				<label>Make</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.VehicleMake.Make, Model.Makes, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.VehicleMake.VehicleMakeId, Model.Makes, "-Choose One-", new { @class = "form-control" })
 				<label>Type</label>
 				<br />
-				@Html.DropDownListFor(m => m.PurchaseType.Description, Model.PurchaseTypes, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.PurchaseType.PurchaseTypeId, Model.PurchaseTypes, "-Choose One-", new { @class = "form-control" })
 				<label>Year</label>
 				<br />
-				@Html.TextBoxFor(m => m.Vehicle.Year, new { @class = "form-control" })
+				@Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
 				<label>Color</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.ExteriorColor.Description, Model.ExteriorColors, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.Vehicle.ExteriorColor.ExteriorColorId, Model.ExteriorColors, "-Choose One-", new { @class = "form-control" })
 				<label>Mileage</label>
 				<br />
 				@Html.TextBoxFor(m => m.Vehicle.Mileage, new { @class = "form-control" })
@@ -31,16 +31,16 @@
 			<div class="col-md-4">
 				<label>Model</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.ModelType, Model.Models, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.Vehicle.VehicleModel.VehicleModelId, Model.Models, "-Choose Model-", new { @class = "form-control" })
 				<label>Body Style</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.BodyStyle.Description, Model.BodyStyles, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.Vehicle.BodyStyle.BodyStyleId, Model.BodyStyles, "-Choose Style-", new { @class = "form-control" })
 				<label>Transmission</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.Transmission, Model.Transmission, "-Choose One-", new { @class = "form-control" })
-				<label>Interior</label>
+				@Html.TextBoxFor(m => m.Vehicle.Transmission, new { @class = "form-control" })
+				<label>Interior Color</label>
 				<br />
-				@Html.DropDownListFor(m => m.Vehicle.InteriorColor.Description, Model.InteriorColors, "-Choose One-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.Vehicle.InteriorColor.InteriorColorId, Model.InteriorColors, "-Choose One-", new { @class = "form-control" })
 				<label>VIN #</label>
 				<br />
 				@Html.TextBoxFor(m => m.Vehicle.VIN, new { @class = "form-control" })

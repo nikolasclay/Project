@@ -1,51 +1,57 @@
-﻿@model CarDealership.Model.Purchase
+﻿@model CarDealership.UI.Models.PurchaseVM
 @{
     ViewBag.Title = "Purchase";
 }
 
 <h2>Purchase</h2>
 
-<div id="results">
+	
+<div id="details" style="display:block;">
 
 </div>
-
-<div class="form-group">
+@using (Html.BeginForm())
+{
+<div class="form-group" id="purchaseForm">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 
+			@Html.HiddenFor(m => m.VehicleId)
 			<label>First Name</label>
-			@Html.TextBoxFor(m => m.Customer.FirstName, new { @class = "form-control" })
-			<label>Last Name</label>
-			@Html.TextBoxFor(m => m.Customer.LastName, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
 			<label>Email</label>
-			@Html.TextBoxFor(m => m.Customer.Email, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 			<label>Street1</label>
-			@Html.TextBoxFor(m => m.Customer.Street1, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Street1, new { @class = "form-control" })
 			<label>City</label>
-			@Html.TextBoxFor(m => m.Customer.City, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.City, new { @class = "form-control" })
 			<label>Zip Code</label>
-			@Html.TextBoxFor(m => m.Customer.ZipCode, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<label>Phone</label>
-			@Html.TextBoxFor(m => m.Customer.Phone, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
 			<label>Street 2</label>
-			@Html.TextBoxFor(m => m.Customer.Street2, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.Street2, new { @class = "form-control" })
 			<label>State</label>
-			@Html.TextBoxFor(m => m.Customer.State, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.State, new { @class = "form-control" })
 		</div>
 		<hr />
 	</div>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<label>Purchase Price</label>
 			@Html.TextBoxFor(m => m.PurchasePrice, new { @class = "form-control" })
+
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<label>Purchase Type</label>
-			@Html.TextBoxFor(m => m.PurchaseType, new { @class = "form-control" })
+			@Html.DropDownListFor(m => m.PurchaseType.PurchaseTypeId, Model.PurchaseTypes, "-Choose purchase type-", new { @class = "form-control" })
 		</div>
 </div>
 	<br />
 <button type="submit" class="btn btn-primary">Save</button>
 </div>
+}
+@section scripts{
+	<script src="~/Scripts/SalesResult.js"></script>
+	}

@@ -1,5 +1,6 @@
 ﻿using CarDealership.Model;
 using CarDealership.Model.Queries;
+using CarDealership.Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace CarDealership.Data.Interface
         List<InteriorColor> GetAllInterior();
         List<ExteriorColor> GetAllExterior();
         List<PurchaseType> GetAllTypes();
+        List<AppUser> GetAllUsers();
+        List<Contact> GetAllContacts();
 
         List<VehicleModel> GetAllModels();
         VehicleMake GetMakeById(int id);
@@ -36,7 +39,7 @@ namespace CarDealership.Data.Interface
         void AddSpecial(Special special);
         void AddContact(Contact contact);
         void AddPurchase(Purchase purchase);
-        void AddUser(User user);
+        void AddUser(AppUser user);
 
         void DeleteVehicle(int id);
         void DeleteMake(int id);
@@ -44,14 +47,15 @@ namespace CarDealership.Data.Interface
         void DeleteSpecial(int id);
         void DeleteContact(int id);
         void DeletePurchase(int id);
-        void DeleteUser(int id);
+        //void DeleteUser(int id);
+        
 
         void EditVehicle(Vehicle vehicle);
         void EditMake(VehicleMake make);
         void EditModel(VehicleModel model);
         void EditContact(Contact contact);
         void EditPurchase(Purchase purchase);
-        void EditUser(User user);
+        void EditUser(AppUser user);
 
         void CanAddColor(InteriorColor interior);
         void CanAddExteriorColor(ExteriorColor exterior);

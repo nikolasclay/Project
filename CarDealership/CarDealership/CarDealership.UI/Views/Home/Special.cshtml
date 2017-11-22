@@ -4,7 +4,10 @@
 }
 
 <h2>Special</h2>
-
+@if (User.IsInRole("admin"))
+{
+	@Html.ActionLink("Add Special", "AddSpecial", "Admin")
+}
 <div id="specialResults">
 
 </div>

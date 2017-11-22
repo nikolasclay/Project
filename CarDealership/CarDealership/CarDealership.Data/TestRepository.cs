@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Model.Queries;
+using CarDealership.Model.Users;
 
 namespace CarDealership.Data
 {
@@ -20,7 +21,7 @@ namespace CarDealership.Data
         private static List<PurchaseType> _purchaseTypes;
         private static List<Vehicle> _vehicles;
         private static List<Special> _specials;
-        private static List<User> _users;
+        private static List<AppUser> _users;
         private static List<BodyStyle> _bodyStyles;
         private static List<InteriorColor> _interiorColors;
         private static List<ExteriorColor> _exteriorColors;
@@ -39,24 +40,36 @@ namespace CarDealership.Data
             {
                 new VehicleMake{VehicleMakeId = 1, Make = "Audi", Added = new DateTime(2017, 01, 10)},
                 new VehicleMake{VehicleMakeId = 2, Make = "BMW", Added = new DateTime(2017, 01, 02)},
-                new VehicleMake{VehicleMakeId = 3, Make = "Mercedes Benz", Added = new DateTime(2017, 01, 03)},
+                new VehicleMake{VehicleMakeId = 3, Make = "Lamborghini", Added = new DateTime(2017, 01, 03)},
                 new VehicleMake{VehicleMakeId = 4, Make = "Nissan", Added = new DateTime(2017, 11, 01)},
                 new VehicleMake{VehicleMakeId = 5, Make = "Aston Martin", Added = new DateTime(2017, 11, 02)},
+                new VehicleMake{VehicleMakeId = 6, Make = "Mercedes", Added = new DateTime(2017,11,17) },
+                new VehicleMake{VehicleMakeId = 7, Make = "Porsche", Added = new DateTime(2017,11,17) },
+                new VehicleMake{VehicleMakeId = 8, Make = "Jaguar", Added = new DateTime(2017,11,17) },
+                new VehicleMake{VehicleMakeId = 9, Make = "Maserati", Added = new DateTime(2017,11,17) },
+                new VehicleMake{VehicleMakeId = 10, Make = "Lexus", Added = new DateTime(2017,11,17) }
             };
 
-            _users = new List<User>
+            _users = new List<AppUser>
             {
-                new User{ UserId = 1, FirstName = "Nikolas", LastName = "Clay", Email = "nikolasclay@generic.com", Password = "password123", Role = "Admin", },
-                new User{ UserId = 2, FirstName = "Lydia", LastName = "Habte", Email = "lydiahabte@generic.com", Password = "lydia2753", Role = "Sales", },
-                new User{ UserId = 3, FirstName = "Blake", LastName = "Moses", Email = "blakemoses@generic.com", Password = "bigballer007", Role = "Disabled", }
+                new AppUser{ Id= "1", FirstName = "Nikolas", LastName = "Clay", Email = "nikolasclay@generic.com", Role = "Admin", },
+                new AppUser{ Id= "2", FirstName = "Lydia", LastName = "Habte", Email = "lydiahabte@generic.com", Role = "Sales", },
+                new AppUser{ Id= "3", FirstName = "Blake", LastName = "Moses", Email = "blakemoses@generic.com", Role = "Disabled", }
             };
             _models = new List<VehicleModel>
             {
-            new VehicleModel { VehicleModelId = 1, VehicleMakeId = _makes[0].VehicleMakeId, ModelType = "R8", VehicleMake = _makes[0], UserId = _users[1].UserId, User = _users[1], Added = _makes[0].Added },
-            new VehicleModel { VehicleModelId = 2, VehicleMakeId = _makes[1].VehicleMakeId, ModelType = "i8", VehicleMake = _makes[1], UserId = _users[1].UserId, User = _users[1], Added = _makes[1].Added },
-            new VehicleModel { VehicleModelId = 3, VehicleMakeId = _makes[2].VehicleMakeId, ModelType = "CLS", VehicleMake = _makes[2], UserId = _users[1].UserId, User = _users[1], Added = _makes[2].Added },
-            new VehicleModel { VehicleModelId = 4, VehicleMakeId = _makes[3].VehicleMakeId, ModelType = "GTR", VehicleMake = _makes[3], UserId = _users[1].UserId, User = _users[1], Added = _makes[3].Added },
-            new VehicleModel { VehicleModelId = 5, VehicleMakeId = _makes[4].VehicleMakeId, ModelType = "Vanquish", VehicleMake = _makes[4], UserId = _users[1].UserId, User = _users[1], Added = _makes[4].Added }
+            new VehicleModel { VehicleModelId = 1, VehicleMakeId = _makes[0].VehicleMakeId, ModelType = "R8", VehicleMake = _makes[0], UserId = _users[1].Id, User = _users[1], Added = _makes[0].Added },
+            new VehicleModel { VehicleModelId = 2, VehicleMakeId = _makes[1].VehicleMakeId, ModelType = "i8", VehicleMake = _makes[1], UserId = _users[1].Id, User = _users[1], Added = _makes[1].Added },
+            new VehicleModel { VehicleModelId = 3, VehicleMakeId = _makes[2].VehicleMakeId, ModelType = "Centenario", VehicleMake = _makes[2], UserId = _users[1].Id, User = _users[1], Added = _makes[2].Added },
+            new VehicleModel { VehicleModelId = 4, VehicleMakeId = _makes[3].VehicleMakeId, ModelType = "GTR", VehicleMake = _makes[3], UserId = _users[1].Id, User = _users[1], Added = _makes[3].Added },
+            new VehicleModel { VehicleModelId = 5, VehicleMakeId = _makes[4].VehicleMakeId, ModelType = "Vanquish", VehicleMake = _makes[4], UserId = _users[1].Id, User = _users[1], Added = _makes[4].Added },
+            new VehicleModel { VehicleModelId = 6, VehicleMakeId = _makes[5].VehicleMakeId, ModelType = "CLS", VehicleMake = _makes[5], UserId = _users[1].Id, User = _users[1], Added = _makes[5].Added },
+            new VehicleModel { VehicleModelId = 7, VehicleMakeId = _makes[6].VehicleMakeId, ModelType = "911 GT2", VehicleMake = _makes[6], UserId = _users[1].Id, User = _users[1], Added = _makes[6].Added },
+            new VehicleModel { VehicleModelId = 8, VehicleMakeId = _makes[7].VehicleMakeId, ModelType = "C-X75", VehicleMake = _makes[7], UserId = _users[1].Id, User = _users[1], Added = _makes[7].Added },
+            new VehicleModel { VehicleModelId = 9, VehicleMakeId = _makes[8].VehicleMakeId, ModelType = "GranTurismo", VehicleMake = _makes[8], UserId = _users[1].Id, User = _users[1], Added = _makes[8].Added },
+            new VehicleModel { VehicleModelId = 10, VehicleMakeId = _makes[9].VehicleMakeId, ModelType = "LC", VehicleMake = _makes[9], UserId = _users[1].Id, User = _users[1], Added = _makes[9].Added },
+            new VehicleModel { VehicleModelId = 11, VehicleMakeId = _makes[5].VehicleMakeId, ModelType = "SLS", VehicleMake = _makes[5], UserId = _users[1].Id, User = _users[1], Added = _makes[5].Added },
+            
             };
 
             _bodyStyles = new List<BodyStyle>
@@ -88,25 +101,49 @@ namespace CarDealership.Data
             _vehicles = new List<Vehicle>
             {
                 new Vehicle{ VehicleId = 1, VehicleModelId = _models[0].VehicleModelId, VehicleModel = _models[0], VehicleMakeId = _makes[0].VehicleMakeId, Year = 2017, VIN = "12345678901234567",
-                             Mileage = 10000, New = true, Transmission = "Manual", MSRP = 35000.00M, SalePrice = 40000.00M, Feature = true, Description = "Class meets speed.", Image = "Content/img/AudiR8.jpg",
+                             Mileage = 10000, New = true, Transmission = "Manual", MSRP = 35000.00M, SalePrice = 40000.00M, Feature = true, Description = "Class meets speed.", Image = "http://localhost:51989/Content/img/AudiR8.jpg",
                              BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[1].ExteriorColorId,
                              InteriorColorId = _interiorColors[0].InteriorColorId, InteriorColor = _interiorColors[0] },
 
                 new Vehicle{ VehicleId = 2, VehicleModelId = _models[1].VehicleModelId, VehicleModel = _models[1], VehicleMakeId = _makes[1].VehicleMakeId, Year = 2015, VIN = "01234567891011121",
-                             Mileage = 0, New = false, Transmission = "Automatic", MSRP = 20000.00M, SalePrice = 100000.00M, Feature = true, Description = "You're sure to turn heads with this car.", Image = "Content/img/BMWi8.jpg",
+                             Mileage = 0, New = false, Transmission = "Automatic", MSRP = 20000.00M, SalePrice = 100000.00M, Feature = true, Description = "You're sure to turn heads with this car.", Image = "http://localhost:51989/Content/img/BMWi8.jpg",
                              BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[0], ExteriorColorId = _exteriorColors[0].ExteriorColorId,
                              InteriorColorId = _interiorColors[1].InteriorColorId, InteriorColor = _interiorColors[1] },
 
-                new Vehicle{ VehicleId = 3, VehicleModelId = _models[2].VehicleModelId, VehicleModel = _models[2], VehicleMakeId = _makes[2].VehicleMakeId, Year = 2014, VIN = "01010101010101011",
-                             Mileage = 5000, New = true, Transmission = "Manual", MSRP = 60000.00M, SalePrice = 55000.00M, Feature = false, Description = "It's a Mustang.", Image = "Content/img/FordMustang.jpg",
+                new Vehicle{ VehicleId = 3, VehicleModelId = _models[4].VehicleModelId, VehicleModel = _models[4], VehicleMakeId = _makes[4].VehicleMakeId, Year = 2014, VIN = "01010101010101011",
+                             Mileage = 5000, New = false, Transmission = "Manual", MSRP = 60000.00M, SalePrice = 55000.00M, Feature = true, Description = "It's an Aston Martin.", Image = "http://localhost:51989/Content/img/AstonMartin.jpg",
                              BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[3], ExteriorColorId = _exteriorColors[3].ExteriorColorId,
                              InteriorColorId = _interiorColors[0].InteriorColorId, InteriorColor = _interiorColors[0] },
                 new Vehicle{ VehicleId = 4, VehicleModelId = _models[3].VehicleModelId, VehicleModel = _models[3], VehicleMakeId = _makes[3].VehicleMakeId, Year = 2013, VIN = "01010101010101012",
-                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 75000.00M, Feature = true, Description = "It's a Nissan GTR.", Image = "Content/img/NissanGTR.jpg",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 75000.00M, Feature = true, Description = "It's a Nissan GTR.", Image = "http://localhost:51989/Content/img/NissanGTR.jpg",
                              BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[2], ExteriorColorId = _exteriorColors[2].ExteriorColorId,
                              InteriorColorId = _interiorColors[2].InteriorColorId, InteriorColor = _interiorColors[3] },
-                new Vehicle{ VehicleId = 5, VehicleModelId = _models[4].VehicleModelId, VehicleModel = _models[4], VehicleMakeId = _makes[4].VehicleMakeId, Year = 2016, VIN = "01010101010101013",
-                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's an Aston Martin.", Image = "Content/img/MercedesCLS.jpg",
+                new Vehicle{ VehicleId = 5, VehicleModelId = _models[2].VehicleModelId, VehicleModel = _models[2], VehicleMakeId = _makes[2].VehicleMakeId, Year = 2014, VIN = "01010101010101111",
+                             Mileage = 5000, New = false, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Lamborghini.", Image = "http://localhost:51989/Content/img/Lamborghini.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[1].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 6, VehicleModelId = _models[5].VehicleModelId, VehicleModel = _models[5], VehicleMakeId = _makes[5].VehicleMakeId, Year = 2016, VIN = "01010101010101103",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 67000.00M, Feature = true, Description = "It's a Mercedes.", Image = "http://localhost:51989/Content/img/MercedesCLS.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[2].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 7, VehicleModelId = _models[6].VehicleModelId, VehicleModel = _models[6], VehicleMakeId = _makes[6].VehicleMakeId, Year = 2016, VIN = "01010101010101013",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Porsche.", Image = "http://localhost:51989/Content/img/Porsche.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[3].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 8, VehicleModelId = _models[7].VehicleModelId, VehicleModel = _models[7], VehicleMakeId = _makes[7].VehicleMakeId, Year = 2017, VIN = "01010101010101301",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Jaguar.", Image = "http://localhost:51989/Content/img/Jaguar.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[1].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 9, VehicleModelId = _models[8].VehicleModelId, VehicleModel = _models[8], VehicleMakeId = _makes[8].VehicleMakeId, Year = 2016, VIN = "01010101010101113",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Maserati.", Image = "http://localhost:51989/Content/img/Maserati.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[0].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 10, VehicleModelId = _models[9].VehicleModelId, VehicleModel = _models[9], VehicleMakeId = _makes[9].VehicleMakeId, Year = 2017, VIN = "01010101010101114",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Lexus.", Image = "http://localhost:51989/Content/img/Lexus.jpg",
+                             BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[1].ExteriorColorId,
+                             InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] },
+                new Vehicle{ VehicleId = 11, VehicleModelId = _models[10].VehicleModelId, VehicleModel = _models[10], VehicleMakeId = _makes[5].VehicleMakeId, Year = 2016, VIN = "01010101010101115",
+                             Mileage = 5000, New = true, Transmission = "Automatic", MSRP = 60000.00M, SalePrice = 85000.00M, Feature = true, Description = "It's a Mercedes SLS.", Image = "http://localhost:51989/Content/img/MercedesSLS.jpg",
                              BodyStyle = _bodyStyles[0], BodyStyleId = _bodyStyles[0].BodyStyleId, ExteriorColor = _exteriorColors[1], ExteriorColorId = _exteriorColors[1].ExteriorColorId,
                              InteriorColorId = _interiorColors[3].InteriorColorId, InteriorColor = _interiorColors[4] }
             };
@@ -119,9 +156,9 @@ namespace CarDealership.Data
 
             _customers = new List<Customer>
             {
-                new Customer{ CustomerId = 1, FirstName = "Nikolas", LastName = "Clay", Phone ="808-555-1234", Email= "nikolasclay@generic.com", Street1 = "123 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789},
-                new Customer{ CustomerId = 2, FirstName = "Lydia", LastName = "Habte", Phone ="951-555-1234", Email= "lydiahabte@generic.com", Street1 = "456 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789},
-                new Customer{ CustomerId = 3, FirstName = "Blake", LastName = "Moses", Phone ="612-555-1234", Email= "blakemoses@generic.com", Street1 = "789 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789}
+                new Customer{ CustomerId = 1, Name = "Nikolas Clay", Phone ="808-555-1234", Email= "nikolasclay@generic.com", Street1 = "123 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789},
+                new Customer{ CustomerId = 2, Name = "Lydia Habte", Phone ="951-555-1234", Email= "lydiahabte@generic.com", Street1 = "456 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789},
+                new Customer{ CustomerId = 3, Name = "Blake Moses", Phone ="612-555-1234", Email= "blakemoses@generic.com", Street1 = "789 Anywhere Street", Street2 = "", City = "Honolulu", State = "HI", ZipCode = 96789}
             };
 
             _purchaseTypes = new List<PurchaseType>
@@ -134,15 +171,15 @@ namespace CarDealership.Data
             _purchases = new List<Purchase>
             {
                 new Purchase{ PurchaseId = 1, PurchasePrice = 10000.00M, PurchaseTypeId = _purchaseTypes[0].PurchaseTypeId, PurchaseType = _purchaseTypes[0],
-                              UserId = _users[1].UserId, User = _users[1], Vehicle = _vehicles[0], VehicleId = _vehicles[0].VehicleId,
+                              UserId = _users[1].Id, User = _users[1], Vehicle = _vehicles[0], VehicleId = _vehicles[0].VehicleId,
                               CustomerId = _customers[0].CustomerId, Customer = _customers[0], PurchaseDate = new DateTime(2017, 01, 10), },
 
                 new Purchase{ PurchaseId = 2, PurchasePrice = 10000.00M, PurchaseTypeId = _purchaseTypes[1].PurchaseTypeId, PurchaseType = _purchaseTypes[1],
-                              UserId = _users[1].UserId, User = _users[1], Vehicle = _vehicles[1], VehicleId = _vehicles[1].VehicleId,
+                              UserId = _users[1].Id, User = _users[1], Vehicle = _vehicles[1], VehicleId = _vehicles[1].VehicleId,
                               CustomerId = _customers[1].CustomerId, Customer = _customers[1], PurchaseDate = new DateTime(2017, 01, 10), },
 
                 new Purchase{ PurchaseId = 3, PurchasePrice = 10000.00M, PurchaseTypeId = _purchaseTypes[2].PurchaseTypeId, PurchaseType = _purchaseTypes[2],
-                              UserId = _users[1].UserId, User = _users[1], Vehicle = _vehicles[2], VehicleId = _vehicles[1].VehicleId,
+                              UserId = _users[1].Id, User = _users[1], Vehicle = _vehicles[2], VehicleId = _vehicles[1].VehicleId,
                               CustomerId = _customers[2].CustomerId, Customer = _customers[2], PurchaseDate = new DateTime(2017, 01, 10), }
             };
         }
@@ -212,15 +249,15 @@ namespace CarDealership.Data
             _specials.Add(special);
         }
 
-        public void AddUser(User user)
+        public void AddUser(AppUser user)
         {
             if (_users.Count == 0)
             {
-                user.UserId = 1;
+                user.Id = "1";
             }
             else
             {
-                user.UserId = _users.Max(s => s.UserId);
+                user.Id = _users.Max(s => s.Id);
             }
             _users.Add(user);
         }
@@ -265,7 +302,7 @@ namespace CarDealership.Data
 
         public void DeleteUser(int id)
         {
-            _users.RemoveAll(u => u.UserId == id);
+            _users.RemoveAll(u => u.Id == id.ToString());
         }
 
         public void DeleteVehicle(int id)
@@ -319,13 +356,12 @@ namespace CarDealership.Data
             editPurchase = purchase;
         }
 
-        public void EditUser(User user)
+        public void EditUser(AppUser user)
         {
-            var editUser = _users.FirstOrDefault(u => u.UserId == user.UserId);
+            var editUser = _users.FirstOrDefault(u => u.Id == user.Id);
             editUser.FirstName = user.FirstName;
             editUser.LastName = user.LastName;
             editUser.Email = user.Email;
-            editUser.Password = user.Password;
             editUser.Role = user.Role;
         }
 
@@ -490,33 +526,164 @@ namespace CarDealership.Data
         public List<Vehicle> QuickSearchNew(VehicleSearchParameters parameters)
         {
             var result = GetAllNew();
+            #region With Quick Search
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue
+                && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice > +parameters.MinPrice && r.SalePrice <= parameters.MaxPrice
+                && r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
             if (!String.IsNullOrWhiteSpace(parameters.QuickSearch))
             {
                 result = result.Where(s => s.VehicleModel.VehicleMake.Make.Contains(parameters.QuickSearch) || s.VehicleModel.ModelType.Contains(parameters.QuickSearch)).ToList();
             }
-            result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
-            result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
-            result = result.Where(r => r.Year >= parameters.MinYear).ToList();
-            result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
-
+            #endregion
+            #region Without Quick Search
+            if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue
+                && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice && r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear && r.SalePrice >= parameters.MinPrice || r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice && r.Year <= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
+            }
             return result;
         }
 
         public List<Vehicle> QuickSearchUsed(VehicleSearchParameters parameters)
         {
             var result = GetAllUsed();
+            #region With Quick Search
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue
+                && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice > +parameters.MinPrice && r.SalePrice <= parameters.MaxPrice
+                && r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
             if (!String.IsNullOrWhiteSpace(parameters.QuickSearch))
             {
                 result = result.Where(s => s.VehicleModel.VehicleMake.Make.Contains(parameters.QuickSearch) || s.VehicleModel.ModelType.Contains(parameters.QuickSearch)).ToList();
             }
-            result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
-            result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
-            result = result.Where(r => r.Year >= parameters.MinYear).ToList();
-            result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
+            #endregion
+            #region Without Quick Search
+            if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue
+                && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice && r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MaxPrice.HasValue && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear && r.Year <= parameters.MaxYear && r.SalePrice >= parameters.MinPrice || r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice && r.SalePrice <= parameters.MaxPrice && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue && parameters.MinYear.HasValue && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice && r.Year <= parameters.MinYear && r.Year <= parameters.MaxYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice >= parameters.MinPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxPrice.HasValue)
+            {
+                result = result.Where(r => r.SalePrice <= parameters.MaxPrice).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MinYear.HasValue)
+            {
+                result = result.Where(r => r.Year >= parameters.MinYear).ToList();
+            }
+            else if (String.IsNullOrWhiteSpace(parameters.QuickSearch) && parameters.MaxYear.HasValue)
+            {
+                result = result.Where(r => r.Year <= parameters.MaxYear).ToList();
+            }
 
             return result;
         }
-
+#endregion
         public void CanAddColor(InteriorColor interior)
         {
             if (_interiorColors.Count == 0)
@@ -577,5 +744,16 @@ namespace CarDealership.Data
         {
             return _purchaseTypes;
         }
+
+        public List<AppUser> GetAllUsers()
+        {
+            return _users;
+        }
+
+        public List<Contact> GetAllContacts()
+        {
+            return _contacts;
+        }
     }
 }
+#endregion
