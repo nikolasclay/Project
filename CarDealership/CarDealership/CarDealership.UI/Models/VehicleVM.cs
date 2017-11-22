@@ -17,6 +17,7 @@ namespace CarDealership.UI.Models
         public int BodyStyleId { get; set; }
         public int ExteriorColorId { get; set; }
         public int InteriorColorId { get; set; }
+        public int PurchaseTypeId { get; set; }
         public bool New { get; set; }
         public int Year { get; set; }
         public decimal MSRP { get; set; }

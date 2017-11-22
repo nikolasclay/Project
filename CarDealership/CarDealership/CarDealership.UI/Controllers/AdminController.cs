@@ -4,6 +4,7 @@ using CarDealership.Model;
 using CarDealership.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,13 +40,23 @@ namespace CarDealership.UI.Controllers
             {
                 Vehicle newVehicle = new Vehicle();
                 {
-                    newVehicle.BodyStyleId = model.BodyStyleId;
+                    newVehicle.BodyStyleId= model.BodyStyleId;
                     newVehicle.VehicleModelId = model.VehicleModelId;
                     newVehicle.VehicleMakeId = model.VehicleMakeId;
                     newVehicle.ExteriorColorId = model.ExteriorColorId;
                     newVehicle.InteriorColorId = model.InteriorColorId;
                     newVehicle.Transmission = model.Transmission;
                     newVehicle.Feature = model.Feature;
+                    if (ModelState.IsValid)
+                    {
+                        if(model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+                        {
+                            string path = Path.Combine(Server.MapPath("~/Content/img"),
+                                Path.GetFileName(model.ImageUpload.FileName));
+
+                            model.ImageUpload.SaveAs(path);
+                        }
+                    }
                     newVehicle.Image = model.Image;
                     newVehicle.Mileage = model.Mileage;
                     newVehicle.MSRP = model.MSRP;

@@ -192,7 +192,7 @@ namespace CarDealership.Data
             }
             else
             {
-                contact.ContactId = _contacts.Max(c => c.ContactId);
+                contact.ContactId = _contacts.Max(c => c.ContactId) + 1;
             }
             _contacts.Add(contact);
         }
@@ -205,7 +205,7 @@ namespace CarDealership.Data
             }
             else
             {
-                make.VehicleMakeId = _makes.Max(m => m.VehicleMakeId);
+                make.VehicleMakeId = _makes.Max(m => m.VehicleMakeId) + 1;
             }
             _makes.Add(make);
         }
@@ -218,7 +218,7 @@ namespace CarDealership.Data
             }
             else
             {
-                model.VehicleModelId = _models.Max(m => m.VehicleModelId);
+                model.VehicleModelId = _models.Max(m => m.VehicleModelId) + 1;
             }
             _models.Add(model);
         }
@@ -231,7 +231,7 @@ namespace CarDealership.Data
             }
             else
             {
-                purchase.PurchaseId = _purchases.Max(p => p.PurchaseId);
+                purchase.PurchaseId = _purchases.Max(p => p.PurchaseId) + 1;
             }
                 _purchases.Add(purchase);
         }
@@ -244,7 +244,7 @@ namespace CarDealership.Data
             }
             else
             {
-                special.SpecialId = _specials.Max(s => s.SpecialId);
+                special.SpecialId = _specials.Max(s => s.SpecialId) + 1;
             }
             _specials.Add(special);
         }
@@ -257,7 +257,7 @@ namespace CarDealership.Data
             }
             else
             {
-                user.Id = _users.Max(s => s.Id);
+                user.Id = _users.Max(s => s.Id) + 1;
             }
             _users.Add(user);
         }
@@ -270,7 +270,7 @@ namespace CarDealership.Data
             }
             else
             {
-                vehicle.VehicleId = _vehicles.Max(v => v.VehicleId);
+                vehicle.VehicleId = _vehicles.Max(v => v.VehicleId) + 1;
             }
             _vehicles.Add(vehicle);
         }

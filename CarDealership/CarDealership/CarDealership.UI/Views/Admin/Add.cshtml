@@ -11,19 +11,19 @@
 			<div class="col-md-4">
 				<label>Make</label>
 				<br />
-				@Html.DropDownListFor(m => m.VehicleModel.VehicleMake.VehicleMakeId, Model.Makes, "-Choose Make-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.VehicleMakeId, Model.Makes, "-Choose Make-", new { @class = "form-control" })
 				<label>Type</label>
 				<br />
-				@Html.DropDownListFor(m => m.PurchaseType.PurchaseTypeId, Model.PurchaseTypes, "-Choose Purchase Type-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.PurchaseTypeId, Model.PurchaseTypes, "-Choose Purchase Type-", new { @class = "form-control" })
 				<label>Year</label>
 				<br />
 				@Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
 				<label>Exterior Color</label>
 				<br />
-				@Html.DropDownListFor(m => m.ExteriorColor.ExteriorColorId, Model.ExteriorColors, "-Exterior Color-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.ExteriorColorId, Model.ExteriorColors, "-Exterior Color-", new { @class = "form-control" })
 				<label>Mileage</label>
 				<br />
-				@Html.TextBoxFor(m => m.Mileage, new { @class = "form-control" })
+				@Html.TextBoxFor(m => m.Mileage, new { @class = "form-control", @placeholder = "Mileage" })
 				<label>MSRP</label>
 				<br />
 				@Html.TextBoxFor(m => m.MSRP, new { @class = "form-control" })
@@ -31,10 +31,10 @@
 			<div class="col-md-4">
 				<label>Model</label>
 				<br />
-				@Html.DropDownListFor(m => m.VehicleModel.VehicleModelId, Model.Models, "-Choose Model-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.VehicleModelId, Model.Models, "-Choose Model-", new { @class = "form-control" })
 				<label>Body Style</label>
 				<br />
-				@Html.DropDownListFor(m => m.BodyStyle.BodyStyleId, Model.BodyStyles, "-Choose Style-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.BodyStyleId, Model.BodyStyles, "-Choose Style-", new { @class = "form-control" })
 				<label>Transmission</label>
 				<br />
 				@Html.DropDownListFor(m => m.Transmission,
@@ -46,7 +46,7 @@
 			    "-Choose Transmission-", new { @class = "form-control" })
 				<label>Interior Color</label>
 				<br />
-				@Html.DropDownListFor(m => m.InteriorColor.InteriorColorId, Model.InteriorColors, "-Choose Interior Color-", new { @class = "form-control" })
+				@Html.DropDownListFor(m => m.InteriorColorId, Model.InteriorColors, "-Choose Interior Color-", new { @class = "form-control" })
 				<label>VIN #</label>
 				<br />
 				@Html.TextBoxFor(m => m.VIN, new { @class = "form-control" })
@@ -62,11 +62,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-4-md">
-				<label>Picture</label>
-				Placeholder
+			<div class="col-md-4">
+				<label>Add Image</label>
+				@Html.TextBoxFor(m => m.ImageUpload, new { type = "file", @class = "form-control" })
 			</div>
 		</div>
+		<br />
 		<button type="submit" class="btn btn-primary">Save</button>
+		
 	</div>
 }
