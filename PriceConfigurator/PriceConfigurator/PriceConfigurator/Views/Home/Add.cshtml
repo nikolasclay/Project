@@ -1,0 +1,22 @@
+﻿@model PriceConfigurator.Models.AppVM
+@{
+	ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+@using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	<div class="form-group">
+		<div class="row">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Upload CSV</label>
+					<input type="file" />
+				</div>
+				<div class="col-md-4">
+					<button id="btnimportcsv" runat="server" onclick="btnimportcsv_Click">Import CSV Data to SQL Table</button>
+				</div>
+			</div>
+		</div>
+	</div>
+}

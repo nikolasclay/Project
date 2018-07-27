@@ -56,7 +56,7 @@ namespace BetterGuessingGame
         }
         private static void DisplayHigher()
         {
-            Console.WriteLine("The guess you entered was too high!");
+            Console.WriteLine("Your guess was too high!");
             Console.ReadKey();
         }
 

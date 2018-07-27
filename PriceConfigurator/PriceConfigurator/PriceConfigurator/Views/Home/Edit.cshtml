@@ -1,0 +1,36 @@
+﻿@model PriceConfigurator.Models.AppVM
+@{
+	ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{@Html.HiddenFor(m => m.App.AppId)
+<div class="form-group">
+	<div class="row">
+		<div class="col-md-6">
+			<b><label>Title: </label></b>
+				@Html.DisplayTextFor(m => m.App.Title)
+			<br/>
+			<b><label>Current Price: </label></b>
+				@Html.DisplayFor(m => m.App.CurrentPrice, new { @class = "form-control" })
+			<br/>
+			<b><label>Suggested Price: </label></b>
+				@Html.TextBoxFor(m => m.App.SuggestedPrice, new { @class = "form-control" })
+			<br/>
+			<button type="submit" class="btn btn-primary" onclick="">Save</button>
+
+		</div>
+		<div class="col-md-6">
+			<label>Upload CSV</label>
+			@Html.TextBoxFor(m => m.CsvUpload, new { type = "file", @class = "form-control" })
+			<br />
+			<button id="btnimportcsv" runat="server" onclick="btnimportcsv_Click">Import CSV Data to SQL Table</button>
+		</div>
+		@*<div class="col-md-4">
+			<button id="btnimportcsv" runat="server" onclick="btnimportcsv_Click">Import CSV Data to SQL Table</button>
+		</div>*@
+	</div>
+</div>
+}

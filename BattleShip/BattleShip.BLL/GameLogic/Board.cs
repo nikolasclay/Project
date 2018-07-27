@@ -18,7 +18,7 @@ namespace BattleShip.BLL.GameLogic
         {
             ShotHistory = new Dictionary<Coordinate, ShotHistory>();
             Ships = new Ship[5];
-            _currentShipIndex = 0;
+            _curre, newntShipIndex = 0;
         }
 
         public FireShotResponse FireShot(Coordinate coordinate)
